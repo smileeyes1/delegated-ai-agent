@@ -1,53 +1,102 @@
 """
-Main application entry point
-Combines intent extraction, planning, permission checking,
-and auditing into a single controlled workflow.
+main.py
+=======
+Main entry point for the planning system.
+
+Responsibilities:
+- Initialize Planner
+- Provide simple CLI-style interaction
+- Demonstrate execution flow
 """
 
-from fastapi import FastAPI
-from pydantic import BaseModel
-
-from app.intent import extract_intent
-from app.planner import build_plan
-from app.permissions import require_approval
-from app.audit import log_event
+from datetime import datetime, timedelta
+from planner import Planner, Task, Priority, Status
 
 
-app = FastAPI(
-    title="Delegated AI Agent",
-    description="Human-authorized AI agent (GitHub-first)",
-    version="0.1.0"
-)
-
-
-class UserRequest(BaseModel):
-    request: str
-
-
-@app.post("/request")
-def handle_user_request(user_request: UserRequest):
+def seed_sample_tasks(planner: Planner) -> None:
     """
-    Handle a single user request end-to-end
-    without executing any external action.
+    Adds initial tasks for testing or first-run usage.
     """
+    planner.add_task(
+        Task(
+            title="Setup planning system",
+            description="Initialize planner and verify workflow",
+            priority=Priority.CRITICAL,
+            due_at=datetime.utcnow() + timedelta(hours=2),
+        )
+    )
 
-    # 1. Extract intent
-    intent = extract_intent(user_request.request)
-    log_event("intent", intent)
+    planner.add_task(
+        Task(
+            title="Review planner logic",
+            description="Check prioritization and task flow",
+            priority=Priority.HIGH,
+            due_at=datetime.utcnow() + timedelta(days=1),
+        )
+    )
 
-    # 2. Build execution plan
-    plan = build_plan(intent)
-    log_event("plan", {"plan": plan})
+    planner.add_task(
+        Task(
+            title="Refactor if needed",
+            priority=Priority.MEDIUM,
+        )
+    )
 
-    # 3. Determine required approvals
-    approval = require_approval(plan)
-    log_event("approval_check", approval)
 
-    # 4. Return response (no execution)
-    return {
-        "status": "waiting_for_approval",
-        "intent": intent,
-        "plan": plan,
-        "approval": approval
-    }
+def print_task(task: Task) -> None:
+    """
+    Pretty print a single task.
+    """
+    print(
+        f"- {task.title}\n"
+        f"  Priority : {task.priority.name}\n"
+        f"  Status   : {task.status.value}\n"
+        f"  Due      : {task.due_at if task.due_at else 'N/A'}\n"
+    )
 
+
+def print_all_tasks(planner: Planner) -> None:
+    """
+    Print all tasks in the planner.
+    """
+    print("\n📋 All Tasks:\n")
+    for task in planner.list_tasks():
+        print_task(task)
+
+
+def run(planner: Planner) -> None:
+    """
+    Core execution flow.
+    """
+    print("🚀 Planner started\n")
+
+    print_all_tasks(planner)
+
+    next_task = planner.next_task()
+    if not next_task:
+        print("✅ No pending tasks.")
+        return
+
+    print("➡️ Next task to execute:\n")
+    print_task(next_task)
+
+    print("▶️ Starting task...\n")
+    planner.start_task(next_task.title)
+
+    print("✅ Completing task...\n")
+    planner.complete_task(next_task.title)
+
+    print_all_tasks(planner)
+
+
+def main() -> None:
+    """
+    Application entry point.
+    """
+    planner = Planner()
+    seed_sample_tasks(planner)
+    run(planner)
+
+
+if __name__ == "__main__":
+    main()
