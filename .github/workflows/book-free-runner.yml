@@ -17,6 +17,9 @@ concurrency:
   group: book-canonical-factory
   cancel-in-progress: false
 
+env:
+  GIT_PUSH_RETRIES: '5'
+
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -25,7 +28,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
+          persist-credentials: true
       - name: Master terminal gate
         run: python3 book/MASTER_TERMINAL_GATE.py
       - name: Discover missing work across the full lifecycle
@@ -94,7 +98,22 @@ jobs:
             git config user.name 'book-autonomous-agent'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add book/
-            if git diff --cached --quiet; then echo 'evidence_checkpoint=false' >> "$GITHUB_OUTPUT"; else git diff --cached --check; git commit -m 'book: persist verified evidence acquisition checkpoint [skip ci]'; git push; echo 'evidence_checkpoint=true' >> "$GITHUB_OUTPUT"; fi
+            if git diff --cached --quiet; then
+              echo 'evidence_checkpoint=false' >> "$GITHUB_OUTPUT"
+            else
+              git diff --cached --check
+              git commit -m 'book: persist verified evidence acquisition checkpoint [skip ci]'
+              for attempt in $(seq 1 "$GIT_PUSH_RETRIES"); do
+                git fetch origin main
+                git rebase origin/main || { git rebase --abort || true; git reset --soft origin/main; git commit -m 'book: persist verified evidence acquisition checkpoint [skip ci]'; }
+                if git push origin HEAD:main; then
+                  echo 'evidence_checkpoint=true' >> "$GITHUB_OUTPUT"
+                  break
+                fi
+                if [ "$attempt" -eq "$GIT_PUSH_RETRIES" ]; then exit 1; fi
+                sleep $((attempt * 3))
+              done
+            fi
           else echo 'evidence_checkpoint=false' >> "$GITHUB_OUTPUT"; fi
       - name: Verify research and durable state
         if: steps.pending.outputs.run == 'true' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
@@ -126,7 +145,13 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git diff --cached --check
           git commit -m 'book: canonical autonomous factory checkpoint [skip ci]'
-          git push
+          for attempt in $(seq 1 "$GIT_PUSH_RETRIES"); do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; git reset --soft origin/main; git commit -m 'book: canonical autonomous factory checkpoint [skip ci]'; }
+            if git push origin HEAD:main; then exit 0; fi
+            if [ "$attempt" -eq "$GIT_PUSH_RETRIES" ]; then exit 1; fi
+            sleep $((attempt * 3))
+          done
       - name: Failure is explicit
         if: failure()
         run: echo 'CANONICAL_FACTORY_CYCLE_FAILED — durable state explains the block; next scheduled cycle resumes from the last valid checkpoint.'
