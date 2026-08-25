@@ -1,0 +1,28 @@
+{
+  "chapter": "01",
+  "question": "What does the Qur'an itself say revelation is intended to produce in the human being?",
+  "status": "CANDIDATE_EVIDENCE_UNVERIFIED",
+  "source_policy": {
+    "primary_text": "Tanzil Quran text, Uthmani/Simple editions",
+    "provenance_url": "https://tanzil.net/docs/download",
+    "provenance_note": "Tanzil states that its Uthmani text matches the Medina Mushaf and that the project focuses on precise verified digital Quran text."
+  },
+  "candidates": [
+    {"id":"Q-002-002","reference":"2:2","themes":["guidance","taqwa"]},
+    {"id":"Q-002-185","reference":"2:185","themes":["guidance","clear proofs","criterion"]},
+    {"id":"Q-005-015","reference":"5:15","themes":["light","clear book"]},
+    {"id":"Q-005-016","reference":"5:16","themes":["guidance","peace","paths"]},
+    {"id":"Q-010-057","reference":"10:57","themes":["admonition","healing","guidance","mercy"]},
+    {"id":"Q-014-001","reference":"14:1","themes":["darkness to light","guidance"]},
+    {"id":"Q-016-089","reference":"16:89","themes":["explanation","guidance","mercy","good news"]},
+    {"id":"Q-017-009","reference":"17:9","themes":["guidance","most upright"]},
+    {"id":"Q-029-045","reference":"29:45","themes":["prayer","moral restraint"]},
+    {"id":"Q-039-023","reference":"39:23","themes":["reminder","heart response"]},
+    {"id":"Q-057-016","reference":"57:16","themes":["remembrance","heart humility"]},
+    {"id":"Q-062-002","reference":"62:2","themes":["recitation","purification","teaching scripture","wisdom"]}
+  ],
+  "counter_evidence_required": true,
+  "verification_required": true,
+  "interpretation_status": "NOT_STARTED",
+  "draft_status": "BLOCKED"
+}
