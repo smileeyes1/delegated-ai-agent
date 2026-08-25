@@ -1,0 +1,13 @@
+{
+  "status": "BLOCKED",
+  "issues": [
+    "TEXT_CROSSCHECK_FAILURE:2:2,2:185,5:15,5:16,10:57,14:1,16:89,17:9,29:45,39:23,57:16,62:2,91:9",
+    "MISSING_DRAFT_BOUNDARY"
+  ],
+  "evidence_records": 13,
+  "live_verified_text_count": 12,
+  "required_text_count": 12,
+  "counter_evidence_count": 500,
+  "comparison_method": "Unicode NFKC + conservative Arabic orthographic normalization",
+  "original_source_text_preserved": true
+}

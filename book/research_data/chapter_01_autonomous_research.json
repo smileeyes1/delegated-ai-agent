@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-08-25T03:29:56.759227+00:00",
+  "run_at": "2026-08-25T08:14:20.762414+00:00",
   "source": {
     "name": "Tanzil",
     "url": "https://tanzil.net/pub/download/index.php?quranType=uthmani&outType=txt-2&agree=true&marks=true&sajdah=true&rub=true&stanween=true",
@@ -29,6 +29,7 @@
       "primary_text": "ذَٰلِكَ ٱلْكِتَٰبُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًۭى لِّلْمُتَّقِينَ",
       "quranpedia_text": "﻿ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِلْمُتَّقِينَ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "2:1": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ الٓمٓ",
         "2:2": "ذَٰلِكَ ٱلْكِتَٰبُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًۭى لِّلْمُتَّقِينَ",
@@ -75,6 +76,7 @@
       "primary_text": "شَهْرُ رَمَضَانَ ٱلَّذِىٓ أُنزِلَ فِيهِ ٱلْقُرْءَانُ هُدًۭى لِّلنَّاسِ وَبَيِّنَٰتٍۢ مِّنَ ٱلْهُدَىٰ وَٱلْفُرْقَانِ ۚ فَمَن شَهِدَ مِنكُمُ ٱلشَّهْرَ فَلْيَصُمْهُ ۖ وَمَن كَانَ مَرِيضًا أَوْ عَلَىٰ سَفَرٍۢ فَعِدَّةٌۭ مِّنْ أَيَّامٍ أُخَرَ ۗ يُرِيدُ ٱللَّهُ بِكُمُ ٱلْيُسْرَ وَلَا يُرِيدُ بِكُمُ ٱلْعُسْرَ وَلِتُكْمِلُوا۟ ٱلْعِدَّةَ وَلِتُكَبِّرُوا۟ ٱللَّهَ عَلَىٰ مَا هَدَىٰكُمْ وَلَعَلَّكُمْ تَشْكُرُونَ",
       "quranpedia_text": "﻿شَهْرُ رَمَضَانَ الَّذِي أُنْزِلَ فِيهِ الْقُرْآنُ هُدًى لِلنَّاسِ وَبَيِّنَاتٍ مِنَ الْهُدَىٰ وَالْفُرْقَانِ ۚ فَمَنْ شَهِدَ مِنْكُمُ الشَّهْرَ فَلْيَصُمْهُ ۖ وَمَنْ كَانَ مَرِيضًا أَوْ عَلَىٰ سَفَرٍ فَعِدَّةٌ مِنْ أَيَّامٍ أُخَرَ ۗ يُرِيدُ اللَّهُ بِكُمُ الْيُسْرَ وَلَا يُرِيدُ بِكُمُ الْعُسْرَ وَلِتُكْمِلُوا الْعِدَّةَ وَلِتُكَبِّرُوا اللَّهَ عَلَىٰ مَا هَدَاكُمْ وَلَعَلَّكُمْ تَشْكُرُونَ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "2:183": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ كُتِبَ عَلَيْكُمُ ٱلصِّيَامُ كَمَا كُتِبَ عَلَى ٱلَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ",
         "2:184": "أَيَّامًۭا مَّعْدُودَٰتٍۢ ۚ فَمَن كَانَ مِنكُم مَّرِيضًا أَوْ عَلَىٰ سَفَرٍۢ فَعِدَّةٌۭ مِّنْ أَيَّامٍ أُخَرَ ۚ وَعَلَى ٱلَّذِينَ يُطِيقُونَهُۥ فِدْيَةٌۭ طَعَامُ مِسْكِينٍۢ ۖ فَمَن تَطَوَّعَ خَيْرًۭا فَهُوَ خَيْرٌۭ لَّهُۥ ۚ وَأَن تَصُومُوا۟ خَيْرٌۭ لَّكُمْ ۖ إِن كُنتُمْ تَعْلَمُونَ",
@@ -128,6 +130,7 @@
       "primary_text": "يَٰٓأَهْلَ ٱلْكِتَٰبِ قَدْ جَآءَكُمْ رَسُولُنَا يُبَيِّنُ لَكُمْ كَثِيرًۭا مِّمَّا كُنتُمْ تُخْفُونَ مِنَ ٱلْكِتَٰبِ وَيَعْفُوا۟ عَن كَثِيرٍۢ ۚ قَدْ جَآءَكُم مِّنَ ٱللَّهِ نُورٌۭ وَكِتَٰبٌۭ مُّبِينٌۭ",
       "quranpedia_text": "﻿يَا أَهْلَ الْكِتَابِ قَدْ جَاءَكُمْ رَسُولُنَا يُبَيِّنُ لَكُمْ كَثِيرًا مِمَّا كُنْتُمْ تُخْفُونَ مِنَ الْكِتَابِ وَيَعْفُو عَنْ كَثِيرٍ ۚ قَدْ جَاءَكُمْ مِنَ اللَّهِ نُورٌ وَكِتَابٌ مُبِينٌ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "5:13": "فَبِمَا نَقْضِهِم مِّيثَٰقَهُمْ لَعَنَّٰهُمْ وَجَعَلْنَا قُلُوبَهُمْ قَٰسِيَةًۭ ۖ يُحَرِّفُونَ ٱلْكَلِمَ عَن مَّوَاضِعِهِۦ ۙ وَنَسُوا۟ حَظًّۭا مِّمَّا ذُكِّرُوا۟ بِهِۦ ۚ وَلَا تَزَالُ تَطَّلِعُ عَلَىٰ خَآئِنَةٍۢ مِّنْهُمْ إِلَّا قَلِيلًۭا مِّنْهُمْ ۖ فَٱعْفُ عَنْهُمْ وَٱصْفَحْ ۚ إِنَّ ٱللَّهَ يُحِبُّ ٱلْمُحْسِنِينَ",
         "5:14": "وَمِنَ ٱلَّذِينَ قَالُوٓا۟ إِنَّا نَصَٰرَىٰٓ أَخَذْنَا مِيثَٰقَهُمْ فَنَسُوا۟ حَظًّۭا مِّمَّا ذُكِّرُوا۟ بِهِۦ فَأَغْرَيْنَا بَيْنَهُمُ ٱلْعَدَاوَةَ وَٱلْبَغْضَآءَ إِلَىٰ يَوْمِ ٱلْقِيَٰمَةِ ۚ وَسَوْفَ يُنَبِّئُهُمُ ٱللَّهُ بِمَا كَانُوا۟ يَصْنَعُونَ",
@@ -175,6 +178,7 @@
       "primary_text": "يَهْدِى بِهِ ٱللَّهُ مَنِ ٱتَّبَعَ رِضْوَٰنَهُۥ سُبُلَ ٱلسَّلَٰمِ وَيُخْرِجُهُم مِّنَ ٱلظُّلُمَٰتِ إِلَى ٱلنُّورِ بِإِذْنِهِۦ وَيَهْدِيهِمْ إِلَىٰ صِرَٰطٍۢ مُّسْتَقِيمٍۢ",
       "quranpedia_text": "﻿يَهْدِي بِهِ اللَّهُ مَنِ اتَّبَعَ رِضْوَانَهُ سُبُلَ السَّلَامِ وَيُخْرِجُهُمْ مِنَ الظُّلُمَاتِ إِلَى النُّورِ بِإِذْنِهِ وَيَهْدِيهِمْ إِلَىٰ صِرَاطٍ مُسْتَقِيمٍ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "5:14": "وَمِنَ ٱلَّذِينَ قَالُوٓا۟ إِنَّا نَصَٰرَىٰٓ أَخَذْنَا مِيثَٰقَهُمْ فَنَسُوا۟ حَظًّۭا مِّمَّا ذُكِّرُوا۟ بِهِۦ فَأَغْرَيْنَا بَيْنَهُمُ ٱلْعَدَاوَةَ وَٱلْبَغْضَآءَ إِلَىٰ يَوْمِ ٱلْقِيَٰمَةِ ۚ وَسَوْفَ يُنَبِّئُهُمُ ٱللَّهُ بِمَا كَانُوا۟ يَصْنَعُونَ",
         "5:15": "يَٰٓأَهْلَ ٱلْكِتَٰبِ قَدْ جَآءَكُمْ رَسُولُنَا يُبَيِّنُ لَكُمْ كَثِيرًۭا مِّمَّا كُنتُمْ تُخْفُونَ مِنَ ٱلْكِتَٰبِ وَيَعْفُوا۟ عَن كَثِيرٍۢ ۚ قَدْ جَآءَكُم مِّنَ ٱللَّهِ نُورٌۭ وَكِتَٰبٌۭ مُّبِينٌۭ",
@@ -222,6 +226,7 @@
       "primary_text": "يَٰٓأَيُّهَا ٱلنَّاسُ قَدْ جَآءَتْكُم مَّوْعِظَةٌۭ مِّن رَّبِّكُمْ وَشِفَآءٌۭ لِّمَا فِى ٱلصُّدُورِ وَهُدًۭى وَرَحْمَةٌۭ لِّلْمُؤْمِنِينَ",
       "quranpedia_text": "﻿يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُمْ مَوْعِظَةٌ مِنْ رَبِّكُمْ وَشِفَاءٌ لِمَا فِي الصُّدُورِ وَهُدًى وَرَحْمَةٌ لِلْمُؤْمِنِينَ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "10:55": "أَلَآ إِنَّ لِلَّهِ مَا فِى ٱلسَّمَٰوَٰتِ وَٱلْأَرْضِ ۗ أَلَآ إِنَّ وَعْدَ ٱللَّهِ حَقٌّۭ وَلَٰكِنَّ أَكْثَرَهُمْ لَا يَعْلَمُونَ",
         "10:56": "هُوَ يُحْىِۦ وَيُمِيتُ وَإِلَيْهِ تُرْجَعُونَ",
@@ -269,6 +274,7 @@
       "primary_text": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ الٓر ۚ كِتَٰبٌ أَنزَلْنَٰهُ إِلَيْكَ لِتُخْرِجَ ٱلنَّاسَ مِنَ ٱلظُّلُمَٰتِ إِلَى ٱلنُّورِ بِإِذْنِ رَبِّهِمْ إِلَىٰ صِرَٰطِ ٱلْعَزِيزِ ٱلْحَمِيدِ",
       "quranpedia_text": "الر ۚ كِتَابٌ أَنْزَلْنَاهُ إِلَيْكَ لِتُخْرِجَ النَّاسَ مِنَ الظُّلُمَاتِ إِلَى النُّورِ بِإِذْنِ رَبِّهِمْ إِلَىٰ صِرَاطِ الْعَزِيزِ الْحَمِيدِ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "14:1": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ الٓر ۚ كِتَٰبٌ أَنزَلْنَٰهُ إِلَيْكَ لِتُخْرِجَ ٱلنَّاسَ مِنَ ٱلظُّلُمَٰتِ إِلَى ٱلنُّورِ بِإِذْنِ رَبِّهِمْ إِلَىٰ صِرَٰطِ ٱلْعَزِيزِ ٱلْحَمِيدِ",
         "14:2": "ٱللَّهِ ٱلَّذِى لَهُۥ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ وَوَيْلٌۭ لِّلْكَٰفِرِينَ مِنْ عَذَابٍۢ شَدِيدٍ",
@@ -314,6 +320,7 @@
       "primary_text": "وَيَوْمَ نَبْعَثُ فِى كُلِّ أُمَّةٍۢ شَهِيدًا عَلَيْهِم مِّنْ أَنفُسِهِمْ ۖ وَجِئْنَا بِكَ شَهِيدًا عَلَىٰ هَٰٓؤُلَآءِ ۚ وَنَزَّلْنَا عَلَيْكَ ٱلْكِتَٰبَ تِبْيَٰنًۭا لِّكُلِّ شَىْءٍۢ وَهُدًۭى وَرَحْمَةًۭ وَبُشْرَىٰ لِلْمُسْلِمِينَ",
       "quranpedia_text": "﻿وَيَوْمَ نَبْعَثُ فِي كُلِّ أُمَّةٍ شَهِيدًا عَلَيْهِمْ مِنْ أَنْفُسِهِمْ ۖ وَجِئْنَا بِكَ شَهِيدًا عَلَىٰ هَٰؤُلَاءِ ۚ وَنَزَّلْنَا عَلَيْكَ الْكِتَابَ تِبْيَانًا لِكُلِّ شَيْءٍ وَهُدًى وَرَحْمَةً وَبُشْرَىٰ لِلْمُسْلِمِينَ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "16:87": "وَأَلْقَوْا۟ إِلَى ٱللَّهِ يَوْمَئِذٍ ٱلسَّلَمَ ۖ وَضَلَّ عَنْهُم مَّا كَانُوا۟ يَفْتَرُونَ",
         "16:88": "ٱلَّذِينَ كَفَرُوا۟ وَصَدُّوا۟ عَن سَبِيلِ ٱللَّهِ زِدْنَٰهُمْ عَذَابًۭا فَوْقَ ٱلْعَذَابِ بِمَا كَانُوا۟ يُفْسِدُونَ",
@@ -361,6 +368,7 @@
       "primary_text": "إِنَّ هَٰذَا ٱلْقُرْءَانَ يَهْدِى لِلَّتِى هِىَ أَقْوَمُ وَيُبَشِّرُ ٱلْمُؤْمِنِينَ ٱلَّذِينَ يَعْمَلُونَ ٱلصَّٰلِحَٰتِ أَنَّ لَهُمْ أَجْرًۭا كَبِيرًۭا",
       "quranpedia_text": "﻿إِنَّ هَٰذَا الْقُرْآنَ يَهْدِي لِلَّتِي هِيَ أَقْوَمُ وَيُبَشِّرُ الْمُؤْمِنِينَ الَّذِينَ يَعْمَلُونَ الصَّالِحَاتِ أَنَّ لَهُمْ أَجْرًا كَبِيرًا",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "17:7": "إِنْ أَحْسَنتُمْ أَحْسَنتُمْ لِأَنفُسِكُمْ ۖ وَإِنْ أَسَأْتُمْ فَلَهَا ۚ فَإِذَا جَآءَ وَعْدُ ٱلْـَٔاخِرَةِ لِيَسُـۥٓـُٔوا۟ وُجُوهَكُمْ وَلِيَدْخُلُوا۟ ٱلْمَسْجِدَ كَمَا دَخَلُوهُ أَوَّلَ مَرَّةٍۢ وَلِيُتَبِّرُوا۟ مَا عَلَوْا۟ تَتْبِيرًا",
         "17:8": "عَسَىٰ رَبُّكُمْ أَن يَرْحَمَكُمْ ۚ وَإِنْ عُدتُّمْ عُدْنَا ۘ وَجَعَلْنَا جَهَنَّمَ لِلْكَٰفِرِينَ حَصِيرًا",
@@ -408,6 +416,7 @@
       "primary_text": "ٱتْلُ مَآ أُوحِىَ إِلَيْكَ مِنَ ٱلْكِتَٰبِ وَأَقِمِ ٱلصَّلَوٰةَ ۖ إِنَّ ٱلصَّلَوٰةَ تَنْهَىٰ عَنِ ٱلْفَحْشَآءِ وَٱلْمُنكَرِ ۗ وَلَذِكْرُ ٱللَّهِ أَكْبَرُ ۗ وَٱللَّهُ يَعْلَمُ مَا تَصْنَعُونَ",
       "quranpedia_text": "﻿اتْلُ مَا أُوحِيَ إِلَيْكَ مِنَ الْكِتَابِ وَأَقِمِ الصَّلَاةَ ۖ إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنْكَرِ ۗ وَلَذِكْرُ اللَّهِ أَكْبَرُ ۗ وَاللَّهُ يَعْلَمُ مَا تَصْنَعُونَ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "29:43": "وَتِلْكَ ٱلْأَمْثَٰلُ نَضْرِبُهَا لِلنَّاسِ ۖ وَمَا يَعْقِلُهَآ إِلَّا ٱلْعَٰلِمُونَ",
         "29:44": "خَلَقَ ٱللَّهُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ بِٱلْحَقِّ ۚ إِنَّ فِى ذَٰلِكَ لَـَٔايَةًۭ لِّلْمُؤْمِنِينَ",
@@ -455,6 +464,7 @@
       "primary_text": "ٱللَّهُ نَزَّلَ أَحْسَنَ ٱلْحَدِيثِ كِتَٰبًۭا مُّتَشَٰبِهًۭا مَّثَانِىَ تَقْشَعِرُّ مِنْهُ جُلُودُ ٱلَّذِينَ يَخْشَوْنَ رَبَّهُمْ ثُمَّ تَلِينُ جُلُودُهُمْ وَقُلُوبُهُمْ إِلَىٰ ذِكْرِ ٱللَّهِ ۚ ذَٰلِكَ هُدَى ٱللَّهِ يَهْدِى بِهِۦ مَن يَشَآءُ ۚ وَمَن يُضْلِلِ ٱللَّهُ فَمَا لَهُۥ مِنْ هَادٍ",
       "quranpedia_text": "﻿اللَّهُ نَزَّلَ أَحْسَنَ الْحَدِيثِ كِتَابًا مُتَشَابِهًا مَثَانِيَ تَقْشَعِرُّ مِنْهُ جُلُودُ الَّذِينَ يَخْشَوْنَ رَبَّهُمْ ثُمَّ تَلِينُ جُلُودُهُمْ وَقُلُوبُهُمْ إِلَىٰ ذِكْرِ اللَّهِ ۚ ذَٰلِكَ هُدَى اللَّهِ يَهْدِي بِهِ مَنْ يَشَاءُ ۚ وَمَنْ يُضْلِلِ اللَّهُ فَمَا لَهُ مِنْ هَادٍ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "39:21": "أَلَمْ تَرَ أَنَّ ٱللَّهَ أَنزَلَ مِنَ ٱلسَّمَآءِ مَآءًۭ فَسَلَكَهُۥ يَنَٰبِيعَ فِى ٱلْأَرْضِ ثُمَّ يُخْرِجُ بِهِۦ زَرْعًۭا مُّخْتَلِفًا أَلْوَٰنُهُۥ ثُمَّ يَهِيجُ فَتَرَىٰهُ مُصْفَرًّۭا ثُمَّ يَجْعَلُهُۥ حُطَٰمًا ۚ إِنَّ فِى ذَٰلِكَ لَذِكْرَىٰ لِأُو۟لِى ٱلْأَلْبَٰبِ",
         "39:22": "أَفَمَن شَرَحَ ٱللَّهُ صَدْرَهُۥ لِلْإِسْلَٰمِ فَهُوَ عَلَىٰ نُورٍۢ مِّن رَّبِّهِۦ ۚ فَوَيْلٌۭ لِّلْقَٰسِيَةِ قُلُوبُهُم مِّن ذِكْرِ ٱللَّهِ ۚ أُو۟لَٰٓئِكَ فِى ضَلَٰلٍۢ مُّبِينٍ",
@@ -502,6 +512,7 @@
       "primary_text": "۞ أَلَمْ يَأْنِ لِلَّذِينَ ءَامَنُوٓا۟ أَن تَخْشَعَ قُلُوبُهُمْ لِذِكْرِ ٱللَّهِ وَمَا نَزَلَ مِنَ ٱلْحَقِّ وَلَا يَكُونُوا۟ كَٱلَّذِينَ أُوتُوا۟ ٱلْكِتَٰبَ مِن قَبْلُ فَطَالَ عَلَيْهِمُ ٱلْأَمَدُ فَقَسَتْ قُلُوبُهُمْ ۖ وَكَثِيرٌۭ مِّنْهُمْ فَٰسِقُونَ",
       "quranpedia_text": "﻿۞ أَلَمْ يَأْنِ لِلَّذِينَ آمَنُوا أَنْ تَخْشَعَ قُلُوبُهُمْ لِذِكْرِ اللَّهِ وَمَا نَزَلَ مِنَ الْحَقِّ وَلَا يَكُونُوا كَالَّذِينَ أُوتُوا الْكِتَابَ مِنْ قَبْلُ فَطَالَ عَلَيْهِمُ الْأَمَدُ فَقَسَتْ قُلُوبُهُمْ ۖ وَكَثِيرٌ مِنْهُمْ فَاسِقُونَ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "57:14": "يُنَادُونَهُمْ أَلَمْ نَكُن مَّعَكُمْ ۖ قَالُوا۟ بَلَىٰ وَلَٰكِنَّكُمْ فَتَنتُمْ أَنفُسَكُمْ وَتَرَبَّصْتُمْ وَٱرْتَبْتُمْ وَغَرَّتْكُمُ ٱلْأَمَانِىُّ حَتَّىٰ جَآءَ أَمْرُ ٱللَّهِ وَغَرَّكُم بِٱللَّهِ ٱلْغَرُورُ",
         "57:15": "فَٱلْيَوْمَ لَا يُؤْخَذُ مِنكُمْ فِدْيَةٌۭ وَلَا مِنَ ٱلَّذِينَ كَفَرُوا۟ ۚ مَأْوَىٰكُمُ ٱلنَّارُ ۖ هِىَ مَوْلَىٰكُمْ ۖ وَبِئْسَ ٱلْمَصِيرُ",
@@ -549,6 +560,7 @@
       "primary_text": "هُوَ ٱلَّذِى بَعَثَ فِى ٱلْأُمِّيِّـۧنَ رَسُولًۭا مِّنْهُمْ يَتْلُوا۟ عَلَيْهِمْ ءَايَٰتِهِۦ وَيُزَكِّيهِمْ وَيُعَلِّمُهُمُ ٱلْكِتَٰبَ وَٱلْحِكْمَةَ وَإِن كَانُوا۟ مِن قَبْلُ لَفِى ضَلَٰلٍۢ مُّبِينٍۢ",
       "quranpedia_text": "﻿هُوَ الَّذِي بَعَثَ فِي الْأُمِّيِّينَ رَسُولًا مِنْهُمْ يَتْلُو عَلَيْهِمْ آيَاتِهِ وَيُزَكِّيهِمْ وَيُعَلِّمُهُمُ الْكِتَابَ وَالْحِكْمَةَ وَإِنْ كَانُوا مِنْ قَبْلُ لَفِي ضَلَالٍ مُبِينٍ",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "62:1": "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ يُسَبِّحُ لِلَّهِ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ٱلْمَلِكِ ٱلْقُدُّوسِ ٱلْعَزِيزِ ٱلْحَكِيمِ",
         "62:2": "هُوَ ٱلَّذِى بَعَثَ فِى ٱلْأُمِّيِّـۧنَ رَسُولًۭا مِّنْهُمْ يَتْلُوا۟ عَلَيْهِمْ ءَايَٰتِهِۦ وَيُزَكِّيهِمْ وَيُعَلِّمُهُمُ ٱلْكِتَٰبَ وَٱلْحِكْمَةَ وَإِن كَانُوا۟ مِن قَبْلُ لَفِى ضَلَٰلٍۢ مُّبِينٍۢ",
@@ -595,6 +607,7 @@
       "primary_text": "قَدْ أَفْلَحَ مَن زَكَّىٰهَا",
       "quranpedia_text": "﻿قَدْ أَفْلَحَ مَنْ زَكَّاهَا",
       "text_crosscheck": "MISMATCH",
+      "crosscheck_method": "orthography_normalized_exact",
       "context": {
         "91:7": "وَنَفْسٍۢ وَمَا سَوَّىٰهَا",
         "91:8": "فَأَلْهَمَهَا فُجُورَهَا وَتَقْوَىٰهَا",
@@ -638,811 +651,6 @@
     }
   ],
   "positive_lexical_scan": [
-    {
-      "reference": "2:2",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:5",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:16",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:26",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:38",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:40",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:97",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:120",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:124",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:142",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:143",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:159",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:175",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:185",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:196",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:198",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:213",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:258",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:264",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "2:272",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "3:4",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "3:73",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "3:86",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "3:96",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "3:101",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "3:138",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "4:51",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "4:115",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "5:2",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "5:16",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "5:44",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "5:46",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "5:51",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "5:67",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "5:97",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "5:108",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:35",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:71",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:80",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:88",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:90",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:91",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:144",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:149",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:154",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:157",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "6:161",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "7:30",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "7:43",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "7:52",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "7:154",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "7:155",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "7:193",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "7:198",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "7:203",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "9:19",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "9:24",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "9:33",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "9:37",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "9:80",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "9:109",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "9:115",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "10:25",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "10:35",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "10:43",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "10:57",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "12:52",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "12:111",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "13:27",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "13:31",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "14:4",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "14:12",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "14:21",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "16:9",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "16:36",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "16:37",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "16:64",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "16:89",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "16:93",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "16:102",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "16:107",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "16:121",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "17:2",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "17:9",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "17:84",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "17:94",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "18:13",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "18:55",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "18:57",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "19:76",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "20:10",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "20:47",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "20:50",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "20:79",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "20:122",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "20:123",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "22:8",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "22:16",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "22:37",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "22:67",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "24:35",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "24:46",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "27:2",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "27:77",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "27:81",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "28:37",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "28:43",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "28:49",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "28:50",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "28:56",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "28:57",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "28:85",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "30:29",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "31:3",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "31:5",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "31:20",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "32:13",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "32:23",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "33:4",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "34:6",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "34:24",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "34:32",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "35:8",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "35:42",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "39:3",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "39:18",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "39:23",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "39:57",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "40:28",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "40:53",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "40:54",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "41:17",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "41:44",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "42:13",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "42:52",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "43:24",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "43:40",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "45:11",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "45:20",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "46:10",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "46:30",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "47:17",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "47:25",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "47:32",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "48:25",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "48:28",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "49:17",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "53:23",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "61:5",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "61:7",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "61:9",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "62:5",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "63:6",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "67:22",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "72:2",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "72:13",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "74:31",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "87:3",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "92:12",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "93:7",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
-    {
-      "reference": "96:11",
-      "matched_probe": "هدى",
-      "category": "guidance"
-    },
     {
       "reference": "2:40",
       "matched_probe": "ذكر",
@@ -2729,91 +1937,6 @@
       "category": "remembrance"
     },
     {
-      "reference": "2:197",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "2:237",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "5:2",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "5:8",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "7:26",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "9:108",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "9:109",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "20:132",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "22:32",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "22:37",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "47:17",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "48:26",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "49:3",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "58:9",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "74:56",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "91:8",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
-      "reference": "96:12",
-      "matched_probe": "تقوى",
-      "category": "taqwa"
-    },
-    {
       "reference": "2:157",
       "matched_probe": "رحمة",
       "category": "mercy"
@@ -3137,9 +2260,1064 @@
       "reference": "40:7",
       "matched_probe": "رحمة",
       "category": "mercy"
+    },
+    {
+      "reference": "41:50",
+      "matched_probe": "رحمة",
+      "category": "mercy"
+    },
+    {
+      "reference": "42:48",
+      "matched_probe": "رحمة",
+      "category": "mercy"
+    },
+    {
+      "reference": "44:6",
+      "matched_probe": "رحمة",
+      "category": "mercy"
+    },
+    {
+      "reference": "45:20",
+      "matched_probe": "رحمة",
+      "category": "mercy"
+    },
+    {
+      "reference": "46:12",
+      "matched_probe": "رحمة",
+      "category": "mercy"
+    },
+    {
+      "reference": "57:13",
+      "matched_probe": "رحمة",
+      "category": "mercy"
+    },
+    {
+      "reference": "57:27",
+      "matched_probe": "رحمة",
+      "category": "mercy"
+    },
+    {
+      "reference": "90:17",
+      "matched_probe": "رحمة",
+      "category": "mercy"
+    },
+    {
+      "reference": "2:48",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "2:123",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "2:282",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "3:121",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "4:3",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "4:58",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "4:93",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "4:102",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "4:129",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "4:135",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "5:8",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "5:95",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "5:106",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "6:1",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "6:70",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "6:115",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "6:150",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "6:152",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "7:159",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "7:181",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "9:100",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "16:76",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "16:90",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "18:58",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "19:84",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "27:60",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "33:8",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "33:29",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "33:44",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "33:57",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "33:64",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "42:15",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "48:6",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "49:9",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "65:2",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "72:9",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "76:31",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "82:7",
+      "matched_probe": "عدل",
+      "category": "justice"
+    },
+    {
+      "reference": "2:90",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "2:186",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "2:207",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "3:15",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "3:20",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "3:30",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "3:79",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "4:118",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "4:172",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "5:118",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "6:18",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "6:61",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "6:88",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "7:32",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "7:128",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "7:194",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "7:206",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "9:104",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "10:29",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "10:107",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "12:24",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "14:11",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "14:31",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "15:40",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "15:42",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "15:49",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "16:2",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "17:5",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "17:17",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "17:30",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "17:53",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "17:65",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "17:96",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "18:65",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "18:102",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "18:110",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "19:61",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "19:63",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "19:82",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "20:77",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "21:19",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "21:26",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "21:105",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "23:109",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "24:32",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "25:17",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "25:58",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "25:63",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "26:52",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "27:15",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "27:19",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "27:59",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "28:82",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "29:56",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "29:62",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "30:48",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "34:13",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "34:39",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "35:28",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "35:31",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "35:32",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "35:45",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "36:30",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "37:40",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "37:74",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "37:81",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "37:111",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "37:122",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "37:128",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "37:132",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "37:160",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "37:169",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "37:171",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "38:83",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "39:7",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "39:10",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "39:16",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "39:17",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "39:46",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "39:53",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "40:15",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "40:31",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "40:44",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "40:48",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "40:60",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "40:85",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "42:19",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "42:23",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "42:25",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "42:27",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "42:52",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "43:15",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "43:68",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "44:18",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "44:23",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "46:6",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "50:11",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "66:10",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "71:27",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "76:6",
+      "matched_probe": "عباد",
+      "category": "worship/service"
+    },
+    {
+      "reference": "2:3",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "2:27",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "2:43",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "2:45",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "2:83",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "2:110",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "2:153",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "2:157",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "2:177",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "2:238",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "2:277",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "4:10",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "4:43",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "4:77",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "4:90",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "4:101",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "4:102",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "4:103",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "4:142",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "4:162",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "5:6",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "5:12",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "5:55",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "5:58",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "5:91",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "5:106",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "6:72",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "7:170",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "8:3",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "9:5",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "9:11",
+      "matched_probe": "صلو",
+      "category": "prayer"
+    },
+    {
+      "reference": "9:18",
+      "matched_probe": "صلو",
+      "category": "prayer"
     }
   ],
   "counter_evidence_scan": [
+    {
+      "reference": "2:64",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "2:105",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "3:74",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "4:32",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "4:34",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "4:83",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "4:88",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "4:95",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "4:113",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "5:54",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "6:144",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "8:29",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "10:58",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "12:38",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "14:4",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "14:27",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "24:10",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "24:14",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "24:20",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "24:21",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "27:16",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "30:29",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "35:32",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "39:37",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "40:34",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "40:74",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "42:22",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "57:21",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "57:29",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "62:4",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "62:10",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "73:20",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
+    {
+      "reference": "74:31",
+      "matched_probe": "ضلال",
+      "category": "misguidance"
+    },
     {
       "reference": "2:17",
       "matched_probe": "ظلم",
@@ -4456,6 +4634,16 @@
       "category": "wrongdoing"
     },
     {
+      "reference": "56:30",
+      "matched_probe": "ظلم",
+      "category": "wrongdoing"
+    },
+    {
+      "reference": "56:43",
+      "matched_probe": "ظلم",
+      "category": "wrongdoing"
+    },
+    {
       "reference": "57:9",
       "matched_probe": "ظلم",
       "category": "wrongdoing"
@@ -4729,16 +4917,6 @@
       "reference": "17:100",
       "matched_probe": "نفاق",
       "category": "hypocrisy"
-    },
-    {
-      "reference": "4:128",
-      "matched_probe": "إعراض",
-      "category": "turning-away"
-    },
-    {
-      "reference": "6:35",
-      "matched_probe": "إعراض",
-      "category": "turning-away"
     },
     {
       "reference": "2:10",
@@ -5474,171 +5652,6 @@
       "reference": "39:3",
       "matched_probe": "كذب",
       "category": "denial/lying"
-    },
-    {
-      "reference": "39:25",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "39:32",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "39:59",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "39:60",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "40:5",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "40:28",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "40:37",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "40:70",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "42:24",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "43:25",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "50:5",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "50:12",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "50:14",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "52:11",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "52:14",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "53:11",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "54:3",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "54:9",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "54:18",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "54:23",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "54:33",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "54:42",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:13",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:16",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:18",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:21",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:23",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:25",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:28",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:30",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:32",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:34",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
-    },
-    {
-      "reference": "55:36",
-      "matched_probe": "كذب",
-      "category": "denial/lying"
     }
   ],
   "argument_map": {
@@ -5657,9 +5670,9 @@
         "evidence_ids": []
       }
     ],
-    "counter_evidence_probe_count": 570,
+    "counter_evidence_probe_count": 603,
     "status": "research_synthesis_not_final_verdict"
   },
   "draft_status": "BOUNDED_RESEARCH_DRAFT",
-  "draft": "# الفصل ٠١ — مسودة بحثية مضبوطة\n\n> الحالة: مسودة بحثية آلية. لا تمثل حكمًا نهائيًا، ولا تدّعي استنفاد القرآن في سؤالها.\n\n## السؤال\nWhat does the Qur'an itself say revelation is intended to produce in the human being?\n\n## ما تثبته المادة النصية في هذه الجولة\n\n## شرط عدم التسرع\n- تم فحص 0 موضعًا نصيًا بالمقارنة مع مصدر ثانٍ مستقل (Quranpedia/Hafs).\n- جرى تشغيل بحث مضاد مع 570 نتيجة على مؤشرات لغوية تتصل بالضلال والظلم والقسوة والغفلة والنفاق والإعراض والكذب.\n- نتائج البحث المضاد ليست «تفنيدًا» تلقائيًا؛ هي قائمة فحص تمنع انتقاء الشواهد المؤيدة فقط.\n\n## ما لم يُحسم\n- العلاقة بين هذه الآيات وبين «غاية الوحي» تحتاج مقارنة تفسيرية أوسع، ودراسة السياقات، وتحديد درجة الاتفاق والخلاف بين المفسرين.\n- لا يجوز تحويل تكرار محور لغوي إلى نظرية كلية عن الإسلام دون استقراء أوسع ومراجعة نقدية.\n\n## قرار البوابة\nالانتقال إلى الكتابة النهائية محجوب حتى يكتمل الاستقراء المقارن للأدلة والتفسيرات ويُختبر ضد الاعتراضات."
+  "draft": "# الفصل ٠١ — مسودة بحثية مضبوطة\n\n> الحالة: مسودة بحثية آلية. لا تمثل حكمًا نهائيًا، ولا تدّعي استنفاد القرآن في سؤالها.\n\n## السؤال\nWhat does the Qur'an itself say revelation is intended to produce in the human being?\n\n## ما تثبته المادة النصية في هذه الجولة\n\n## شرط عدم التسرع\n- تم فحص 0 موضعًا نصيًا بالمقارنة مع مصدر ثانٍ مستقل (Quranpedia/Hafs) بعد تطبيع اختلافات الرسم والعلامات فقط.\n- جرى تشغيل بحث مضاد مع 603 نتيجة على مؤشرات لغوية مضادة.\n- نتائج البحث المضاد ليست تفنيدًا تلقائيًا؛ هي قائمة فحص تمنع انتقاء الشواهد المؤيدة فقط.\n\n## ما لم يُحسم\n- العلاقة بين هذه الآيات وبين غاية الوحي تحتاج مقارنة تفسيرية أوسع ودراسة السياقات وتحديد درجة الاتفاق والخلاف بين المفسرين.\n- لا يجوز تحويل تكرار محور لغوي إلى نظرية كلية عن الإسلام دون استقراء أوسع ومراجعة نقدية.\n\n## قرار البوابة\nالانتقال إلى الكتابة النهائية محجوب حتى يكتمل الاستقراء المقارن للأدلة والتفسيرات ويُختبر ضد الاعتراضات."
 }

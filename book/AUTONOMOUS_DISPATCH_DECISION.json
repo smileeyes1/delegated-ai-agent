@@ -1,8 +1,9 @@
 {
-  "timestamp": "2026-08-25T03:29:41.920394+00:00",
+  "timestamp": "2026-08-25T08:14:15.059207+00:00",
   "mode": "autonomous",
   "decision": "RESEARCH_BLOCKED",
   "next_action": "verify_primary_text_and_context_then_run_counter_evidence_pass",
   "human_prompt_required": false,
-  "cost_policy": "skip fresh duplicate work; escalate only when a stage is genuinely unblocked"
+  "repair_triggered": true,
+  "cost_policy": "skip only genuinely fresh, valid research; rerun when evidence is incomplete or blocked"
 }

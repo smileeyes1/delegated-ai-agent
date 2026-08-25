@@ -10,9 +10,11 @@
       "ضلل",
       "اهتدى"
     ],
-    "status": "pending",
-    "last_attempt": "2026-08-25T05:16:57.358723+00:00",
-    "failure": "local_model_unavailable"
+    "status": "processed",
+    "last_attempt": "2026-08-25T08:06:28.707695+00:00",
+    "last_artifact": "book/research/runs/20260825T080628Z-Q001.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q002",
@@ -24,7 +26,11 @@
       "تزكية",
       "زكاة النفس"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T08:07:35.609131+00:00",
+    "last_artifact": "book/research/runs/20260825T080735Z-Q002.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q003",
@@ -36,7 +42,11 @@
       "يؤمنون",
       "مؤمنون"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T08:13:02.704382+00:00",
+    "last_artifact": "book/research/runs/20260825T081302Z-Q003.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q004",
@@ -48,7 +58,11 @@
       "متقين",
       "اتقوا"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T08:14:00.428656+00:00",
+    "last_artifact": "book/research/runs/20260825T081400Z-Q004.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q005",
@@ -242,5 +256,109 @@
       "أصلحوا"
     ],
     "status": "pending"
+  },
+  {
+    "id": "H001",
+    "title": "السنة الصحيحة وتفصيل مسار التحول",
+    "question": "ما الذي تضيفه السنة الصحيحة إلى فهم أثر الوحي في الإنسان دون تجاوز ثبوت الحديث؟",
+    "keywords": [
+      "قال رسول الله",
+      "صحيح",
+      "هداية",
+      "إيمان"
+    ],
+    "status": "pending",
+    "source": "autonomous_completeness_audit"
+  },
+  {
+    "id": "T001",
+    "title": "التفسير الموثوق وحدود الفهم",
+    "question": "ما الذي تضيفه مصادر التفسير الموثوقة إلى فهم الآيات المختارة، وما حدود الخلاف؟",
+    "keywords": [
+      "تفسير",
+      "قال ابن كثير",
+      "الطبري",
+      "القرطبي"
+    ],
+    "status": "pending",
+    "source": "autonomous_completeness_audit"
+  },
+  {
+    "id": "C001",
+    "title": "خريطة الادعاءات والأدلة",
+    "question": "ما الادعاءات التي يمكن إثباتها من المادة المجموعة، وما درجة الدليل على كل ادعاء؟",
+    "keywords": [
+      "دليل",
+      "حجة",
+      "برهان",
+      "ادعاء"
+    ],
+    "status": "pending",
+    "source": "autonomous_completeness_audit"
+  },
+  {
+    "id": "X001",
+    "title": "الأدلة المضادة والخلافات",
+    "question": "ما الأدلة أو القراءات التي قد تعارض الاستنتاجات الأولية، وكيف نقيّمها؟",
+    "keywords": [
+      "خلاف",
+      "استثناء",
+      "اعتراض",
+      "قراءة"
+    ],
+    "status": "pending",
+    "source": "autonomous_completeness_audit"
+  },
+  {
+    "id": "M001",
+    "title": "من المعرفة إلى السلوك",
+    "question": "كيف ننتقل من النتيجة النصية الموثقة إلى تطبيق إنساني دون خلط النص بالتطبيق؟",
+    "keywords": [
+      "اعملوا",
+      "سلوك",
+      "عمل",
+      "مسؤولية"
+    ],
+    "status": "pending",
+    "source": "autonomous_completeness_audit"
+  },
+  {
+    "id": "B001",
+    "title": "هندسة الكتاب والرحلة القارئية",
+    "question": "ما البنية التي تنقل القارئ من الفهم إلى الإيمان والعمل مع الحفاظ على حدود الدليل؟",
+    "keywords": [
+      "هداية",
+      "إيمان",
+      "عمل",
+      "تزكية"
+    ],
+    "status": "pending",
+    "source": "autonomous_completeness_audit"
+  },
+  {
+    "id": "QF001",
+    "title": "تدقيق الاستشهادات والاقتباسات",
+    "question": "هل كل نص منسوب إلى القرآن أو السنة أو العلماء قابل للتتبع والتحقق؟",
+    "keywords": [
+      "توثيق",
+      "إسناد",
+      "مصدر",
+      "مرجع"
+    ],
+    "status": "pending",
+    "source": "autonomous_completeness_audit"
+  },
+  {
+    "id": "RF001",
+    "title": "مراجعة نهائية مستقلة",
+    "question": "ما الأخطاء أو المبالغات أو الفجوات التي قد تبقى في المسودة قبل الإصدار؟",
+    "keywords": [
+      "مراجعة",
+      "خطأ",
+      "مبالغة",
+      "فجوة"
+    ],
+    "status": "pending",
+    "source": "autonomous_completeness_audit"
   }
 ]

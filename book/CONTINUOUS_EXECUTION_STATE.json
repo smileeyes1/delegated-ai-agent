@@ -1,0 +1,18 @@
+{
+  "cycle_attempts": 1,
+  "last_failure": {
+    "at": "2026-08-25T08:14:20.828868+00:00",
+    "stage": "book/CHAPTER_01_CRITIC.py",
+    "returncode": 2,
+    "stage_index": 0
+  },
+  "history": [
+    {
+      "at": "2026-08-25T08:14:20.828868+00:00",
+      "result": "RECOVERABLE_FAILURE",
+      "stage": "book/CHAPTER_01_CRITIC.py",
+      "returncode": 2,
+      "stage_index": 0
+    }
+  ]
+}
