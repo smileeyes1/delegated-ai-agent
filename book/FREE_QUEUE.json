@@ -202,7 +202,11 @@
       "صابروا",
       "يثبت"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T10:00:28.153850+00:00",
+    "last_artifact": "book/research/runs/20260825T100028Z-Q013.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q014",
@@ -214,7 +218,11 @@
       "يتوب",
       "تواب"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T10:00:44.968174+00:00",
+    "last_artifact": "book/research/runs/20260825T100044Z-Q014.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q015",
@@ -226,7 +234,11 @@
       "الإخلاص",
       "خلص"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T10:00:56.205375+00:00",
+    "last_artifact": "book/research/runs/20260825T100056Z-Q015.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q016",
@@ -238,7 +250,11 @@
       "خوفًا",
       "يرجون"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T10:01:10.225105+00:00",
+    "last_artifact": "book/research/runs/20260825T100110Z-Q016.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q017",
