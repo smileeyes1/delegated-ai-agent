@@ -2,7 +2,7 @@ name: Book Free Autonomous Runner
 
 on:
   schedule:
-    - cron: '23 3 * * *'
+    - cron: '23 */2 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -15,38 +15,64 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
+      - name: Check whether work remains
+        id: pending
+        shell: bash
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          q=json.loads(Path('book/FREE_QUEUE.json').read_text(encoding='utf-8'))
+          print('run=' + ('true' if any(x.get('status') == 'pending' for x in q) else 'false'))
+          PY
+
       - name: Cache Ollama model
+        if: steps.pending.outputs.run == 'true'
         uses: actions/cache@v4
         with:
           path: ~/.ollama
           key: ollama-qwen2.5-0.5b-v1
 
-      - name: Install Ollama
+      - name: Install Ollama and start local inference
+        if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
           if ! command -v ollama >/dev/null 2>&1; then
             curl -fsSL https://ollama.com/install.sh | sh
           fi
           ollama serve > /tmp/ollama.log 2>&1 &
-          for i in $(seq 1 20); do
-            ollama list >/dev/null 2>&1 && break
+          for i in $(seq 1 30); do
+            if ollama list >/dev/null 2>&1; then break; fi
             sleep 2
           done
+          ollama pull qwen2.5:0.5b
 
-      - name: Ensure small local model
-        run: ollama pull qwen2.5:0.5b
+      - name: Process up to three bounded research units
+        if: steps.pending.outputs.run == 'true'
+        shell: bash
+        run: |
+          set -u
+          for n in 1 2 3; do
+            echo "=== autonomous unit $n/3 ==="
+            python3 book/free_autonomous_research.py | tee /tmp/book-run.log
+            if grep -q '^RETRY_REQUIRED$' /tmp/book-run.log; then
+              echo 'Retryable blocker encountered; preserving task for the next run.'
+              break
+            fi
+            if grep -q 'No pending tasks' /tmp/book-run.log; then
+              break
+            fi
+          done
 
-      - name: Run one research unit
-        run: python3 book/free_autonomous_research.py
-
-      - name: Validate state and queue
+      - name: Integrity validation
+        shell: bash
         run: |
           python3 - <<'PY'
           import json
@@ -56,7 +82,9 @@ jobs:
           assert state.get('project') == 'كتاب'
           assert isinstance(queue, list) and queue
           assert all(x.get('status') in {'pending','processed'} for x in queue)
-          print('state=', state.get('status'), 'next=', state.get('next_task'))
+          assert state.get('status') in {'research_bootstrap','running','blocked_retryable','queue_complete'}
+          print('status=', state.get('status'), 'next=', state.get('next_task'))
+          print('processed=', sum(x.get('status') == 'processed' for x in queue), '/', len(queue))
           PY
 
       - name: Commit autonomous progress
