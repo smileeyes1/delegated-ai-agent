@@ -1,0 +1,20 @@
+name: Book Integrity Gate
+
+on:
+  push:
+    paths:
+      - 'book/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Validate research state
+        run: python3 book/validate_research.py
