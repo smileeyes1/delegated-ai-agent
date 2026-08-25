@@ -14,7 +14,6 @@ CORPUS.mkdir(parents=True, exist_ok=True)
 state = json.loads(STATE.read_text(encoding='utf-8'))
 queue = json.loads(QUEUE.read_text(encoding='utf-8'))
 
-# Prefer genuinely new work, but keep retryable synthesis work alive.
 tasks = [x for x in queue if x.get('status') == 'pending']
 if not tasks:
     tasks = [x for x in queue if x.get('status') == 'evidence_collected']
@@ -42,48 +41,47 @@ for surah in quran:
     for ayah in surah['ayahs']:
         if pattern.search(ayah['text']):
             hits.append({'surah': surah['number'], 'name': surah['name'], 'ayah': ayah['numberInSurah'], 'text': ayah['text']})
-hits = hits[:120]
+hits = hits[:160]
 
-# Evidence acquisition is a real, independently useful stage. It must never be
-# confused with scholarly verification or synthesis.
 timestamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
 now = datetime.now(timezone.utc).isoformat()
 evidence_path = CORPUS / f"{task['id']}.json"
 evidence_path.write_text(json.dumps(hits, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
-prompt = f'''أنت باحث مساعد في مشروع كتاب عن: ماذا يصنع الوحي في الإنسان؟\nالمهمة: {task['title']}\nالسؤال: {task['question']}\nقواعد إلزامية: لا تفترض النتيجة؛ افصل النص والملاحظة والفهم والاستنتاج؛ لا تستخدم حديثًا أو تفسيرًا غير معطى؛ إذا لم تكف الأدلة فقل غير كافٍ؛ لا تختلق إحالات. أخرج مذكرة قصيرة بالعربية مع إحالات سورة:آية، واذكر حدود الدليل وعدم كفايته إن وجدت.\nالآيات المرشحة:\n{json.dumps(hits, ensure_ascii=False)[:28000]}'''
+prompt = f'''أنت باحث مساعد في مشروع كتاب عن: ماذا يصنع الوحي في الإنسان؟\nالمهمة: {task['title']}\nالسؤال: {task['question']}\nقواعد إلزامية: لا تفترض النتيجة؛ افصل النص والملاحظة والفهم والاستنتاج؛ لا تستخدم حديثًا أو تفسيرًا غير معطى؛ إذا لم تكف الأدلة فقل غير كافٍ؛ لا تختلق إحالات. أخرج مذكرة منظمة بالعربية: (١) ملاحظات نصية فقط مع إحالات سورة:آية، (٢) ما يمكن استنتاجه بحذر، (٣) ما لا تثبته الأدلة، (٤) أسئلة تحتاج حديثًا/تفسيرًا/مصدرًا آخر. لا تخترع أي مصدر.\nالآيات المرشحة:\n{json.dumps(hits, ensure_ascii=False)[:30000]}'''
 
 memo = None
 model_error = None
-try:
-    p = subprocess.run(['ollama', 'run', 'qwen2.5:0.5b', prompt], text=True, capture_output=True, timeout=180)
-    if p.returncode == 0 and p.stdout.strip():
-        memo = p.stdout.strip()
-    else:
-        model_error = (p.stderr or 'model returned no output').strip()[-1000:]
-except Exception as e:
-    model_error = str(e)
+# Autonomous local fallback ladder. Prefer stronger cached models, then smaller ones.
+for model in ('qwen2.5:3b', 'qwen2.5:1.5b', 'qwen2.5:0.5b'):
+    try:
+        p = subprocess.run(['ollama', 'run', model, prompt], text=True, capture_output=True, timeout=300)
+        if p.returncode == 0 and p.stdout.strip():
+            memo = p.stdout.strip()
+            state['last_model'] = model
+            break
+        model_error = f'{model}: {(p.stderr or "no output").strip()[-600:]}'
+    except Exception as e:
+        model_error = f'{model}: {e}'
 
 out = RUNS / f"{timestamp}-{task['id']}.md"
 body = [f"# {task['title']}", '', f"**Run:** {now}", f"**Evidence hits:** {len(hits)}", '', '## Evidence', '']
-for h in hits[:40]:
+for h in hits[:60]:
     body.append(f"- **{h['surah']}:{h['ayah']}** — {h['text']}")
 body += ['', '## Machine synthesis', '']
 body.append(memo if memo else '**PENDING — synthesis unavailable. Evidence acquisition is complete; no conclusion was generated.**')
-body += ['', '## Provenance', '', '- Primary text source: alQuran.cloud `quran-uthmani` API.', '- Evidence acquisition is exploratory and does not constitute final scholarly verification.', '- No hadith, tafsir, or historical claim was added by this run.', '- Original source text is preserved; no normalization is promoted as evidence.']
+body += ['', '## Provenance', '', '- Primary text source: alQuran.cloud `quran-uthmani` API.', '- Evidence acquisition is exploratory and does not constitute final scholarly verification.', '- No hadith, tafsir, or historical claim was added unless explicitly present in the acquired evidence.', '- Original source text is preserved; no normalization is promoted as evidence.', '- Machine synthesis is a draft research aid and requires downstream verification gates.']
 if model_error:
-    body += ['', '## Runtime note', '', f'- Local synthesis unavailable: `{model_error}`']
+    body += ['', '## Runtime note', '', f'- Local model fallback exhausted: `{model_error}`']
 out.write_text('\n'.join(body) + '\n', encoding='utf-8')
 
-# Critical rule: synthesis failure never fabricates a conclusion and never
-# marks the research as fully processed. It does, however, preserve real
-# evidence progress so the factory does not repeatedly rediscover the same work.
 task['last_attempt'] = now
 task['last_artifact'] = str(out.relative_to(ROOT.parent))
 task['evidence_count'] = len(hits)
 if memo:
     task['status'] = 'processed'
     task['synthesis_status'] = 'complete'
+    task.pop('failure', None)
     state['status'] = 'running'
 else:
     task['status'] = 'evidence_collected'
