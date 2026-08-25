@@ -1,0 +1,33 @@
+{
+  "chapter": "01",
+  "question": "What does the Qur'an itself say revelation is intended to produce in the human being?",
+  "source_policy": "Quran-only primary-evidence stage",
+  "primary_text_source": {
+    "name": "Tanzil Quran Text",
+    "url": "https://tanzil.net/docs/",
+    "status": "source_candidate",
+    "notes": "Tanzil states that its Uthmani Quran text matches the Medina Mushaf and emphasizes text accuracy."
+  },
+  "records": [
+    {"id":"Q01-002-002","reference":"2:2","theme":"guidance / muttaqin","status":"candidate"},
+    {"id":"Q01-002-185","reference":"2:185","theme":"guidance / clarification / criterion","status":"candidate"},
+    {"id":"Q01-005-015-016","reference":"5:15-16","theme":"light / guidance / paths of peace","status":"candidate"},
+    {"id":"Q01-010-057","reference":"10:57","theme":"admonition / healing / guidance / mercy","status":"candidate"},
+    {"id":"Q01-014-001","reference":"14:1","theme":"bringing people from darkness to light","status":"candidate"},
+    {"id":"Q01-016-089","reference":"16:89","theme":"clarification / guidance / mercy","status":"candidate"},
+    {"id":"Q01-017-009","reference":"17:9","theme":"guidance to what is most upright","status":"candidate"},
+    {"id":"Q01-029-045","reference":"29:45","theme":"prayer / remembrance / restraint from indecency and wrongdoing","status":"candidate"},
+    {"id":"Q01-039-023","reference":"39:23","theme":"best discourse / softening and remembrance of hearts","status":"candidate"},
+    {"id":"Q01-057-016","reference":"57:16","theme":"humility / remembrance / hearts","status":"candidate"},
+    {"id":"Q01-062-002","reference":"62:2","theme":"recitation / purification / teaching","status":"candidate"},
+    {"id":"Q01-091-009","reference":"91:9","theme":"purification of the soul","status":"candidate"}
+  ],
+  "verification": {
+    "text_verified": false,
+    "context_verified": false,
+    "counter_evidence_complete": false,
+    "interpretation_comparison_complete": false,
+    "verified_count": 0
+  },
+  "rule": "Candidate status is not proof. No candidate may be promoted without source-text, context, and counter-evidence checks."
+}
