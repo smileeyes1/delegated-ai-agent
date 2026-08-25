@@ -20,7 +20,7 @@ concurrency:
 jobs:
   orchestrate:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
@@ -35,30 +35,17 @@ jobs:
               print(p, d.get('status'), d.get('next_action'))
           PY
 
-      - name: Run deterministic integrity checks
+      - name: Run integrity and autonomous dispatch
         run: |
           python3 book/VERIFY.py || true
           python3 book/CHAPTER_01_VERIFY.py || true
           python3 book/e2e_runner.py
+          python3 book/AUTONOMOUS_DISPATCH.py
 
-      - name: Persist heartbeat and next-action decision
+      - name: Persist autonomous checkpoint
         run: |
-          python3 - <<'PY'
-          import json
-          from datetime import datetime, timezone
-          p='book/AUTONOMOUS_HEARTBEAT.json'
-          d={
-            'timestamp': datetime.now(timezone.utc).isoformat(),
-            'status': 'alive',
-            'mode': 'autonomous',
-            'next_action': 'replace_fixture_with_verified_research_adapter',
-            'human_prompt_required': False,
-            'note': 'Heartbeat proves scheduler execution only; scholarly completion requires evidence-backed runtime proof.'
-          }
-          open(p,'w',encoding='utf-8').write(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
-          PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add book/AUTONOMOUS_HEARTBEAT.json
-          git diff --cached --quiet || git commit -m 'Record autonomous factory heartbeat'
+          git add book/AUTONOMOUS_DISPATCH_DECISION.json book/CHAPTER_01_STATE.json book/research_data/chapter_01_autonomous_research.json book/research_data/chapter_01_research_draft.md book/research_data/tanzil-uthmani.txt
+          git diff --cached --quiet || git commit -m 'Checkpoint autonomous research dispatch'
           git push
