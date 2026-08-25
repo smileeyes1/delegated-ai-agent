@@ -1,0 +1,47 @@
+name: Real Research Acquisition
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7 * * * *'
+  push:
+    paths:
+      - 'book/REAL_RESEARCH_RUN.py'
+      - 'book/CHAPTER_01_STATE.json'
+      - '.github/workflows/real-research.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: real-research-acquisition
+  cancel-in-progress: false
+
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Acquire primary source
+        run: python3 book/REAL_RESEARCH_RUN.py
+      - name: Validate provenance and evidence shape
+        run: |
+          python3 - <<'PY'
+          import json
+          p='book/research_data/chapter_01_primary_evidence.json'
+          d=json.load(open(p, encoding='utf-8'))
+          assert d['status'] == 'VERIFIED_ACQUISITION'
+          assert d['source'] == 'Tanzil Project'
+          assert d['sha256_raw_download']
+          assert len(d['references_found']) == len(d['references_requested'])
+          assert d['interpretation_status'] == 'NOT_INTERPRETED'
+          print('REAL SOURCE ACQUISITION: PASS')
+          PY
+      - name: Persist verified research artifact
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add book/research_data/chapter_01_primary_evidence.json book/research_data/tanzil-uthmani.txt
+          git diff --cached --quiet || git commit -m 'Record verified primary research acquisition'
+          git push
