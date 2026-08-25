@@ -1,7 +1,7 @@
 {
-  "cycle_attempts": 6,
+  "cycle_attempts": 7,
   "last_failure": {
-    "at": "2026-08-25T12:19:40.651972+00:00",
+    "at": "2026-08-25T13:27:45.130891+00:00",
     "stage": "book/CHAPTER_01_CRITIC.py",
     "returncode": 2,
     "stage_index": 0
@@ -44,6 +44,13 @@
     },
     {
       "at": "2026-08-25T12:19:40.651972+00:00",
+      "result": "RECOVERABLE_FAILURE",
+      "stage": "book/CHAPTER_01_CRITIC.py",
+      "returncode": 2,
+      "stage_index": 0
+    },
+    {
+      "at": "2026-08-25T13:27:45.130891+00:00",
       "result": "RECOVERABLE_FAILURE",
       "stage": "book/CHAPTER_01_CRITIC.py",
       "returncode": 2,

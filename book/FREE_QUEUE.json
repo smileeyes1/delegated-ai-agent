@@ -399,8 +399,12 @@
       "عمل",
       "مسؤولية"
     ],
-    "status": "pending",
-    "source": "autonomous_completeness_audit"
+    "status": "processed",
+    "source": "autonomous_completeness_audit",
+    "last_attempt": "2026-08-25T13:25:14.141770+00:00",
+    "last_artifact": "book/research/runs/20260825T132514Z-M001.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "B001",
@@ -412,8 +416,12 @@
       "عمل",
       "تزكية"
     ],
-    "status": "pending",
-    "source": "autonomous_completeness_audit"
+    "status": "processed",
+    "source": "autonomous_completeness_audit",
+    "last_attempt": "2026-08-25T13:25:53.760492+00:00",
+    "last_artifact": "book/research/runs/20260825T132553Z-B001.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "QF001",
@@ -425,8 +433,12 @@
       "مصدر",
       "مرجع"
     ],
-    "status": "pending",
-    "source": "autonomous_completeness_audit"
+    "status": "processed",
+    "source": "autonomous_completeness_audit",
+    "last_attempt": "2026-08-25T13:26:04.988526+00:00",
+    "last_artifact": "book/research/runs/20260825T132604Z-QF001.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "RF001",
@@ -438,7 +450,11 @@
       "مبالغة",
       "فجوة"
     ],
-    "status": "pending",
-    "source": "autonomous_completeness_audit"
+    "status": "processed",
+    "source": "autonomous_completeness_audit",
+    "last_attempt": "2026-08-25T13:26:17.369904+00:00",
+    "last_artifact": "book/research/runs/20260825T132617Z-RF001.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   }
 ]
