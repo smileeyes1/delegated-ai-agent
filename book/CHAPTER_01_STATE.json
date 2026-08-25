@@ -2,12 +2,15 @@
   "chapter": "01",
   "question": "What does the Qur'an itself say revelation is intended to produce in the human being?",
   "status": "RESEARCHING",
-  "evidence_count": 0,
+  "evidence_count": 12,
   "verified_evidence_count": 0,
   "counter_evidence_pass": false,
   "argument_map": null,
-  "draft_status": "NOT_STARTED",
-  "next_action": "collect_primary_quranic_evidence_with_provenance",
-  "blockers": [],
+  "draft_status": "BLOCKED",
+  "next_action": "verify_primary_text_and_context_then_run_counter_evidence_pass",
+  "blockers": [
+    "candidate evidence is not yet independently verified",
+    "counter-evidence pass not yet completed"
+  ],
   "last_verified_transition": null
 }
