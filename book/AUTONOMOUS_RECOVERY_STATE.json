@@ -1,12 +1,12 @@
 {
   "status": "RECOVERY_REQUIRED",
-  "recorded_at": "2026-08-25T10:01:31.138236+00:00",
+  "recorded_at": "2026-08-25T11:15:35.645139+00:00",
   "failure": {
     "stage": "book/CHAPTER_01_CRITIC.py",
     "returncode": 2,
     "stage_index": 0
   },
-  "attempt": 4,
+  "attempt": 5,
   "next_action": "resume from durable checkpoint; refresh verification and retry the failed stage; change strategy after repeated identical failure",
   "completion_claimed": false
 }

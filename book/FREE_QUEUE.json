@@ -266,7 +266,11 @@
       "يهواه",
       "هواه"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T11:04:41.471012+00:00",
+    "last_artifact": "book/research/runs/20260825T110441Z-Q017.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q018",
@@ -278,7 +282,11 @@
       "أفلح",
       "الفلاح"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T11:04:55.762883+00:00",
+    "last_artifact": "book/research/runs/20260825T110455Z-Q018.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q019",
@@ -290,7 +298,11 @@
       "المصلحين",
       "يصلح"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T11:05:07.158867+00:00",
+    "last_artifact": "book/research/runs/20260825T110507Z-Q019.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q020",
@@ -303,7 +315,11 @@
       "يعملون",
       "أصلحوا"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T11:05:21.759174+00:00",
+    "last_artifact": "book/research/runs/20260825T110521Z-Q020.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "H001",
