@@ -1,30 +1,17 @@
-name: Autonomous Orchestrator
+name: Autonomous Orchestrator (manual legacy)
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '*/15 * * * *'
 
 permissions:
   contents: write
-  actions: write
-
-concurrency:
-  group: autonomous-orchestrator
-  cancel-in-progress: false
 
 jobs:
-  orchestrate:
+  legacy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect durable state
-        run: |
-          set -euo pipefail
-          test -f book/FACTORY_STATE.json
-          test -f book/CHAPTER_01_STATE.json
-      - name: Run integrity and autonomous control
+      - name: Run legacy orchestration only on explicit manual request
         run: |
           set -euo pipefail
           python3 book/VERIFY.py
@@ -32,16 +19,6 @@ jobs:
           python3 book/e2e_runner.py
           python3 book/META_CONTROLLER.py
           python3 book/AUTONOMOUS_DISPATCH.py
-      - name: Critique and advance only after evidence gate
-        run: |
-          set -euo pipefail
           python3 book/CHAPTER_01_CRITIC.py
           python3 book/ADVANCE_CHAPTER_STATE.py
-      - name: Persist autonomous checkpoint
-        run: |
-          set -euo pipefail
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add book/META_CONTROL_STATE.json book/AUTONOMOUS_DISPATCH_DECISION.json book/CHAPTER_01_STATE.json book/research_data/
-          git diff --cached --quiet || git commit -m 'Checkpoint autonomous book factory'
-          git push
+          python3 book/RELEASE_CHECK.py
