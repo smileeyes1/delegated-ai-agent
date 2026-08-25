@@ -38,10 +38,29 @@ jobs:
           assert d['counter_evidence_scan'] is not None
           print('CHAPTER 01 AUTONOMOUS RESEARCH: PASS')
           PY
-      - name: Checkpoint research artifacts
+      - name: Update durable chapter state
+        run: |
+          python3 - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          p='book/CHAPTER_01_STATE.json'
+          d=json.load(open(p,encoding='utf-8'))
+          a=json.load(open('book/research_data/chapter_01_autonomous_research.json',encoding='utf-8'))
+          d['status']='RESEARCH_VERIFIED_TEXT'
+          d['evidence_count']=len(a['refs'])
+          d['verified_evidence_count']=a['verified_text_count']
+          d['counter_evidence_pass']=len(a['counter_evidence_scan']) > 0
+          d['argument_map']='research_data/chapter_01_autonomous_research.json#argument_map'
+          d['draft_status']='BOUNDED_RESEARCH_DRAFT'
+          d['next_action']='expand_interpretation_comparison_and_independent_critique'
+          d['blockers']=['interpretation comparison is not complete','independent critique is not complete','final drafting remains blocked']
+          d['last_verified_transition']=datetime.now(timezone.utc).isoformat()
+          open(p,'w',encoding='utf-8').write(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Checkpoint research artifacts and state
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add book/research_data/chapter_01_autonomous_research.json book/research_data/chapter_01_research_draft.md
-          git diff --cached --quiet || git commit -m 'Checkpoint autonomous Chapter 01 research'
+          git add book/research_data/chapter_01_autonomous_research.json book/research_data/chapter_01_research_draft.md book/CHAPTER_01_STATE.json
+          git diff --cached --quiet || git commit -m 'Checkpoint autonomous Chapter 01 research and state'
           git push
