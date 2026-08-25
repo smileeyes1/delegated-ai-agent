@@ -3,7 +3,7 @@
   "status": "running",
   "mission": "اكتشاف ما الذي يريد الله أن يصنعه الوحي في الإنسان من القرآن والسنة الصحيحة بمنهج علمي نزيه، ثم تحويل الاكتشاف إلى كتاب ذي أثر",
   "current_phase": "quran_corpus_mapping",
-  "next_task": "Q005",
+  "next_task": "Q009",
   "completed": [],
   "open_questions": [
     "ما البنية التي يفرضها القرآن لمسار تحول الإنسان؟",
@@ -30,12 +30,12 @@
   "autonomy_contract": "v3",
   "last_verified_commit": "d56ba2f5b0095de149a48c039f1c421720f0b7b7",
   "scheduler_decision": {
-    "task": "Q001",
+    "task": "Q005",
     "reason": "deterministic_priority_with_dependency_guard"
   },
   "last_attempt": "2026-08-25T05:16:57.358723+00:00",
-  "last_task": "Q004",
-  "last_artifact": "book/research/runs/20260825T081400Z-Q004.md",
+  "last_task": "Q008",
+  "last_artifact": "book/research/runs/20260825T085930Z-Q008.md",
   "last_model": "qwen2.5:3b",
-  "last_run": "2026-08-25T08:14:00.428656+00:00"
+  "last_run": "2026-08-25T08:59:30.813956+00:00"
 }

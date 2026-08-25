@@ -1,16 +1,7 @@
 {
-  "status": "GAPS_ADDED",
+  "status": "NO_NEW_GAPS",
   "queue_size": 28,
-  "new_gap_ids": [
-    "H001",
-    "T001",
-    "C001",
-    "X001",
-    "M001",
-    "B001",
-    "QF001",
-    "RF001"
-  ],
+  "new_gap_ids": [],
   "required_dimensions": [
     "quran_corpus",
     "hadith_authenticity",

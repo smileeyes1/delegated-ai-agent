@@ -74,7 +74,11 @@
       "قلوبهم",
       "قلبه"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T08:57:28.855807+00:00",
+    "last_artifact": "book/research/runs/20260825T085728Z-Q005.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q006",
@@ -86,7 +90,11 @@
       "نفسه",
       "نفوس"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T08:57:58.073896+00:00",
+    "last_artifact": "book/research/runs/20260825T085758Z-Q006.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q007",
@@ -98,7 +106,11 @@
       "العبادة",
       "اعبد"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T08:58:12.949187+00:00",
+    "last_artifact": "book/research/runs/20260825T085812Z-Q007.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q008",
@@ -110,7 +122,11 @@
       "اعملوا",
       "يعملون"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T08:59:30.813956+00:00",
+    "last_artifact": "book/research/runs/20260825T085930Z-Q008.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q009",
