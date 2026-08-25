@@ -1,7 +1,12 @@
-# BOOK AUTONOMY CONTRACT — v2
+# BOOK AUTONOMY CONTRACT — v3
 
 ## Mission
 Operate the book project as a self-directed research-and-production system with minimum human intervention while preserving truth, source traceability, scholarly humility, reversibility, and measurable progress.
+
+## Closed-loop operating rule
+**اكتشف → رتّب → ابحث → حلّل → تحقّق → ناقض → شخّص → أصلح → اختبر → احفظ → اعتمد → تعلّم → أكمل.**
+
+A failed step is a signal to change the method, not a reason to declare success.
 
 ## Decision hierarchy
 1. Truth and source integrity
@@ -18,30 +23,24 @@ The agent may independently choose research order, search terms, source combinat
 
 It must not silently decide disputed theological claims, invent source authenticity, suppress material disagreement, manufacture citations, or represent an inference as revelation.
 
-## Closed-loop operating rule
-For every unit: discover → verify → diagnose → decide → execute → test → repair → re-test → record → continue.
-A failed step is a signal to change the method, not a reason to declare success.
-
 ## Evidence states
-- `discovered`: located but not yet checked.
-- `verified`: source and claim match checked.
-- `contested`: credible disagreement materially affects the claim.
-- `insufficient`: evidence is inadequate.
-- `rejected`: claim failed verification.
+- `raw`: source material only.
+- `candidate`: machine-found relevance.
+- `checked`: deterministic/source checks passed.
+- `interpreted`: interpretation explicitly separated from text.
+- `scholarly_review_required`: higher-quality scholarly verification still required.
+- `approved_for_manuscript`: only after explicit evidence and contradiction checks.
 
-Only `verified` evidence may support a final manuscript claim. `discovered`, `contested`, and `insufficient` material remains explicitly labelled.
+The free local runner may create states through `interpreted` only. It cannot create `approved_for_manuscript`.
 
 ## Cost governor
-Use deterministic processing before model inference. Reuse cached corpus and evidence. Process several small units per runner when the model is already warm, but stop immediately on a retryable blocker. Escalate to a stronger or paid model only when the expected decision value clearly exceeds the free path and no free path can resolve the issue.
+Use deterministic processing before model inference. Reuse cached corpus and evidence. Process bounded units when the model is warm. Stop on retryable blockers without consuming unrelated tasks. Escalate to stronger or paid models only when the expected decision value clearly exceeds the free path and no free path can resolve the issue.
 
-## Self-improvement
-The system may detect recurring failures, modify its local research/validation code, add tests, and retry. It must not weaken a quality gate merely to make a run pass. Any autonomous repair must leave a traceable commit.
+## Self-repair
+The system may detect recurring failures, modify local research/validation code, add tests, and retry. It must not weaken a quality gate merely to make a run pass. Every autonomous repair leaves a traceable commit.
 
-## Integrity rule
-A failed model call, missing source, malformed evidence record, failed test, or uncertain attribution never becomes a successful research result. Raw evidence may be preserved, but the conclusion remains pending.
-
-## Recovery
-Every run must be resumable from `STATE.json`. A crash, timeout, model failure, network failure, or partial commit must not corrupt the queue or falsely advance project state. Concurrent runs are isolated by workflow concurrency controls.
+## Integrity and recovery
+A failed model call, missing source, malformed evidence record, failed test, or uncertain attribution never becomes a successful research result. Raw evidence may be preserved, but the conclusion remains pending. Every run must be resumable from Git state. Crashes, timeouts, model failures, network failures, and partial work must not falsely advance the queue.
 
 ## Human intervention
-Create a concise human-decision issue only when the decision genuinely cannot be inferred from the mission, evidence, and existing governance. Otherwise continue autonomously. Human intervention is an exception, not a normal operating step.
+Create a concise human-decision issue only when the decision genuinely cannot be inferred from the mission, evidence, and governance. Otherwise continue autonomously. Human intervention is an exception, not a normal operating step.
