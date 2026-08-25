@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-08-25T03:17:43.958065+00:00",
+  "stage": "e2e_smoke",
+  "passed": true,
+  "checks": {
+    "evidence_present": true,
+    "provenance_present": true,
+    "uncertainty_preserved": true,
+    "draft_present": true,
+    "fixture_not_scholarly": true
+  },
+  "evidence": {
+    "question": "What transformation does revelation seek in the human being?",
+    "evidence": [
+      {
+        "id": "fixture-001",
+        "type": "research_input",
+        "status": "unverified_fixture",
+        "claim": "This is an orchestration fixture, not a religious proof."
+      }
+    ],
+    "uncertainty": "fixture_only"
+  },
+  "draft": {
+    "title": "E2E Factory Smoke Draft",
+    "status": "fixture_draft",
+    "source_question": "What transformation does revelation seek in the human being?",
+    "paragraphs": [
+      "This draft exists only to prove that evidence, drafting, review, repair, and checkpoint stages are connected.",
+      "It must never be promoted to a scholarly claim without real source evidence."
+    ]
+  },
+  "next_task": "replace_fixture_with_verified_research_adapter"
+}
