@@ -13,10 +13,15 @@ CORPUS.mkdir(parents=True, exist_ok=True)
 
 state = json.loads(STATE.read_text(encoding='utf-8'))
 queue = json.loads(QUEUE.read_text(encoding='utf-8'))
+
+# Prefer genuinely new work, but keep retryable synthesis work alive.
 tasks = [x for x in queue if x.get('status') == 'pending']
+if not tasks:
+    tasks = [x for x in queue if x.get('status') == 'evidence_collected']
 if not tasks:
     state['status'] = 'queue_complete'
     STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print('No pending or evidence-collected tasks')
     sys.exit(0)
 
 task = tasks[0]
@@ -39,12 +44,14 @@ for surah in quran:
             hits.append({'surah': surah['number'], 'name': surah['name'], 'ayah': ayah['numberInSurah'], 'text': ayah['text']})
 hits = hits[:120]
 
+# Evidence acquisition is a real, independently useful stage. It must never be
+# confused with scholarly verification or synthesis.
 timestamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
 now = datetime.now(timezone.utc).isoformat()
 evidence_path = CORPUS / f"{task['id']}.json"
 evidence_path.write_text(json.dumps(hits, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
-prompt = f'''أنت باحث مساعد في مشروع كتاب عن: ماذا يصنع الوحي في الإنسان؟\nالمهمة: {task['title']}\nالسؤال: {task['question']}\nقواعد: لا تفترض النتيجة؛ افصل النص والملاحظة والفهم والاستنتاج؛ لا تستخدم حديثًا أو تفسيرًا غير معطى؛ إذا لم تكف الأدلة فقل غير كافٍ؛ لا تختلق إحالات. أخرج مذكرة قصيرة بالعربية مع إحالات سورة:آية.\nالآيات المرشحة:\n{json.dumps(hits, ensure_ascii=False)[:28000]}'''
+prompt = f'''أنت باحث مساعد في مشروع كتاب عن: ماذا يصنع الوحي في الإنسان؟\nالمهمة: {task['title']}\nالسؤال: {task['question']}\nقواعد إلزامية: لا تفترض النتيجة؛ افصل النص والملاحظة والفهم والاستنتاج؛ لا تستخدم حديثًا أو تفسيرًا غير معطى؛ إذا لم تكف الأدلة فقل غير كافٍ؛ لا تختلق إحالات. أخرج مذكرة قصيرة بالعربية مع إحالات سورة:آية، واذكر حدود الدليل وعدم كفايته إن وجدت.\nالآيات المرشحة:\n{json.dumps(hits, ensure_ascii=False)[:28000]}'''
 
 memo = None
 model_error = None
@@ -62,35 +69,33 @@ body = [f"# {task['title']}", '', f"**Run:** {now}", f"**Evidence hits:** {len(h
 for h in hits[:40]:
     body.append(f"- **{h['surah']}:{h['ayah']}** — {h['text']}")
 body += ['', '## Machine synthesis', '']
-body.append(memo if memo else '**PENDING — local model unavailable. No conclusion was generated.**')
-body += ['', '## Provenance', '', '- Primary text source: alQuran.cloud `quran-uthmani` API.', '- Exploratory evidence processing only; not final scholarly verification.', '- No hadith, tafsir, or historical claim was added by this run.']
+body.append(memo if memo else '**PENDING — synthesis unavailable. Evidence acquisition is complete; no conclusion was generated.**')
+body += ['', '## Provenance', '', '- Primary text source: alQuran.cloud `quran-uthmani` API.', '- Evidence acquisition is exploratory and does not constitute final scholarly verification.', '- No hadith, tafsir, or historical claim was added by this run.', '- Original source text is preserved; no normalization is promoted as evidence.']
 if model_error:
-    body += ['', '## Runtime note', '', f'- Local synthesis failed: `{model_error}`']
+    body += ['', '## Runtime note', '', f'- Local synthesis unavailable: `{model_error}`']
 out.write_text('\n'.join(body) + '\n', encoding='utf-8')
 
-# Critical recovery rule: raw evidence is saved, but a failed synthesis never advances the queue.
+# Critical rule: synthesis failure never fabricates a conclusion and never
+# marks the research as fully processed. It does, however, preserve real
+# evidence progress so the factory does not repeatedly rediscover the same work.
+task['last_attempt'] = now
+task['last_artifact'] = str(out.relative_to(ROOT.parent))
+task['evidence_count'] = len(hits)
 if memo:
     task['status'] = 'processed'
-    task['last_run'] = now
-    state['last_run'] = now
-    state['last_task'] = task['id']
-    state['last_artifact'] = str(out.relative_to(ROOT.parent))
+    task['synthesis_status'] = 'complete'
     state['status'] = 'running'
-    state['next_task'] = next((x['id'] for x in queue if x.get('status') == 'pending'), None)
-    queue_changed = True
 else:
-    task['status'] = 'pending'
-    task['last_attempt'] = now
+    task['status'] = 'evidence_collected'
+    task['synthesis_status'] = 'retryable'
     task['failure'] = 'local_model_unavailable'
-    state['status'] = 'blocked_retryable'
-    state['last_attempt'] = now
-    state['last_task'] = task['id']
-    state['last_artifact'] = str(out.relative_to(ROOT.parent))
-    state['next_task'] = task['id']
-    queue_changed = True
+    state['status'] = 'synthesis_blocked_retryable'
 
-if queue_changed:
-    QUEUE.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+state['last_run'] = now
+state['last_task'] = task['id']
+state['last_artifact'] = str(out.relative_to(ROOT.parent))
+state['next_task'] = next((x['id'] for x in queue if x.get('status') == 'pending'), task['id'])
+QUEUE.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 print('WROTE', out)
-print('ADVANCED' if memo else 'RETRY_REQUIRED')
+print('ADVANCED' if memo else 'EVIDENCE_COLLECTED_RETRYABLE')
