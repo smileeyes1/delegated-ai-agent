@@ -18,19 +18,30 @@ for item in QUEUE:
     if item.get('status') not in allowed: errors.append(f"invalid queue status: {item.get('id')}")
     for k in ('id','title','question','keywords'):
         if k not in item: errors.append(f"missing {k}: {item.get('id')}")
-# Every processed task must have an artifact and a machine synthesis section.
+
 runs=ROOT/'research'/'runs'
+corpus=ROOT/'corpus'
 for item in QUEUE:
     if item.get('status')!='processed': continue
     matches=sorted(runs.glob(f"*-{item['id']}.md"))
-    if not matches: errors.append(f"processed task without artifact: {item['id']}"); continue
+    if not matches:
+        errors.append(f"processed task without artifact: {item['id']}"); continue
     text=matches[-1].read_text(encoding='utf-8')
     if '## Evidence' not in text: errors.append(f"missing evidence section: {item['id']}")
     if '## Machine synthesis' not in text: errors.append(f"missing synthesis section: {item['id']}")
     if 'Primary text source:' not in text: errors.append(f"missing provenance: {item['id']}")
-    # Require at least one explicit Quran citation in the evidence artifact.
-    if not re.search(r'\*\*\d{1,3}:\d{1,3}\*\*', text): errors.append(f"no explicit verse citation: {item['id']}")
-# Never allow final scholarly status to be implied by this exploratory gate.
+    evidence_cites=set(re.findall(r'\*\*(\d{1,3}:\d{1,3})\*\*', text.split('## Machine synthesis',1)[0]))
+    if not evidence_cites: errors.append(f"no explicit verse citation: {item['id']}")
+    synthesis=text.split('## Machine synthesis',1)[1] if '## Machine synthesis' in text else ''
+    # Any citation emitted by the local model must already exist in the retrieved evidence.
+    cited=set(re.findall(r'(?<!\d)(\d{1,3}:\d{1,3})(?!\d)', synthesis))
+    unknown=sorted(cited-evidence_cites)
+    if unknown: errors.append(f"model cited verses not in evidence for {item['id']}: {unknown[:10]}")
+    # The free exploratory runner must not smuggle hadith/tafsir as verified evidence.
+    provenance=text.split('## Provenance',1)[1] if '## Provenance' in text else ''
+    if 'No hadith, tafsir, or historical claim was added' not in provenance:
+        errors.append(f"exploratory provenance boundary missing: {item['id']}")
+
 if STATE.get('scholarly_status') not in (None,'exploratory_unverified'):
     errors.append('unexpected scholarly_status escalation')
 if errors:
