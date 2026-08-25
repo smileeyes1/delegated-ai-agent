@@ -1,0 +1,16 @@
+{
+  "factory": "BOOK_FACTORY",
+  "version": "1.0",
+  "mode": "autonomous",
+  "stage": "research_to_draft",
+  "status": "active",
+  "approved_chapters": [],
+  "draft_chapters": [],
+  "open_gates": ["end_to_end_execution_proof"],
+  "next_task_policy": "highest_value_unblocked_task",
+  "failure_policy": "diagnose_repair_retest",
+  "evidence_policy": "traceable_and_uncertainty_preserving",
+  "cost_policy": "cheapest_adequate_first",
+  "human_gate": "sovereign_or_unresolvable_high_stakes_decision_only",
+  "last_transition": "BOOK_FACTORY_CONTRACT_INSTALLED"
+}
