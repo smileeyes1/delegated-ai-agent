@@ -1,0 +1,23 @@
+{
+  "project": "كتاب",
+  "status": "research_bootstrap",
+  "mission": "اكتشاف ما الذي يريد الله أن يصنعه الوحي في الإنسان من القرآن والسنة الصحيحة بمنهج علمي نزيه، ثم تحويل الاكتشاف إلى كتاب ذي أثر",
+  "current_phase": "quran_corpus_mapping",
+  "next_task": "بناء خريطة أولية لمفاهيم تكوين الإنسان في القرآن مع تسجيل الآيات والروابط والدلالة وحدود الاستنتاج",
+  "completed": [],
+  "open_questions": [
+    "ما البنية التي يفرضها القرآن لمسار تحول الإنسان؟",
+    "ما العلاقة بين الهداية والإيمان والتزكية والعبادة والتقوى والعمل؟",
+    "كيف تفسر السنة الصحيحة هذا المسار وتفصله؟",
+    "ما الذي يمكن إثباته وما الذي يبقى تفسيرًا أو استنتاجًا؟"
+  ],
+  "evidence_counts": {"quran": 0, "hadith": 0, "tafsir": 0, "history": 0},
+  "quality_gates": {
+    "source_traceability": "required",
+    "claim_evidence_match": "required",
+    "contradiction_check": "required",
+    "hadith_authenticity": "required",
+    "human_sovereign_decisions": "required"
+  },
+  "last_verified_commit": "302b4ed88938ee1aeae62f2210c5440796f158a9"
+}
