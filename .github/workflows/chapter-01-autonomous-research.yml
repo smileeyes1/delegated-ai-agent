@@ -1,0 +1,47 @@
+name: Chapter 01 Autonomous Research
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 * * * *'
+  push:
+    paths:
+      - 'book/CHAPTER_01_AUTONOMOUS_PIPELINE.py'
+      - 'book/CHAPTER_01_EVIDENCE_LEDGER.json'
+      - 'book/CHAPTER_01_STATE.json'
+      - '.github/workflows/chapter-01-autonomous-research.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chapter-01-autonomous-research
+  cancel-in-progress: false
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run autonomous research pipeline
+        run: python3 book/CHAPTER_01_AUTONOMOUS_PIPELINE.py
+      - name: Validate research artifact
+        run: |
+          python3 - <<'PY'
+          import json
+          p='book/research_data/chapter_01_autonomous_research.json'
+          d=json.load(open(p,encoding='utf-8'))
+          assert d['verified_text_count'] == len(d['refs'])
+          assert d['draft_status'] == 'BOUNDED_RESEARCH_DRAFT'
+          assert d['argument_map']['status'] == 'research_synthesis_not_final_verdict'
+          assert d['counter_evidence_scan'] is not None
+          print('CHAPTER 01 AUTONOMOUS RESEARCH: PASS')
+          PY
+      - name: Checkpoint research artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add book/research_data/chapter_01_autonomous_research.json book/research_data/chapter_01_research_draft.md
+          git diff --cached --quiet || git commit -m 'Checkpoint autonomous Chapter 01 research'
+          git push
