@@ -1,0 +1,75 @@
+name: Book Canonical Factory
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+  push:
+    paths:
+      - '.github/workflows/book-canonical-factory.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: book-canonical-factory
+  cancel-in-progress: false
+
+jobs:
+  factory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Strict preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f book/VERIFY.py
+          test -f book/CHAPTER_01_VERIFY.py
+          test -f book/e2e_runner.py
+          test -f book/META_CONTROLLER.py
+          test -f book/AUTONOMOUS_DISPATCH.py
+          test -f book/CHAPTER_01_CRITIC.py
+          test -f book/ADVANCE_CHAPTER_STATE.py
+          test -f book/RELEASE_CHECK.py
+
+      - name: Integrity
+        run: python3 book/VERIFY.py
+
+      - name: Chapter verification
+        run: python3 book/CHAPTER_01_VERIFY.py
+
+      - name: End-to-end proof
+        run: python3 book/e2e_runner.py
+
+      - name: Meta control
+        run: python3 book/META_CONTROLLER.py
+
+      - name: Select and execute next task
+        run: python3 book/AUTONOMOUS_DISPATCH.py
+
+      - name: Independent critique
+        run: python3 book/CHAPTER_01_CRITIC.py
+
+      - name: Advance only if gates permit
+        run: python3 book/ADVANCE_CHAPTER_STATE.py
+
+      - name: Release gate
+        run: python3 book/RELEASE_CHECK.py
+
+      - name: Persist real progress
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add book
+          if git diff --cached --quiet; then
+            echo 'NO_REAL_STATE_CHANGE'
+            exit 0
+          fi
+          git commit -m 'Advance canonical autonomous book factory'
+          git push
