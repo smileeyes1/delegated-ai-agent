@@ -3,6 +3,10 @@ name: Book Free Autonomous Runner
 on:
   schedule:
     - cron: '*/15 * * * *'
+  push:
+    paths:
+      - 'book/**'
+      - '.github/workflows/book-free-runner.yml'
   workflow_dispatch:
 
 concurrency:
@@ -33,9 +37,17 @@ jobs:
           state=json.loads(Path('book/STATE.json').read_text(encoding='utf-8'))
           q=json.loads(Path('book/FREE_QUEUE.json').read_text(encoding='utf-8'))
           assert state.get('project') == 'كتاب'
+          assert state.get('scholarly_status') == 'exploratory_unverified'
           assert isinstance(q,list) and q
           print('run=' + ('true' if any(x.get('status') == 'pending' for x in q) else 'false'))
           PY
+
+      - name: Deterministic self-audit
+        run: python3 book/SELF_AUDIT.py
+
+      - name: Choose next task deterministically
+        if: steps.pending.outputs.run == 'true'
+        run: python3 book/RESEARCH_ORCHESTRATOR.py
 
       - name: Cache Ollama model
         if: steps.pending.outputs.run == 'true'
@@ -70,8 +82,10 @@ jobs:
           done
 
       - name: Deterministic quality gate
-        shell: bash
         run: python3 book/QUALITY_GATE.py
+
+      - name: Final self-audit
+        run: python3 book/SELF_AUDIT.py
 
       - name: Persist verified state transition
         shell: bash
