@@ -1,6 +1,6 @@
 {
   "project": "كتاب",
-  "status": "research_bootstrap",
+  "status": "autonomous_active",
   "mission": "اكتشاف ما الذي يريد الله أن يصنعه الوحي في الإنسان من القرآن والسنة الصحيحة بمنهج علمي نزيه، ثم تحويل الاكتشاف إلى كتاب ذي أثر",
   "current_phase": "quran_corpus_mapping",
   "next_task": "بناء خريطة أولية لمفاهيم تكوين الإنسان في القرآن مع تسجيل الآيات والروابط والدلالة وحدود الاستنتاج",
@@ -17,7 +17,11 @@
     "claim_evidence_match": "required",
     "contradiction_check": "required",
     "hadith_authenticity": "required",
-    "human_sovereign_decisions": "required"
+    "human_sovereign_decisions": "required",
+    "deterministic_quality_gate": "active",
+    "exploratory_output_cannot_be_final": "locked"
   },
-  "last_verified_commit": "302b4ed88938ee1aeae62f2210c5440796f158a9"
+  "scholarly_status": "exploratory_unverified",
+  "autonomy_contract": "v3",
+  "last_verified_commit": "d56ba2f5b0095de149a48c039f1c421720f0b7b7"
 }
