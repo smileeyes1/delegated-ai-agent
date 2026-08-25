@@ -138,7 +138,11 @@
       "صدقوا",
       "المتقون"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T09:28:14.388575+00:00",
+    "last_artifact": "book/research/runs/20260825T092814Z-Q009.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q010",
@@ -150,7 +154,11 @@
       "الصدق",
       "الأمانة"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T09:28:31.917404+00:00",
+    "last_artifact": "book/research/runs/20260825T092831Z-Q010.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q011",
@@ -162,7 +170,11 @@
       "القسط",
       "بالقسط"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T09:28:43.288215+00:00",
+    "last_artifact": "book/research/runs/20260825T092843Z-Q011.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q012",
@@ -174,7 +186,11 @@
       "يرحم",
       "رحمته"
     ],
-    "status": "pending"
+    "status": "processed",
+    "last_attempt": "2026-08-25T09:29:04.081463+00:00",
+    "last_artifact": "book/research/runs/20260825T092904Z-Q012.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "Q013",
