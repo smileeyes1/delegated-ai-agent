@@ -23,6 +23,9 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Master terminal gate
+        run: python3 book/MASTER_TERMINAL_GATE.py
+
       - name: Discover missing work across the full lifecycle
         run: python3 book/PROJECT_COMPLETENESS_AUDIT.py
 
