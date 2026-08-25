@@ -50,13 +50,13 @@ jobs:
       - name: Choose next task
         if: steps.pending.outputs.run == 'true'
         run: python3 book/RESEARCH_ORCHESTRATOR.py
-      - name: Cache local model
+      - name: Cache local models
         if: steps.pending.outputs.run == 'true'
         uses: actions/cache@v4
         with:
           path: ~/.ollama
-          key: ollama-qwen2.5-0.5b-v2
-      - name: Install Ollama and start local inference
+          key: ollama-book-models-v3
+      - name: Install Ollama and prepare fallback model ladder
         if: steps.pending.outputs.run == 'true'
         shell: bash
         run: |
@@ -68,7 +68,13 @@ jobs:
             if ollama list >/dev/null 2>&1; then ready=1; break; fi
             sleep 2
           done
-          if [ "$ready" -eq 1 ]; then ollama pull qwen2.5:0.5b || echo 'OLLAMA_MODEL_PULL_RETRYABLE'; else echo 'OLLAMA_UNAVAILABLE_RETRYABLE'; fi
+          if [ "$ready" -eq 1 ]; then
+            ollama pull qwen2.5:3b || echo 'MODEL_3B_UNAVAILABLE_RETRYABLE'
+            ollama pull qwen2.5:1.5b || echo 'MODEL_1_5B_UNAVAILABLE_RETRYABLE'
+            ollama pull qwen2.5:0.5b || echo 'MODEL_0_5B_UNAVAILABLE_RETRYABLE'
+          else
+            echo 'OLLAMA_UNAVAILABLE_RETRYABLE'
+          fi
       - name: Process bounded research units
         if: steps.pending.outputs.run == 'true'
         shell: bash
