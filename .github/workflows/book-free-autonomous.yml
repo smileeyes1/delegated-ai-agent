@@ -1,59 +1,20 @@
-name: Book Free Autonomous Research
+name: Book Free Autonomous Research (manual legacy)
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '17 2 * * *'
 
 permissions:
   contents: write
-  issues: write
-
-concurrency:
-  group: book-free-autonomous
-  cancel-in-progress: true
 
 jobs:
-  research:
+  legacy:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Cache local model
-        uses: actions/cache@v4
-        with:
-          path: ~/.ollama
-          key: ollama-qwen25-05b-${{ runner.os }}
-
-      - name: Install Ollama
-        shell: bash
-        run: |
-          curl -fsSL https://ollama.com/install.sh | sh
-          ollama serve > /tmp/ollama.log 2>&1 &
-          for i in {1..30}; do curl -sf http://127.0.0.1:11434/api/tags >/dev/null && break; sleep 1; done
-          ollama pull qwen2.5:0.5b
-
-      - name: Run one bounded research task
+      - uses: actions/checkout@v4
+      - name: Run bounded research manually
         run: python3 book/free_autonomous_research.py
-
       - name: Validate output
-        shell: bash
         run: |
+          set -euo pipefail
           test -s book/STATE.json
           test -s book/FREE_QUEUE.json
-          find book/research/runs -type f -name '*.md' | grep -q .
-
-      - name: Commit research artifact
-        shell: bash
-        run: |
-          if git diff --quiet; then
-            echo 'No changes.'
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add book/
-          git commit -m 'chore(book): autonomous bounded research run'
-          git push
