@@ -87,21 +87,24 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -Rqs 'EVIDENCE_COLLECTED_RETRYABLE' /tmp/book-run.log; then
+          if grep -q 'EVIDENCE_COLLECTED_RETRYABLE' /tmp/book-run.log; then
             git config user.name 'book-autonomous-agent'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add book/
             if git diff --cached --quiet; then
+              echo 'evidence_checkpoint=false' >> "$GITHUB_OUTPUT"
               echo 'NO_EVIDENCE_STATE_CHANGE'
             else
               git diff --cached --check
               git commit -m 'book: persist verified evidence acquisition checkpoint [skip ci]'
               git push
+              echo 'evidence_checkpoint=true' >> "$GITHUB_OUTPUT"
               echo 'EVIDENCE_CHECKPOINT_SAVED'
             fi
-            exit 0
+          else
+            echo 'evidence_checkpoint=false' >> "$GITHUB_OUTPUT"
+            echo 'SYNTHESIS_PATH_CONTINUES'
           fi
-          echo 'SYNTHESIS_PATH_CONTINUES'
 
       - name: Verify research and durable state
         if: steps.pending.outputs.run == 'true' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
