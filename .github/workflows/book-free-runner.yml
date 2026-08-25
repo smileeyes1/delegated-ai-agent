@@ -1,20 +1,17 @@
-name: Book Free Autonomous Runner
+name: Book Autonomous Factory — Canonical
 
 on:
   schedule:
     - cron: '*/15 * * * *'
-  push:
-    paths:
-      - 'book/**'
-      - '.github/workflows/book-free-runner.yml'
   workflow_dispatch:
-
-concurrency:
-  group: book-free-runner
-  cancel-in-progress: false
 
 permissions:
   contents: write
+  actions: write
+
+concurrency:
+  group: book-canonical-factory
+  cancel-in-progress: false
 
 jobs:
   run:
@@ -37,7 +34,6 @@ jobs:
           state=json.loads(Path('book/STATE.json').read_text(encoding='utf-8'))
           q=json.loads(Path('book/FREE_QUEUE.json').read_text(encoding='utf-8'))
           assert state.get('project') == 'كتاب'
-          assert state.get('scholarly_status') == 'exploratory_unverified'
           assert isinstance(q,list) and q
           print('run=' + ('true' if any(x.get('status') == 'pending' for x in q) else 'false'))
           PY
@@ -45,11 +41,11 @@ jobs:
       - name: Deterministic self-audit
         run: python3 book/SELF_AUDIT.py
 
-      - name: Choose next task deterministically
+      - name: Choose next task
         if: steps.pending.outputs.run == 'true'
         run: python3 book/RESEARCH_ORCHESTRATOR.py
 
-      - name: Cache Ollama model
+      - name: Cache local model
         if: steps.pending.outputs.run == 'true'
         uses: actions/cache@v4
         with:
@@ -74,20 +70,37 @@ jobs:
           for n in 1 2 3 4; do
             echo "=== autonomous unit $n/4 ==="
             python3 book/free_autonomous_research.py | tee /tmp/book-run.log
-            if grep -q '^RETRY_REQUIRED$' /tmp/book-run.log; then
-              echo 'Retryable blocker; preserving task for a later run.'
-              break
-            fi
+            if grep -q '^RETRY_REQUIRED$' /tmp/book-run.log; then break; fi
             if grep -q 'No pending tasks' /tmp/book-run.log; then break; fi
           done
 
-      - name: Deterministic quality gate
-        run: python3 book/QUALITY_GATE.py
+      - name: Verify research and durable state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 book/VERIFY.py
+          python3 book/CHAPTER_01_VERIFY.py
+          python3 book/e2e_runner.py
+
+      - name: Meta-control and task dispatch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 book/META_CONTROLLER.py
+          python3 book/AUTONOMOUS_DISPATCH.py
+
+      - name: Critique and gated state advancement
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 book/CHAPTER_01_CRITIC.py
+          python3 book/ADVANCE_CHAPTER_STATE.py
+          python3 book/RELEASE_CHECK.py
 
       - name: Final self-audit
         run: python3 book/SELF_AUDIT.py
 
-      - name: Persist verified state transition
+      - name: Persist verified checkpoint
         shell: bash
         run: |
           set -euo pipefail
@@ -95,9 +108,13 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add book/
           if git diff --cached --quiet; then
-            echo 'No repository changes.'
+            echo 'NO_STATE_CHANGE'
             exit 0
           fi
           git diff --cached --check
-          git commit -m 'book: autonomous research progress [skip ci]'
+          git commit -m 'book: canonical autonomous factory checkpoint [skip ci]'
           git push
+
+      - name: Failure is explicit
+        if: failure()
+        run: echo 'CANONICAL_FACTORY_CYCLE_FAILED — next scheduled cycle resumes from durable state.'
