@@ -1,9 +1,9 @@
 {
   "project": "كتاب",
-  "status": "autonomous_active",
+  "status": "blocked_retryable",
   "mission": "اكتشاف ما الذي يريد الله أن يصنعه الوحي في الإنسان من القرآن والسنة الصحيحة بمنهج علمي نزيه، ثم تحويل الاكتشاف إلى كتاب ذي أثر",
   "current_phase": "quran_corpus_mapping",
-  "next_task": "بناء خريطة أولية لمفاهيم تكوين الإنسان في القرآن مع تسجيل الآيات والروابط والدلالة وحدود الاستنتاج",
+  "next_task": "Q001",
   "completed": [],
   "open_questions": [
     "ما البنية التي يفرضها القرآن لمسار تحول الإنسان؟",
@@ -11,7 +11,12 @@
     "كيف تفسر السنة الصحيحة هذا المسار وتفصله؟",
     "ما الذي يمكن إثباته وما الذي يبقى تفسيرًا أو استنتاجًا؟"
   ],
-  "evidence_counts": {"quran": 0, "hadith": 0, "tafsir": 0, "history": 0},
+  "evidence_counts": {
+    "quran": 0,
+    "hadith": 0,
+    "tafsir": 0,
+    "history": 0
+  },
   "quality_gates": {
     "source_traceability": "required",
     "claim_evidence_match": "required",
@@ -23,5 +28,12 @@
   },
   "scholarly_status": "exploratory_unverified",
   "autonomy_contract": "v3",
-  "last_verified_commit": "d56ba2f5b0095de149a48c039f1c421720f0b7b7"
+  "last_verified_commit": "d56ba2f5b0095de149a48c039f1c421720f0b7b7",
+  "scheduler_decision": {
+    "task": "Q001",
+    "reason": "deterministic_priority_with_dependency_guard"
+  },
+  "last_attempt": "2026-08-25T05:16:57.358723+00:00",
+  "last_task": "Q001",
+  "last_artifact": "book/research/runs/20260825T051657Z-Q001.md"
 }
