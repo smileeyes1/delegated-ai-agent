@@ -1,0 +1,22 @@
+name: Chapter 01 Evidence Ledger
+
+on:
+  push:
+    paths:
+      - 'book/CHAPTER_01_EVIDENCE_LEDGER.json'
+      - 'book/CHAPTER_01_VERIFY.py'
+      - '.github/workflows/chapter-01-ledger.yml'
+  schedule:
+    - cron: '37 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate ledger
+        run: python3 book/CHAPTER_01_VERIFY.py
