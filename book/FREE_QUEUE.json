@@ -331,8 +331,12 @@
       "هداية",
       "إيمان"
     ],
-    "status": "pending",
-    "source": "autonomous_completeness_audit"
+    "status": "processed",
+    "source": "autonomous_completeness_audit",
+    "last_attempt": "2026-08-25T12:18:49.425808+00:00",
+    "last_artifact": "book/research/runs/20260825T121849Z-H001.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "T001",
@@ -344,8 +348,12 @@
       "الطبري",
       "القرطبي"
     ],
-    "status": "pending",
-    "source": "autonomous_completeness_audit"
+    "status": "processed",
+    "source": "autonomous_completeness_audit",
+    "last_attempt": "2026-08-25T12:19:08.001504+00:00",
+    "last_artifact": "book/research/runs/20260825T121908Z-T001.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "C001",
@@ -357,8 +365,12 @@
       "برهان",
       "ادعاء"
     ],
-    "status": "pending",
-    "source": "autonomous_completeness_audit"
+    "status": "processed",
+    "source": "autonomous_completeness_audit",
+    "last_attempt": "2026-08-25T12:19:18.176725+00:00",
+    "last_artifact": "book/research/runs/20260825T121918Z-C001.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "X001",
@@ -370,8 +382,12 @@
       "اعتراض",
       "قراءة"
     ],
-    "status": "pending",
-    "source": "autonomous_completeness_audit"
+    "status": "processed",
+    "source": "autonomous_completeness_audit",
+    "last_attempt": "2026-08-25T12:19:27.607676+00:00",
+    "last_artifact": "book/research/runs/20260825T121927Z-X001.md",
+    "evidence_count": 0,
+    "synthesis_status": "complete"
   },
   {
     "id": "M001",
