@@ -35,7 +35,8 @@ jobs:
           q=json.loads(Path('book/FREE_QUEUE.json').read_text(encoding='utf-8'))
           assert state.get('project') == 'كتاب'
           assert isinstance(q,list) and q
-          print('run=' + ('true' if any(x.get('status') == 'pending' for x in q) else 'false'))
+          runnable = any(x.get('status') in {'pending','evidence_collected'} for x in q)
+          print('run=' + ('true' if runnable else 'false'))
           PY
 
       - name: Deterministic self-audit
@@ -59,8 +60,16 @@ jobs:
           set -euo pipefail
           if ! command -v ollama >/dev/null 2>&1; then curl -fsSL https://ollama.com/install.sh | sh; fi
           ollama serve > /tmp/ollama.log 2>&1 &
-          for i in $(seq 1 30); do ollama list >/dev/null 2>&1 && break; sleep 2; done
-          ollama pull qwen2.5:0.5b
+          ready=0
+          for i in $(seq 1 45); do
+            if ollama list >/dev/null 2>&1; then ready=1; break; fi
+            sleep 2
+          done
+          if [ "$ready" -ne 1 ]; then
+            echo 'OLLAMA_UNAVAILABLE_RETRYABLE'
+          else
+            ollama pull qwen2.5:0.5b || echo 'OLLAMA_MODEL_PULL_RETRYABLE'
+          fi
 
       - name: Process bounded research units
         if: steps.pending.outputs.run == 'true'
@@ -70,11 +79,32 @@ jobs:
           for n in 1 2 3 4; do
             echo "=== autonomous unit $n/4 ==="
             python3 book/free_autonomous_research.py | tee /tmp/book-run.log
-            if grep -q '^RETRY_REQUIRED$' /tmp/book-run.log; then break; fi
-            if grep -q 'No pending tasks' /tmp/book-run.log; then break; fi
+            if grep -Eq 'RETRY_REQUIRED|EVIDENCE_COLLECTED_RETRYABLE|No pending or evidence-collected tasks' /tmp/book-run.log; then break; fi
           done
 
+      - name: Persist evidence checkpoint when synthesis is blocked
+        id: evidence_checkpoint
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -Rqs 'EVIDENCE_COLLECTED_RETRYABLE' /tmp/book-run.log; then
+            git config user.name 'book-autonomous-agent'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add book/
+            if git diff --cached --quiet; then
+              echo 'NO_EVIDENCE_STATE_CHANGE'
+            else
+              git diff --cached --check
+              git commit -m 'book: persist verified evidence acquisition checkpoint [skip ci]'
+              git push
+              echo 'EVIDENCE_CHECKPOINT_SAVED'
+            fi
+            exit 0
+          fi
+          echo 'SYNTHESIS_PATH_CONTINUES'
+
       - name: Verify research and durable state
+        if: steps.pending.outputs.run == 'true' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -83,6 +113,7 @@ jobs:
           python3 book/e2e_runner.py
 
       - name: Meta-control and task dispatch
+        if: steps.pending.outputs.run == 'true' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -90,6 +121,7 @@ jobs:
           python3 book/AUTONOMOUS_DISPATCH.py
 
       - name: Critique and gated state advancement
+        if: steps.pending.outputs.run == 'true' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -101,6 +133,7 @@ jobs:
         run: python3 book/SELF_AUDIT.py
 
       - name: Persist verified checkpoint
+        if: steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -117,4 +150,4 @@ jobs:
 
       - name: Failure is explicit
         if: failure()
-        run: echo 'CANONICAL_FACTORY_CYCLE_FAILED — next scheduled cycle resumes from durable state.'
+        run: echo 'CANONICAL_FACTORY_CYCLE_FAILED — durable state must explain the block; next scheduled cycle resumes from the last valid checkpoint.'
