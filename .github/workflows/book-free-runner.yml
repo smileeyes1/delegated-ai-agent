@@ -126,12 +126,9 @@ jobs:
         run: |
           python3 book/META_CONTROLLER.py
           python3 book/AUTONOMOUS_DISPATCH.py
-      - name: Critique and gated state advancement
+      - name: Continuous execution governor
         if: steps.pending.outputs.run == 'true' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
-        run: |
-          python3 book/CHAPTER_01_CRITIC.py
-          python3 book/ADVANCE_CHAPTER_STATE.py
-          python3 book/RELEASE_CHECK.py
+        run: python3 book/CONTINUOUS_EXECUTION_GOVERNOR.py
       - name: Final self-audit
         run: python3 book/SELF_AUDIT.py
       - name: Persist verified checkpoint
