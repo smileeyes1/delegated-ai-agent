@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0",
+  "claim": "stable claim text",
+  "claim_type": "source_statement|interpretation|inference|application",
+  "evidence_ids": [],
+  "source_ids": [],
+  "counter_evidence_ids": [],
+  "interpretations": [],
+  "confidence": "unverified|provisional|supported|disputed",
+  "status": "draft|blocked|reviewed|approved",
+  "last_verified": null,
+  "affected_chapters": []
+}
