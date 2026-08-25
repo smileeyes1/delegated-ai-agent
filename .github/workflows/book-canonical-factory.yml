@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - '.github/workflows/book-canonical-factory.yml'
+      - 'book/CHAPTER_01_AUTONOMOUS_PIPELINE.py'
 
 permissions:
   contents: write
@@ -27,14 +28,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -f book/VERIFY.py
-          test -f book/CHAPTER_01_VERIFY.py
-          test -f book/e2e_runner.py
-          test -f book/META_CONTROLLER.py
-          test -f book/AUTONOMOUS_DISPATCH.py
-          test -f book/CHAPTER_01_CRITIC.py
-          test -f book/ADVANCE_CHAPTER_STATE.py
-          test -f book/RELEASE_CHECK.py
+          for f in VERIFY.py CHAPTER_01_VERIFY.py e2e_runner.py META_CONTROLLER.py AUTONOMOUS_DISPATCH.py CHAPTER_01_AUTONOMOUS_PIPELINE.py CHAPTER_01_CRITIC.py ADVANCE_CHAPTER_STATE.py RELEASE_CHECK.py; do test -f "book/$f"; done
 
       - name: Integrity
         run: python3 book/VERIFY.py
@@ -48,8 +42,11 @@ jobs:
       - name: Meta control
         run: python3 book/META_CONTROLLER.py
 
-      - name: Select and execute next task
-        run: python3 book/AUTONOMOUS_DISPATCH.py
+      - name: Execute selected research task
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 book/CHAPTER_01_AUTONOMOUS_PIPELINE.py
 
       - name: Independent critique
         run: python3 book/CHAPTER_01_CRITIC.py
