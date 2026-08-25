@@ -1,0 +1,68 @@
+name: Book Autonomous Watchdog
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: book-watchdog
+  cancel-in-progress: true
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect and heal canonical factory
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, subprocess, time
+          from datetime import datetime, timezone
+
+          repo = os.environ['REPO']
+          token = os.environ['GH_TOKEN']
+          env = dict(os.environ, GH_TOKEN=token)
+
+          def gh(path, method='GET'):
+              cmd=['gh','api',path,'--method',method]
+              p=subprocess.run(cmd, text=True, capture_output=True, env=env)
+              if p.returncode != 0:
+                  raise SystemExit('WATCHDOG_API_FAIL: '+p.stderr[-1000:])
+              return json.loads(p.stdout) if p.stdout.strip() else {}
+
+          runs=gh(f'repos/{repo}/actions/workflows/book-free-runner.yml/runs?per_page=20&exclude_pull_requests=true')['workflow_runs']
+          now=datetime.now(timezone.utc)
+          active=[r for r in runs if r['status'] in {'queued','in_progress'}]
+          active.sort(key=lambda r:r['created_at'])
+
+          # There should be at most one meaningful canonical execution.
+          # If an execution is genuinely stuck beyond the factory timeout,
+          # cancel it and dispatch exactly one fresh cycle.
+          restarted=False
+          for r in active:
+              started=datetime.fromisoformat(r['created_at'].replace('Z','+00:00'))
+              age=(now-started).total_seconds()/60
+              if age > 50:
+                  print(f'WATCHDOG: cancelling stale canonical run {r["id"]}, age={age:.1f}m')
+                  subprocess.run(['gh','api',f'repos/{repo}/actions/runs/{r["id"]}/cancel','--method','POST'],check=True,env=env)
+                  restarted=True
+                  break
+
+          # If nothing is active, start a new canonical cycle. This closes the
+          # gap where scheduled dispatches can be delayed or lost.
+          if not restarted and not active:
+              print('WATCHDOG: no active canonical run; dispatching recovery cycle')
+              subprocess.run(['gh','workflow','run','book-free-runner.yml','--repo',repo],check=True,env=env)
+              restarted=True
+
+          print('WATCHDOG_HEALTHY' if not restarted else 'WATCHDOG_HEALED')
+          PY
