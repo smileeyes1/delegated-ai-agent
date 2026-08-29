@@ -36,14 +36,17 @@ HAKIM Core must run with zero Azure cost and zero external institutional approva
 - In-memory response cache abstraction.
 - Capability/quota-aware Intelligence Broker with provider health, ranking, cooldown, failover, cache integration, and sensitive-data gating.
 - Intelligence Broker regression tests.
+- Dependency-light live adapters for OpenRouter, Groq, Cerebras, and Gemini using runtime environment credentials.
+- Live provider registry with explicit runtime probes; no secret persistence.
+- Live registry truth-boundary regression tests.
 
 ## Not yet proven
-- Full real LLM inference on target Android hardware.
+- A real live LLM request from the repository runtime because no provider credential is present in this execution environment.
 - Automated CI run for the latest head (must be observed before claiming pass).
 - Full assurance suite across all historical modules.
 - Browser WebGPU execution implementation.
 - LAN transport implementation and authentication.
-- Live free-cloud account quotas/availability (provider terms and quotas change).
+- Live free-cloud account quotas/availability beyond public provider documentation (provider terms and quotas change).
 - Real Foundry runtime.
 - Real Graph/Teams/SharePoint/OneDrive access.
 
