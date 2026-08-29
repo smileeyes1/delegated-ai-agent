@@ -1,0 +1,36 @@
+{
+  "environment": "dev",
+  "deployment_mode": "enterprise",
+  "personal_azure_trial_allowed": false,
+  "azure": {
+    "tenant_id": "",
+    "subscription_id": "",
+    "resource_group": "",
+    "location": ""
+  },
+  "foundry": {
+    "resource_name": "",
+    "project_name": "",
+    "project_endpoint": "",
+    "agent_id": "",
+    "agent_identity_id": ""
+  },
+  "microsoft_graph": {
+    "enabled": false,
+    "approved_sites": [],
+    "approved_drives": [],
+    "permission_mode": "least_privilege"
+  },
+  "teams": {
+    "enabled": false,
+    "approved_teams": []
+  },
+  "assurance": {
+    "identity": "NOT_PROVEN",
+    "authorization": "NOT_PROVEN",
+    "foundry_runtime": "NOT_PROVEN",
+    "graph": "NOT_PROVEN",
+    "teams": "NOT_PROVEN",
+    "e2e_teacher_workflow": "NOT_PROVEN"
+  }
+}
