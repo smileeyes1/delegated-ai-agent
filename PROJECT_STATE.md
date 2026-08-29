@@ -37,12 +37,15 @@ HAKIM Core must run with zero Azure cost and zero external institutional approva
 - Capability/quota-aware Intelligence Broker with provider health, ranking, cooldown, failover, cache integration, and sensitive-data gating.
 - Intelligence Broker regression tests.
 - Dependency-light live adapters for OpenRouter, Groq, Cerebras, and Gemini using runtime environment credentials.
+- Stable ProviderAdapter/AIResponse contract.
 - Live provider registry with explicit runtime probes; no secret persistence.
 - Live registry truth-boundary regression tests.
+- Live adapter safety/construction regression tests.
+- Operational live-AI runbook with zero-cost and credential-safety gates.
 
 ## Not yet proven
 - A real live LLM request from the repository runtime because no provider credential is present in this execution environment.
-- Automated CI run for the latest head (must be observed before claiming pass).
+- CI execution for the newest adapter commits must be observed before claiming pass.
 - Full assurance suite across all historical modules.
 - Browser WebGPU execution implementation.
 - LAN transport implementation and authentication.
