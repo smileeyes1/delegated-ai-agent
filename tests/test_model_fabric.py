@@ -36,9 +36,11 @@ class ModelFabricTests(unittest.TestCase):
     def test_failover(self):
         bad = FakeProvider("bad", fail=True)
         good = FakeProvider("good")
-        result = ModelFabric([bad, good]).generate(ModelRequest("x"))
+        fabric = ModelFabric([bad, good])
+        result = fabric.generate(ModelRequest("x"))
         self.assertEqual(result.provider, "good")
-        self.assertEqual(len(ModelFabric([bad, good]).history), 0)
+        self.assertEqual(fabric.history[0].provider, "bad")
+        self.assertIn("failed", fabric.history[0].reason)
 
 
 if __name__ == "__main__":
