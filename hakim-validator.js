@@ -1,20 +1,22 @@
-/* HAKIM Ω Validator v6 — fail-closed quality gate */
+/* HAKIM Ω Validator v7 — fail-closed quality gate */
 (function(){'use strict';
 const E='٠١٢٣٤٥٦٧٨٩';
 const norm=t=>String(t??'').replace(/\r/g,'').replace(/\u00a0/g,' ').replace(/[ \t]+\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
 const canon=s=>norm(s).replace(/[٠-٩\d]/g,'#').replace(/\s+/g,' ').replace(/[!?؟.,،:؛;]+/g,' ').toLowerCase().trim();
 const lines=t=>norm(t).split('\n').map(x=>x.trim()).filter(Boolean);
 function cleanRepetition(t){
- let ls=lines(t),out=[],seen=new Set(),tail=0;
- for(const l of ls){const k=canon(l); if(k.length>=28){if(seen.has(k))continue;seen.add(k)} out.push(l)}
- // Remove a repeated suffix even when formatting differs slightly.
- for(let n=Math.min(12,Math.floor(out.length/2));n>=2;n--){
-  const a=out.slice(-n).map(canon).join('|'), prior=out.slice(-2*n,-n).map(canon).join('|');
-  if(a===prior){out=out.slice(0,-n);tail=1;break}
+ let ls=lines(t),out=[],seen=new Set();
+ for(const l of ls){const k=canon(l);if(k.length>=28&&seen.has(k))continue;if(k.length>=28)seen.add(k);out.push(l)}
+ for(let pass=0;pass<3;pass++){
+  let changed=false;
+  for(let n=Math.min(16,Math.floor(out.length/2));n>=2;n--){
+   const a=out.slice(-n).map(canon).join('|'),prior=out.slice(-2*n,-n).map(canon).join('|');
+   if(a&&a===prior){out=out.slice(0,-n);changed=true;break}
+  }
+  if(!changed)break;
  }
- // Collapse repeated headings/sections.
  const s=out.join('\n').replace(/(?:\n\s*---\s*){2,}/g,'\n---\n').trim();
- return {text:s,repaired:tail||s!==norm(t)};
+ return{text:s,repaired:s!==norm(t)};
 }
 function blocks(t){return norm(t).split(/\n\s*(?=---|#{1,3}\s|\*\*[^*]+\*\*|\d+[.)]\s)/).map(x=>x.trim()).filter(x=>x.length>20)}
 function repetition(t){const seen=new Set(),d=[];for(const b of blocks(t)){const k=canon(b);if(seen.has(k))d.push(k);else seen.add(k)}return d}
@@ -26,11 +28,12 @@ function structural(t){const e=[],hasLesson=/\bدرس\b|الهدف التعلي�
  const sums=(t.match(/(?:^|\n)\s*(?:#{1,3}\s*)?(?:الملخص|الخلاصة)(?:\s+النهائي)?\s*[:：]/g)||[]).length;if(sums>1)e.push('MULTIPLE_SUMMARIES');
  const endings=(t.match(/(?:تهانينا|أحسنت|النشاط النهائي|الملخص النهائي)/g)||[]).length;if(endings>2)e.push('REPEATED_CLOSING_PATTERN');
  if(/(?:الصف الأول|الصف الثاني)/.test(t)&&/\b(?:ضرب|قسمة)\b/.test(t)&&/تعرف|التعرف|مفهوم|العدد/.test(t))e.push('ADVANCED_OPERATION_FOR_EARLY_GRADE');
+ if(/يأتي بعد\s+٢/.test(t)&&/يقبل\s+٤/.test(t))e.push('PEDAGOGICAL_SEQUENCE_WORDING_ERROR');
  return e}
-function validateText(text,opts={}){const e=[],t=norm(text);if(!t)e.push('EMPTY_OUTPUT');if(t&&!/[\u0600-\u06ff]/.test(t))e.push('ARABIC_TEXT_MISSING');if(t.length<80&&opts.long)e.push('OUTPUT_TOO_SHORT');if(t.length>14000)e.push('OUTPUT_TOO_LONG');if(/TODO|TBD|lorem ipsum/i.test(t))e.push('PLACEHOLDER_CONTENT');if(/\b(api key|secret key|password|bearer)\b/i.test(t))e.push('SENSITIVE_CONTENT');if(/يأتي بعد\s+٢/.test(t)&&/يقبل\s+٤/.test(t))e.push('PEDAGOGICAL_SEQUENCE_WORDING_ERROR');const d=repetition(t);if(d.length)e.push('REPETITIVE_BLOCKS:'+d.length);e.push(...structural(t));return{ok:e.length===0,errors:e}}
+function validateText(text,opts={}){const e=[],t=norm(text);if(!t)e.push('EMPTY_OUTPUT');if(t&&!/[\u0600-\u06ff]/.test(t))e.push('ARABIC_TEXT_MISSING');if(t.length<80&&opts.long)e.push('OUTPUT_TOO_SHORT');if(t.length>14000)e.push('OUTPUT_TOO_LONG');if(/TODO|TBD|lorem ipsum/i.test(t))e.push('PLACEHOLDER_CONTENT');if(/\b(api key|secret key|password|bearer)\b/i.test(t))e.push('SENSITIVE_CONTENT');const d=repetition(t);if(d.length)e.push('REPETITIVE_BLOCKS:'+d.length);e.push(...structural(t));return{ok:e.length===0,errors:e}}
 function value(s){const n=String(s).replace(/[٠-٩]/g,c=>E.indexOf(c));return /^\d+$/.test(n)?Number(n):null}
 function validateMath(text){const e=[],t=String(text||'');if(/\d\s*[+×*÷\-]\s*\d\s*=\s*[\d□]/.test(t))e.push('LATIN_NUMERALS_IN_MATH');for(const m of t.matchAll(/([٠-٩]+)\s*([+×*÷\-])\s*([٠-٩]+)\s*=\s*([٠-٩]+)/g)){const a=value(m[1]),op=m[2],b=value(m[3]),r=value(m[4]);let ok=op==='+'?a+b===r:op==='-'?a-b===r:op==='×'?a*b===r:op==='÷'?b!==0&&a%b===0&&a/b===r:true;if(!ok)e.push('MATH_EQUATION_ERROR:'+m[0])}return{ok:e.length===0,errors:e}}
-function validateVisualMath(text){const e=[];for(const m of String(text).matchAll(/([٠-٩]+)\s*([+\-×÷])\s*([٠-٩]+)\s*=\s*□/g)){e.push('MATH_VISUAL_ORDER_REQUIRES_EXPLICIT_TRANSFORM:'+m[0])}return{ok:e.length===0,errors:e}}
-function gate(text,opts={}){const original=norm(text),c=cleanRepetition(original),a=validateText(c.text,opts),b=validateMath(c.text);return{ok:a.ok&&b.ok,errors:[...a.errors,...b.errors],text:c.text,repaired:c.repaired,checkedAt:new Date().toISOString(),quality:{correctness:b.ok,structure:a.ok,duplicates:a.errors.filter(x=>x.includes('REPET')).length===0}}}
+function validateVisualMath(text){const e=[];for(const m of String(text||'').matchAll(/([٠-٩]+)\s*([+\-×÷])\s*([٠-٩]+)\s*=\s*□/g))e.push('MATH_VISUAL_ORDER_REQUIRES_EXPLICIT_TRANSFORM:'+m[0]);return{ok:e.length===0,errors:e}}
+function gate(text,opts={}){const original=norm(text),c=cleanRepetition(original),a=validateText(c.text,opts),b=validateMath(c.text),v=validateVisualMath(c.text);return{ok:a.ok&&b.ok&&v.ok,errors:[...a.errors,...b.errors,...v.errors],text:c.text,repaired:c.repaired,checkedAt:new Date().toISOString(),quality:{correctness:b.ok,structure:a.ok,visualMath:v.ok,duplicates:a.errors.filter(x=>x.includes('REPET')).length===0}}}
 window.HAKIM_VALIDATOR={validateText,validateMath,validateVisualMath,clean:t=>cleanRepetition(t).text,validate:(t,o)=>gate(t,o)};
 })();
