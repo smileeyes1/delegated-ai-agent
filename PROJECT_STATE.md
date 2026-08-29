@@ -15,14 +15,17 @@ HAKIM Core must run with zero Azure cost and zero external institutional approva
 - Enterprise provisioning manifest.
 - Fail-closed readiness evaluation.
 - Persistent mission/resume documentation.
+- Provider-independent capability registry.
+- Provider-independent execution runtime.
+- Durable mission-state store.
+- Runtime/continuity integration test.
+- Enterprise gate + runtime + continuity CI passed on branch head `9fa14dc9b71b4d4110da4335fd73166df52680cd` (run 24).
 
 ## Not yet proven
-- Provider-independent end-to-end agent runtime.
-- Local/mock model execution.
-- Capability registry integration with runtime.
-- Durable execution state.
-- Automated recovery/resume.
-- End-to-end assurance suite.
+- Full planner-to-runtime end-to-end agent execution.
+- Local/mock model gateway.
+- Automated recovery/resume after interrupted execution.
+- Full end-to-end assurance suite across planner, permissions, audit, runtime, and continuity.
 - Real Foundry runtime.
 - Real Graph/Teams/SharePoint/OneDrive access.
 
