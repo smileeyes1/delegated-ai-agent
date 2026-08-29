@@ -23,10 +23,28 @@ jobs:
           cp hakim-quality-test.html docs/
           test -s docs/index.html
           test -s docs/hakim-orchestrator.js
+          test -s docs/hakim-engine.js
+          test -s docs/hakim-validator.js
           grep -q 'HAKIM_ORCHESTRATOR' docs/hakim-orchestrator.js
           grep -q 'HAKIM_VALIDATOR' docs/hakim-validator.js
+          grep -q 'HAKIM_ENGINE' docs/hakim-engine.js
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
       - id: deployment
         uses: actions/deploy-pages@v4
+      - name: Runtime smoke verification
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          test -n "$PAGE_URL"
+          echo "Verifying $PAGE_URL"
+          curl --fail --silent --show-error --location --retry 5 --retry-delay 3 --max-time 30 "$PAGE_URL" -o /tmp/hakim.html
+          test -s /tmp/hakim.html
+          grep -q 'HAKIM Ω' /tmp/hakim.html
+          grep -q 'مصنع الموارد' /tmp/hakim.html
+          grep -q 'hakim-orchestrator.js' /tmp/hakim.html
+          grep -q 'hakim-validator.js' /tmp/hakim.html
+          grep -q 'hakim-engine.js' /tmp/hakim.html
+          echo 'RUNTIME_SMOKE=PASS'
