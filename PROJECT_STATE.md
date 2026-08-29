@@ -32,6 +32,8 @@ HAKIM Core must run with zero Azure cost and zero external institutional approva
 - Response cache to reduce repeat Internet inference.
 - Lightweight Internet AI Mesh with cache, failover, sensitive-data guard, prompt-size guard, and zero-cost enforcement.
 - Zero-cost-first Fabric bootstrap with Internet → LAN → local → deterministic fallback.
+- Intelligence Optimizer: normalize requests, classify deterministic tasks, generate cache keys, and prefer Internet AI for general tasks without loading local models.
+- In-memory response cache abstraction.
 
 ## Not yet proven
 - Full real LLM inference on target Android hardware.
@@ -48,6 +50,9 @@ No personal Azure trial. No payment dependency. No approval dependency for core 
 
 ## Zero-cost policy
 `MAX_SPEND = $0.00` by default. Paid providers are blocked. Exhausted/unavailable free providers fail over to another eligible provider or local/limited mode. No silent paid upgrade.
+
+## Device-load policy
+Internet-first by default. No model download or background inference is required for the normal path. Device work is limited to request normalization, cache lookup, transport, rendering, and deterministic micro-capabilities. Local LLM/WebGPU is opt-in based on detected capability.
 
 ## Evidence policy
 Configured != connected != authorized != proven. Mocks and simulations must be labeled explicitly.
