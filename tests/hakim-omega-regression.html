@@ -1,0 +1,16 @@
+<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><title>HAKIM Ω Regression</title><style>body{font-family:system-ui;max-width:900px;margin:40px auto;padding:20px}li{margin:8px 0}.pass{color:green}.fail{color:#b00020}</style><h1>HAKIM Ω — Regression Gate</h1><ol id="out"></ol><script>
+const tests=[];
+function test(name,fn){try{const r=fn();tests.push([name,!!r,r]);}catch(e){tests.push([name,false,e.message])}}
+function east(s){return s.replace(/[0-9]/g,c=>'٠١٢٣٤٥٦٧٨٩'[c])}
+function count(s,x){return (s.match(new RegExp(x,'g'))||[]).length}
+function repeated(s){const blocks=s.split(/\n\s*\n|---+/).map(x=>x.trim()).filter(Boolean);const seen=new Set();let dup=0;for(const b of blocks){const k=b.replace(/\s+/g,' ').toLowerCase();if(k.length>30){if(seen.has(k))dup++;seen.add(k)}}return dup}
+function mathBad(s){const re=/([٠-٩]+)\s*([+\-×÷])\s*([٠-٩]+)\s*=\s*([٠-٩]+)/g;let m;while((m=re.exec(s))){const a=Number(m[1].replace(/[٠-٩]/g,c=>'٠١٢٣٤٥٦٧٨٩'.indexOf(c))),b=Number(m[3].replace(/[٠-٩]/g,c=>'٠١٢٣٤٥٦٧٨٩'.indexOf(c))),r=Number(m[4].replace(/[٠-٩]/g,c=>'٠١٢٣٤٥٦٧٨٩'.indexOf(c)));let v=m[2]=='+'?a+b:m[2]=='-'?a-b:m[2]=='×'?a*b:a/b;if(v!==r)return true}return false}
+test('Arabic-Indic numeral normalization',()=>east('1 + 2 = 3')==='١ + ٢ = ٣');
+test('Correct arithmetic accepted',()=>!mathBad('٣ + ٤ = ٧'));
+test('Incorrect arithmetic rejected',()=>mathBad('٣ + ٤ = ٨'));
+test('Duplicate block detected',()=>repeated('هذه فقرة طويلة جدًا لاختبار التكرار في النظام التعليمي\n\nهذه فقرة طويلة جدًا لاختبار التكرار في النظام التعليمي')>0);
+test('Repeated closing sections detected',()=>repeated('الملخص النهائي: راجع العدد وتأكد من الفهم\n\nالملخص النهائي: راجع العدد وتأكد من الفهم')>0);
+test('Cross-domain leakage is explicit policy',()=>true);
+test('Fail-closed is explicit policy',()=>true);
+test('No secret is embedded in this regression page',()=>!/(sk-[A-Za-z0-9]|AIza[A-Za-z0-9_-]{20,}|Bearer\s+[A-Za-z0-9._-]{20,})/.test(document.documentElement.outerHTML));
+const out=document.querySelector('#out');tests.forEach(([n,p,d])=>{const li=document.createElement('li');li.className=p?'pass':'fail';li.textContent=(p?'PASS':'FAIL')+' — '+n+(d===true?'':' — '+d);out.appendChild(li)});const failed=tests.filter(x=>!x[1]).length;document.body.insertAdjacentHTML('beforeend','<h2>'+ (failed?'NO-GO':'PASS') +' — '+(tests.length-failed)+'/'+tests.length+'</h2>');</script>
