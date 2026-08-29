@@ -1,0 +1,55 @@
+name: HAKIM Ω Runtime Assurance
+on:
+  push:
+    branches: ["main", "feat/enterprise-azure-foundry-gate"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validator-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node tests/hakim-validator.test.js
+  static-artifact-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify required runtime files
+        shell: bash
+        run: |
+          set -euo pipefail
+          for f in index.html hakim-engine.js hakim-validator.js hakim-orchestrator.js hakim-game.js; do
+            test -s "$f"
+          done
+          grep -q 'dir="rtl"' index.html
+          grep -q 'hakim-validator.js' index.html
+          grep -q 'hakim-orchestrator.js' index.html
+          grep -q 'HAKIM-RESOURCE/3.0' hakim-engine.js
+      - name: Syntax check
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check tests/hakim-validator.test.js
+          node --check hakim-validator.js
+          node --check hakim-orchestrator.js
+          node --check hakim-engine.js
+          node --check hakim-game.js
+  pages-runtime-smoke:
+    needs: [validator-regression, static-artifact-gate]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Pages target is represented in repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s index.html
+          grep -q 'HAKIM Ω' index.html
+          grep -q 'اسأل حكيم' index.html
+          grep -q 'ولّد المورد' index.html
+          grep -q 'exportPack' hakim-engine.js
+          echo 'Runtime smoke contract: PASS'
