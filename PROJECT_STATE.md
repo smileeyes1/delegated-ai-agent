@@ -18,20 +18,23 @@ HAKIM Core must run with zero Azure cost and zero external institutional approva
 - Provider-independent capability registry.
 - Provider-independent execution runtime.
 - Durable mission-state store.
-- Model Fabric with dynamic routing and zero-cost policy.
+- Model Gateway and Zero-Cost Policy.
+- Model Fabric dynamic routing.
 - Deterministic local fallback provider.
 - Local OpenAI-compatible provider contract.
 - Browser WebGPU/WASM provider contract.
 - Trusted LAN inference-node contract.
-- Model Fabric and local fallback unit tests.
-- Enterprise gate + runtime + continuity CI passed on branch head `9fa14dc9b71b4d4110da4335fd73166df52680cd` (run 24).
+- Intent → Model Fabric → Runtime pipeline.
+- Crash-safe recovery manager with idempotent checkpoints.
+- Expanded CI regression workflow.
 
 ## Not yet proven
-- Full planner-to-runtime end-to-end agent execution.
-- Real local LLM inference on a target device.
-- Automated recovery/resume after interrupted execution.
-- Full end-to-end assurance suite across planner, permissions, audit, runtime, continuity, and model fabric.
-- Real cloud-free multimodal stack on target Android hardware.
+- Full real LLM inference on target Android hardware.
+- Automated CI run for the latest head (must be observed before claiming pass).
+- Full assurance suite across all historical modules.
+- Browser WebGPU execution implementation.
+- LAN transport implementation and authentication.
+- Free-cloud provider adapters.
 - Real Foundry runtime.
 - Real Graph/Teams/SharePoint/OneDrive access.
 
