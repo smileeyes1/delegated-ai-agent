@@ -30,6 +30,7 @@ HAKIM Core must run with zero Azure cost and zero external institutional approva
 - Lightweight Internet AI provider adapter for OpenAI-compatible free-tier endpoints.
 - Environment-only provider discovery; no secrets stored in repository.
 - Response cache to reduce repeat Internet inference.
+- Lightweight Internet AI Mesh with cache, failover, sensitive-data guard, prompt-size guard, and zero-cost enforcement.
 - Zero-cost-first Fabric bootstrap with Internet → LAN → local → deterministic fallback.
 
 ## Not yet proven
