@@ -1,21 +1,22 @@
 # HAKIM Ω — Next Action
 
 ## Current action
-Implement and prove the provider-independent runtime orchestration.
+Build the model gateway and deterministic local/mock model path, then connect it to planner → runtime.
 
 ## Acceptance criteria
-- Accept a normalized intent.
-- Build an executable plan.
-- Resolve required capabilities through a registry.
-- Use a local/mock provider when cloud providers are unavailable.
-- Execute deterministic tool calls.
-- Record each transition in durable state/audit data.
-- Fail closed for unavailable capabilities.
-- Distinguish simulated output from real external execution.
-- Provide a resume-safe execution record.
+- Accept a normalized HAKIM intent.
+- Select a model provider through an abstraction, not provider-specific core logic.
+- Run with a deterministic local/mock model when no cloud provider exists.
+- Clearly label simulated/local output.
+- Preserve provider identity and execution mode in audit events.
+- Pass planner → model gateway → runtime without Azure, Foundry, Graph, Teams, approvals, or payment.
+- Fail closed when a requested external provider is unavailable.
 
 ## After this action
-Run regression across planner, permissions, audit, enterprise gate, and runtime tests. Then proceed to model gateway and educational workflow contracts.
+Build automated recovery/resume, then run regression across planner, permissions, audit, capability registry, runtime, continuity, and model gateway.
 
-## Blocker
-None. Azure/Foundry/Graph/Teams are not blockers for this action.
+## External capability path
+Azure / Foundry / Entra / Graph / Teams / SharePoint / OneDrive remain optional adapters and must never become core dependencies.
+
+## Resume protocol
+At the beginning of every new execution session, read CURRENT_MISSION.md, PROJECT_STATE.md, and this file, then inspect the latest repository commit and CI evidence before continuing.
