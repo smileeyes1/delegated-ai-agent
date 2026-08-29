@@ -34,6 +34,8 @@ HAKIM Core must run with zero Azure cost and zero external institutional approva
 - Zero-cost-first Fabric bootstrap with Internet → LAN → local → deterministic fallback.
 - Intelligence Optimizer: normalize requests, classify deterministic tasks, generate cache keys, and prefer Internet AI for general tasks without loading local models.
 - In-memory response cache abstraction.
+- Capability/quota-aware Intelligence Broker with provider health, ranking, cooldown, failover, cache integration, and sensitive-data gating.
+- Intelligence Broker regression tests.
 
 ## Not yet proven
 - Full real LLM inference on target Android hardware.
