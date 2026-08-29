@@ -15,6 +15,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Assemble static app
+        run: |
+          mkdir -p docs
+          cp index.html hakim-engine.js hakim-validator.js hakim-game.js docs/
+          cp hakim-quality-test.html docs/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs
