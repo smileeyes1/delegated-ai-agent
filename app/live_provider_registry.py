@@ -1,9 +1,9 @@
-"""Live provider registry metadata and quota-aware discovery for HAKIM.
-
-No credential is stored here. Runtime adapters read credentials from the environment.
+"""Live provider registry and zero-cost eligibility probes.
+Credentials are read only from the runtime environment and never persisted.
 """
+from __future__ import annotations
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Callable
 
 @dataclass(frozen=True)
 class ProviderSpec:
@@ -31,3 +31,18 @@ def discover(env: dict[str, str] | None = None) -> list[dict[str, Any]]:
         "free_claim": p.free_claim,
         "adapter": p.adapter,
     } for p in PROVIDERS]
+
+def build_probes(callers: dict[str, Callable[[], Any]]) -> list[dict[str, Any]]:
+    """Run only explicitly supplied runtime probes; never invent connectivity."""
+    results = []
+    for name in [p.name for p in PROVIDERS]:
+        fn = callers.get(name)
+        if fn is None:
+            results.append({"name": name, "status": "NOT_CONFIGURED"})
+            continue
+        try:
+            value = fn()
+            results.append({"name": name, "status": "LIVE", "result": value})
+        except Exception as exc:
+            results.append({"name": name, "status": "FAILED", "error_type": type(exc).__name__})
+    return results
