@@ -27,6 +27,10 @@ HAKIM Core must run with zero Azure cost and zero external institutional approva
 - Intent → Model Fabric → Runtime pipeline.
 - Crash-safe recovery manager with idempotent checkpoints.
 - Expanded CI regression workflow.
+- Lightweight Internet AI provider adapter for OpenAI-compatible free-tier endpoints.
+- Environment-only provider discovery; no secrets stored in repository.
+- Response cache to reduce repeat Internet inference.
+- Zero-cost-first Fabric bootstrap with Internet → LAN → local → deterministic fallback.
 
 ## Not yet proven
 - Full real LLM inference on target Android hardware.
@@ -34,7 +38,7 @@ HAKIM Core must run with zero Azure cost and zero external institutional approva
 - Full assurance suite across all historical modules.
 - Browser WebGPU execution implementation.
 - LAN transport implementation and authentication.
-- Free-cloud provider adapters.
+- Live free-cloud account quotas/availability (provider terms and quotas change).
 - Real Foundry runtime.
 - Real Graph/Teams/SharePoint/OneDrive access.
 
