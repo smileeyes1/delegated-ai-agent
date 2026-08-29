@@ -1,31 +1,12 @@
-/* HAKIM Ω Resource Engine — browser-first, zero-install artifact generation */
-(function(){
-  'use strict';
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const slug=s=>String(s||'hakim-resource').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-|-$/g,'').slice(0,70)||'hakim-resource';
-  const num=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
-  function lessonFromText(text){
-    const title=(text.match(/(?:درس|عنوان)\s*(?:العدد|عن)?\s*([^\n#]+)/i)||[])[1]||'مورد تعليمي';
-    return {schema:'HAKIM-RESOURCE/1.0',type:'lesson_pack',title:title.trim(),language:'ar',direction:'rtl',content:text,createdAt:new Date().toISOString()};
-  }
-  function validate(x){
-    const errors=[];
-    if(!x||!x.content) errors.push('المحتوى فارغ');
-    if(x.direction!=='rtl') errors.push('اتجاه العربية يجب أن يكون RTL');
-    if(x.type==='lesson_pack'&&x.content.length<80) errors.push('المحتوى قصير جدًا لمورد تعليمي كامل');
-    return {ok:errors.length===0,errors};
-  }
-  function interactiveHtml(resource){
-    const title=esc(resource.title); const content=esc(resource.content);
-    return `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><style>body{font-family:system-ui,sans-serif;margin:0;background:#f5f7fa;color:#17202a}main{max-width:900px;margin:auto;padding:24px}article{background:white;border:1px solid #e1e6eb;border-radius:20px;padding:24px;white-space:pre-wrap;line-height:1.8}button{padding:12px 18px;border:0;border-radius:12px;font:inherit;background:#111827;color:white;margin-bottom:16px}@media print{button{display:none}body{background:white}main{max-width:none;padding:0}article{border:0}}</style></head><body><main><button onclick="window.print()">طباعة / حفظ PDF</button><article><h1>${title}</h1>${content}</article></main></body></html>`;
-  }
-  function download(name,data,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
-  window.HAKIM_ENGINE={
-    build(text){const r=lessonFromText(text);const v=validate(r);if(!v.ok)throw new Error(v.errors.join(' • '));return r},
-    exportHtml(r){download(slug(r.title)+'.html',interactiveHtml(r),'text/html;charset=utf-8')},
-    exportJson(r){download(slug(r.title)+'.json',JSON.stringify(r,null,2),'application/json;charset=utf-8')},
-    exportText(r){download(slug(r.title)+'.txt',r.content,'text/plain;charset=utf-8')},
-    printPdf(r){const w=window.open('','_blank');if(!w)throw new Error('POPUP_BLOCKED');w.document.open();w.document.write(interactiveHtml(r));w.document.close();setTimeout(()=>w.print(),350)},
-    validate
-  };
+/* HAKIM Ω Professional Print/Artifact Engine */
+(function(){'use strict';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const slug=s=>String(s||'hakim-resource').replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-|-$/g,'').slice(0,80)||'hakim-resource';
+const num=s=>String(s??'').replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+function normalize(text){return String(text||'').replace(/\r/g,'').replace(/\u00a0/g,' ').trim();}
+function sections(text){return normalize(text).split(/\n(?=\s*(?:#{1,3}\s+|\d+[.)]\s+|[١-٩٠-٩]+[.)]\s+))/).map(x=>x.trim()).filter(Boolean)}
+function professionalHtml(title,text,mode='lesson'){const body=esc(normalize(text)).replace(/\n/g,'<br>');return `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><style>@page{size:A4;margin:16mm 15mm 18mm}*{box-sizing:border-box}html,body{margin:0;padding:0}body{font-family:"Noto Naskh Arabic","Amiri","Tahoma",Arial,sans-serif;color:#17202a;background:#eef1f4;font-size:14.5pt;line-height:1.85}.sheet{max-width:210mm;margin:18px auto;background:#fff;padding:18mm 17mm;min-height:267mm;box-shadow:0 2px 16px #0001}.brand{border-bottom:2px solid #17202a;padding-bottom:10px;margin-bottom:22px}.brand small{font-size:10pt;letter-spacing:.2px}.brand h1{font-size:25pt;margin:4px 0}.meta{font-size:10.5pt;margin-top:4px}.content{white-space:normal;overflow-wrap:anywhere}.content br{line-height:1.65}h2{font-size:18pt;margin:22px 0 8px;border-bottom:1px solid #d7dce1;padding-bottom:5px}h3{font-size:15.5pt;margin:16px 0 6px}strong{font-weight:800}.footer{margin-top:30px;padding-top:8px;border-top:1px solid #d7dce1;font-size:9pt;text-align:center}.actions{position:fixed;top:12px;left:12px;display:flex;gap:7px}.actions button{border:0;border-radius:8px;padding:9px 13px;font:inherit;background:#17202a;color:white}@media print{body{background:white;font-size:13.5pt}.sheet{margin:0;max-width:none;box-shadow:none;padding:0;min-height:auto}.actions{display:none}.brand{break-after:avoid}h2,h3{break-after:avoid}.footer{break-inside:avoid}}@media screen{.content{max-width:100%}} </style></head><body><div class="actions"><button onclick="window.print()">طباعة / PDF</button></div><main class="sheet"><header class="brand"><small>HAKIM Ω — الاستوديو التعليمي</small><h1>${esc(title)}</h1><div class="meta">${mode==='worksheet'?'ورقة عمل تعليمية':'مورد تعليمي'} • جاهز للطباعة على A4</div></header><article class="content">${body}</article><footer class="footer">بناء جيل المبدعين - مشروع زيتونة التعليمي</footer></main></body></html>`}
+function download(name,data,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500)}
+function build(text){const content=normalize(text);if(content.length<40)throw new Error('OUTPUT_TOO_SHORT');const title=(content.match(/(?:درس|ورقة عمل|لعبة|تقويم)\s+(?:العدد|عن)?\s*([^\n#]+)/)||[])[0]||'مورد تعليمي';return {schema:'HAKIM-RESOURCE/2.0',type:'educational_resource',title:title.trim(),language:'ar',direction:'rtl',numerals:'eastern-arabic',content,sections:sections(content),createdAt:new Date().toISOString()}}
+window.HAKIM_ENGINE={build,sections,exportHtml:r=>download(slug(r.title)+'.html',professionalHtml(r.title,r.content),'text/html;charset=utf-8'),exportJson:r=>download(slug(r.title)+'.json',JSON.stringify(r,null,2),'application/json;charset=utf-8'),exportText:r=>download(slug(r.title)+'.txt',r.content,'text/plain;charset=utf-8'),printPdf:r=>{const w=window.open('','_blank');if(!w)throw Error('POPUP_BLOCKED');w.document.write(professionalHtml(r.title,r.content));w.document.close();setTimeout(()=>w.print(),500)},professionalHtml};
 })();
