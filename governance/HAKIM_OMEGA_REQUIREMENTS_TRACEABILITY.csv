@@ -1,0 +1,26 @@
+ID,Domain,Requirement,Verification,Status
+GOV-001,Governance,Immutable Core Governance,Protected files + governance review,BASELINED
+GOV-002,Operating Loop,Universal Ascent Loop,Protocol tests + audit evidence,BASELINED
+AUTO-001,Autonomy,Self-steering state machine,Unit/integration regression,IMPLEMENTED
+AUTO-002,Autonomy,Long-running mission continuation,Persistence/recovery E2E,PLANNED
+TRUTH-001,Truth,Claim provenance and evidence,Truth/evidence test suite,PLANNED
+MEM-001,Memory,Versioned persistent memory,Memory integrity tests,PLANNED
+AGENT-001,Agents,Capability/permission registry,Security tests,PLANNED
+TOOL-001,Tools,Typed tool contracts and risk policy,Tool contract tests,PLANNED
+CODE-001,Engineering,Autonomous branch/test/repair loop,GitHub E2E tests,PARTIAL
+CI-001,CI/CD,Protected regression workflow,GitHub Actions evidence,PARTIAL
+SEC-001,Security,No self-granted authority,Adversarial security tests,BASELINED
+SEC-002,Security,Secret and credential isolation,Security integration tests,PLANNED
+MODEL-001,Models,Provider/model abstraction,Routing/fallback tests,PLANNED
+RES-001,Resilience,Automatic fallback/degraded modes,Failure injection tests,PLANNED
+RES-002,Resilience,Backup/restore/rollback,Recovery drills,PLANNED
+OBS-001,Observability,Audit/log/event traceability,Observability integration tests,PLANNED
+COST-001,Cost,Resource and budget governance,Budget enforcement tests,PLANNED
+PORT-001,Portability,Export/import/migration,Migration test suite,PLANNED
+UX-001,Product,Core chat/project/file experience,E2E acceptance suite,PLANNED
+PRIV-001,Privacy,User data control and export,Privacy acceptance tests,PLANNED
+DOC-001,Continuity,Self-documenting current-state record,Continuity validation,PLANNED
+RED-001,Validation,Adversarial/red-team testing,Red-team suite,PLANNED
+REL-001,Release,Release/rollback evidence,Release drill,PLANNED
+SUST-001,Sustainability,Dependency/provider change resilience,Migration/fallback drill,PLANNED
+ANTI-001,Continuity,Anti-stagnation/deadlock/no-progress controls,Failure-injection suite,PLANNED
