@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.venv/
+.hakim/
+/data/task-runtime.sqlite3
+/data/task-runtime.sqlite3-*
