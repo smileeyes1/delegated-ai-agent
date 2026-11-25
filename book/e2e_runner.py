@@ -4,13 +4,16 @@ This does not invent scholarship. It proves the orchestration contract using
 an explicit fixture and emits a traceable artifact that the real research
 adapter can later replace.
 """
+import argparse
 import json
 from pathlib import Path
 from datetime import datetime, timezone
+from tempfile import NamedTemporaryFile
 
 ROOT = Path(__file__).resolve().parent
-OUT = ROOT / "runs"
-OUT.mkdir(exist_ok=True)
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--output", type=Path, default=ROOT / "runs" / "latest_e2e_smoke.json")
+path = parser.parse_args().output
 
 fixture = {
     "question": "What transformation does revelation seek in the human being?",
@@ -53,8 +56,13 @@ run = {
     "next_task": "replace_fixture_with_verified_research_adapter",
 }
 
-path = OUT / "latest_e2e_smoke.json"
-path.write_text(json.dumps(run, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-print(json.dumps({"passed": passed, "artifact": str(path), "next_task": run["next_task"]}, ensure_ascii=False))
 if not passed:
+    print(json.dumps({"passed": False, "checks": checks}, ensure_ascii=False))
     raise SystemExit(1)
+path.parent.mkdir(parents=True, exist_ok=True)
+with NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent, delete=False) as out:
+    temporary_path = Path(out.name)
+    json.dump(run, out, ensure_ascii=False, indent=2)
+    out.write("\n")
+temporary_path.replace(path)
+print(json.dumps({"passed": passed, "artifact": str(path), "next_task": run["next_task"]}, ensure_ascii=False))
