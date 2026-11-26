@@ -1,0 +1,112 @@
+{
+  "schema": "hakim.quran-reference-audit.v1",
+  "review_date_utc": "2026-11-26",
+  "task_id": "Q003",
+  "status": "legacy_synthesis_withdrawn",
+  "historical_evidence_hits": 0,
+  "source": {
+    "commit": "b1793f7aaaaedff5305f487b4a5ce195ad94a67f",
+    "path": "book/corpus/quran-uthmani.json",
+    "git_blob": "a1312281de070617f8062f9718a3bf0e69e44f16",
+    "sha256": "0df03e1d6da4fc8138208fec1688f2b416f0dd4ebbd514179f3e5e0fbaf4195f",
+    "url": "https://api.alquran.cloud/v1/quran/quran-uthmani",
+    "edition": "quran-uthmani",
+    "live_byte_match": true,
+    "verse_count": 6236
+  },
+  "cross_source": {
+    "commit": "b1793f7aaaaedff5305f487b4a5ce195ad94a67f",
+    "path": "book/research_data/tanzil-uthmani.txt",
+    "git_blob": "4f659961e526587bca1adafc3f377cd498746b4e",
+    "sha256": "b9027e22eb7e69d326f1eb7467fed8b7bc1eccbe1a894887ed2b3feb4ef5fc90",
+    "url": "https://tanzil.net/pub/download/index.php?quranType=uthmani&outType=txt-2&agree=true&marks=true&sajdah=true&rub=true&stanween=true",
+    "edition": "uthmani"
+  },
+  "original": {
+    "commit": "b1793f7aaaaedff5305f487b4a5ce195ad94a67f",
+    "path": "book/research/runs/20260825T081302Z-Q003.md",
+    "git_blob": "81e3d8600ac394acbe8c4e2e666a48dc89848d5f",
+    "sha256": "81c76c9a0f5a4674867f182a30620a56709e973fa333ac973188c03672fe98d5",
+    "recovery_commit": "8ef7eebbded75e229bbc04c961c678177d15d552",
+    "local_rollback_filename": "20260825T081302Z-Q003.original.md"
+  },
+  "references": [
+    {
+      "ref": "39:42",
+      "original_quote_matches_source": false,
+      "disposition": "reject_as_direct_candidate",
+      "source_text": "ٱللَّهُ يَتَوَفَّى ٱلْأَنفُسَ حِينَ مَوْتِهَا وَٱلَّتِى لَمْ تَمُتْ فِى مَنَامِهَا ۖ فَيُمْسِكُ ٱلَّتِى قَضَىٰ عَلَيْهَا ٱلْمَوْتَ وَيُرْسِلُ ٱلْأُخْرَىٰٓ إِلَىٰٓ أَجَلٍۢ مُّسَمًّى ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍۢ لِّقَوْمٍۢ يَتَفَكَّرُونَ",
+      "tanzil_text": "ٱللَّهُ يَتَوَفَّى ٱلْأَنفُسَ حِينَ مَوْتِهَا وَٱلَّتِى لَمْ تَمُتْ فِى مَنَامِهَا ۖ فَيُمْسِكُ ٱلَّتِى قَضَىٰ عَلَيْهَا ٱلْمَوْتَ وَيُرْسِلُ ٱلْأُخْرَىٰٓ إِلَىٰٓ أَجَلٍۢ مُّسَمًّى ۚ إِنَّ فِى ذَٰلِكَ لَـَٔايَٰتٍۢ لِّقَوْمٍۢ يَتَفَكَّرُونَ",
+      "raw_text_equal": false,
+      "observation_ar": "تذكر الآية توفّي الأنفس عند الموت وفي المنام، وإمساك التي قُضي عليها الموت وإرسال الأخرى إلى أجل. موضع الدلالة هنا التفكر في توفّي الأنفس.",
+      "scope_ar": "لا توجد صلة نصية مباشرة بين هذه الآية وسؤال المهمة عن صلة الإيمان بأحوال الإنسان وأعماله. يقتصر إدراجها هنا على تصحيح النسبة."
+    },
+    {
+      "ref": "57:28",
+      "original_quote_matches_source": false,
+      "disposition": "new_candidate_only",
+      "source_text": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَءَامِنُوا۟ بِرَسُولِهِۦ يُؤْتِكُمْ كِفْلَيْنِ مِن رَّحْمَتِهِۦ وَيَجْعَل لَّكُمْ نُورًۭا تَمْشُونَ بِهِۦ وَيَغْفِرْ لَكُمْ ۚ وَٱللَّهُ غَفُورٌۭ رَّحِيمٌۭ",
+      "tanzil_text": "يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟ ٱتَّقُوا۟ ٱللَّهَ وَءَامِنُوا۟ بِرَسُولِهِۦ يُؤْتِكُمْ كِفْلَيْنِ مِن رَّحْمَتِهِۦ وَيَجْعَل لَّكُمْ نُورًۭا تَمْشُونَ بِهِۦ وَيَغْفِرْ لَكُمْ ۚ وَٱللَّهُ غَفُورٌۭ رَّحِيمٌۭ",
+      "raw_text_equal": true,
+      "observation_ar": "تخاطب الآية الذين آمنوا وتأمر بالتقوى والإيمان بالرسول، وتذكر الرحمة والنور والمغفرة.",
+      "scope_ar": "هذا مرشح جديد للمهمة مستخرج من المصحف. يحتاج وجه الاستدلال وتعيين المخاطَبين إلى قراءة السياق، بما فيه الآيتان السابقتان والتالية."
+    },
+    {
+      "ref": "24:32",
+      "original_quote_matches_source": false,
+      "disposition": "reject_as_direct_candidate",
+      "source_text": "وَأَنكِحُوا۟ ٱلْأَيَٰمَىٰ مِنكُمْ وَٱلصَّٰلِحِينَ مِنْ عِبَادِكُمْ وَإِمَآئِكُمْ ۚ إِن يَكُونُوا۟ فُقَرَآءَ يُغْنِهِمُ ٱللَّهُ مِن فَضْلِهِۦ ۗ وَٱللَّهُ وَٰسِعٌ عَلِيمٌۭ",
+      "tanzil_text": "وَأَنكِحُوا۟ ٱلْأَيَٰمَىٰ مِنكُمْ وَٱلصَّٰلِحِينَ مِنْ عِبَادِكُمْ وَإِمَآئِكُمْ ۚ إِن يَكُونُوا۟ فُقَرَآءَ يُغْنِهِمُ ٱللَّهُ مِن فَضْلِهِۦ ۗ وَٱللَّهُ وَٰسِعٌ عَلِيمٌۭ",
+      "raw_text_equal": true,
+      "observation_ar": "تأمر الآية بإنكاح الأيامى والصالحين من العبيد والإماء، وتذكر غنى الله لهم من فضله إن كانوا فقراء.",
+      "scope_ar": "موضوعها المباشر الإنكاح. ورود وصف الصالحين فيها لا يكفي وحده للاستدلال على علاقة الإيمان بتغير حال الإنسان. يقتصر إدراجها هنا على تصحيح النسبة."
+    }
+  ],
+  "further_review_candidates": [
+    {
+      "refs": [
+        "8:2",
+        "8:3",
+        "8:4"
+      ],
+      "observation_ar": "تذكر الآيات وجل القلوب وزيادة الإيمان والتوكل، وإقامة الصلاة والإنفاق."
+    },
+    {
+      "refs": [
+        "2:177"
+      ],
+      "observation_ar": "تذكر آية البر الإيمان والإنفاق وإقامة الصلاة وإيتاء الزكاة والوفاء بالعهد والصبر."
+    },
+    {
+      "refs": [
+        "49:14",
+        "49:15"
+      ],
+      "observation_ar": "يذكر السياق دخول الإيمان في القلوب، ثم يذكر الإيمان وعدم الارتياب والعمل في وصف المؤمنين."
+    },
+    {
+      "refs": [
+        "103:1",
+        "103:2",
+        "103:3"
+      ],
+      "observation_ar": "يجمع السياق الإيمان والعمل الصالح والتواصي بالحق والصبر."
+    },
+    {
+      "refs": [
+        "57:26",
+        "57:27",
+        "57:28",
+        "57:29"
+      ],
+      "observation_ar": "يحفظ السياق السابق واللاحق لدراسة الخطاب والرحمة والفضل."
+    }
+  ],
+  "verification_scope": "source quotation and local textual relevance for future evidence review",
+  "interpretation_verified": false,
+  "release_eligible": false,
+  "correction": {
+    "path": "book/research/runs/20260825T081302Z-Q003.md",
+    "sha256": "b150cbce68efd86823e0d6234cb074d1af7e0baadbd4c5599f0fd10f858145e9"
+  }
+}

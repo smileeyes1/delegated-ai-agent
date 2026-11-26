@@ -10,11 +10,17 @@
       "ضلل",
       "اهتدى"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T08:06:28.707695+00:00",
-    "last_artifact": "book/research/runs/20260825T080628Z-Q001.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T08:06:28.707695+00:00",
+      "last_artifact": "book/research/runs/20260825T080628Z-Q001.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q002",
@@ -26,11 +32,17 @@
       "تزكية",
       "زكاة النفس"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T08:07:35.609131+00:00",
-    "last_artifact": "book/research/runs/20260825T080735Z-Q002.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T08:07:35.609131+00:00",
+      "last_artifact": "book/research/runs/20260825T080735Z-Q002.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q003",
@@ -42,11 +54,32 @@
       "يؤمنون",
       "مؤمنون"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T08:13:02.704382+00:00",
-    "last_artifact": "book/research/runs/20260825T081302Z-Q003.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T08:13:02.704382+00:00",
+      "last_artifact": "book/research/runs/20260825T081302Z-Q003.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "context_references": [
+      "8:2",
+      "8:3",
+      "8:4",
+      "2:177",
+      "49:14",
+      "49:15",
+      "103:1",
+      "103:2",
+      "103:3",
+      "57:26",
+      "57:27",
+      "57:28",
+      "57:29"
+    ],
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q004",
@@ -58,11 +91,17 @@
       "متقين",
       "اتقوا"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T08:14:00.428656+00:00",
-    "last_artifact": "book/research/runs/20260825T081400Z-Q004.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T08:14:00.428656+00:00",
+      "last_artifact": "book/research/runs/20260825T081400Z-Q004.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q005",
@@ -74,11 +113,17 @@
       "قلوبهم",
       "قلبه"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T08:57:28.855807+00:00",
-    "last_artifact": "book/research/runs/20260825T085728Z-Q005.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T08:57:28.855807+00:00",
+      "last_artifact": "book/research/runs/20260825T085728Z-Q005.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q006",
@@ -90,11 +135,17 @@
       "نفسه",
       "نفوس"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T08:57:58.073896+00:00",
-    "last_artifact": "book/research/runs/20260825T085758Z-Q006.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T08:57:58.073896+00:00",
+      "last_artifact": "book/research/runs/20260825T085758Z-Q006.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q007",
@@ -106,11 +157,17 @@
       "العبادة",
       "اعبد"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T08:58:12.949187+00:00",
-    "last_artifact": "book/research/runs/20260825T085812Z-Q007.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T08:58:12.949187+00:00",
+      "last_artifact": "book/research/runs/20260825T085812Z-Q007.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q008",
@@ -122,11 +179,17 @@
       "اعملوا",
       "يعملون"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T08:59:30.813956+00:00",
-    "last_artifact": "book/research/runs/20260825T085930Z-Q008.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T08:59:30.813956+00:00",
+      "last_artifact": "book/research/runs/20260825T085930Z-Q008.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q009",
@@ -138,11 +201,17 @@
       "صدقوا",
       "المتقون"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T09:28:14.388575+00:00",
-    "last_artifact": "book/research/runs/20260825T092814Z-Q009.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T09:28:14.388575+00:00",
+      "last_artifact": "book/research/runs/20260825T092814Z-Q009.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q010",
@@ -154,11 +223,17 @@
       "الصدق",
       "الأمانة"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T09:28:31.917404+00:00",
-    "last_artifact": "book/research/runs/20260825T092831Z-Q010.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T09:28:31.917404+00:00",
+      "last_artifact": "book/research/runs/20260825T092831Z-Q010.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q011",
@@ -170,11 +245,17 @@
       "القسط",
       "بالقسط"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T09:28:43.288215+00:00",
-    "last_artifact": "book/research/runs/20260825T092843Z-Q011.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T09:28:43.288215+00:00",
+      "last_artifact": "book/research/runs/20260825T092843Z-Q011.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q012",
@@ -186,11 +267,17 @@
       "يرحم",
       "رحمته"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T09:29:04.081463+00:00",
-    "last_artifact": "book/research/runs/20260825T092904Z-Q012.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T09:29:04.081463+00:00",
+      "last_artifact": "book/research/runs/20260825T092904Z-Q012.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q013",
@@ -202,11 +289,17 @@
       "صابروا",
       "يثبت"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T10:00:28.153850+00:00",
-    "last_artifact": "book/research/runs/20260825T100028Z-Q013.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T10:00:28.153850+00:00",
+      "last_artifact": "book/research/runs/20260825T100028Z-Q013.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q014",
@@ -218,11 +311,17 @@
       "يتوب",
       "تواب"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T10:00:44.968174+00:00",
-    "last_artifact": "book/research/runs/20260825T100044Z-Q014.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T10:00:44.968174+00:00",
+      "last_artifact": "book/research/runs/20260825T100044Z-Q014.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q015",
@@ -234,11 +333,17 @@
       "الإخلاص",
       "خلص"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T10:00:56.205375+00:00",
-    "last_artifact": "book/research/runs/20260825T100056Z-Q015.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T10:00:56.205375+00:00",
+      "last_artifact": "book/research/runs/20260825T100056Z-Q015.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q016",
@@ -250,11 +355,17 @@
       "خوفًا",
       "يرجون"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T10:01:10.225105+00:00",
-    "last_artifact": "book/research/runs/20260825T100110Z-Q016.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T10:01:10.225105+00:00",
+      "last_artifact": "book/research/runs/20260825T100110Z-Q016.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q017",
@@ -266,11 +377,17 @@
       "يهواه",
       "هواه"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T11:04:41.471012+00:00",
-    "last_artifact": "book/research/runs/20260825T110441Z-Q017.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T11:04:41.471012+00:00",
+      "last_artifact": "book/research/runs/20260825T110441Z-Q017.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q018",
@@ -282,11 +399,17 @@
       "أفلح",
       "الفلاح"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T11:04:55.762883+00:00",
-    "last_artifact": "book/research/runs/20260825T110455Z-Q018.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T11:04:55.762883+00:00",
+      "last_artifact": "book/research/runs/20260825T110455Z-Q018.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q019",
@@ -298,11 +421,17 @@
       "المصلحين",
       "يصلح"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T11:05:07.158867+00:00",
-    "last_artifact": "book/research/runs/20260825T110507Z-Q019.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T11:05:07.158867+00:00",
+      "last_artifact": "book/research/runs/20260825T110507Z-Q019.md"
+    },
+    "required_evidence_source": "quran_uthmani",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "pending",
+    "synthesis_status": "pending"
   },
   {
     "id": "Q020",
@@ -315,11 +444,18 @@
       "يعملون",
       "أصلحوا"
     ],
-    "status": "processed",
-    "last_attempt": "2026-08-25T11:05:21.759174+00:00",
-    "last_artifact": "book/research/runs/20260825T110521Z-Q020.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T11:05:21.759174+00:00",
+      "last_artifact": "book/research/runs/20260825T110521Z-Q020.md"
+    },
+    "required_evidence_source": "verified_project_artifacts",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "blocked",
+    "synthesis_status": "blocked",
+    "failure": "required_source_unavailable"
   },
   {
     "id": "H001",
@@ -331,12 +467,19 @@
       "هداية",
       "إيمان"
     ],
-    "status": "processed",
     "source": "autonomous_completeness_audit",
-    "last_attempt": "2026-08-25T12:18:49.425808+00:00",
-    "last_artifact": "book/research/runs/20260825T121849Z-H001.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T12:18:49.425808+00:00",
+      "last_artifact": "book/research/runs/20260825T121849Z-H001.md"
+    },
+    "required_evidence_source": "hadith",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "blocked",
+    "synthesis_status": "blocked",
+    "failure": "required_source_unavailable"
   },
   {
     "id": "T001",
@@ -348,12 +491,19 @@
       "الطبري",
       "القرطبي"
     ],
-    "status": "processed",
     "source": "autonomous_completeness_audit",
-    "last_attempt": "2026-08-25T12:19:08.001504+00:00",
-    "last_artifact": "book/research/runs/20260825T121908Z-T001.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T12:19:08.001504+00:00",
+      "last_artifact": "book/research/runs/20260825T121908Z-T001.md"
+    },
+    "required_evidence_source": "tafsir",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "blocked",
+    "synthesis_status": "blocked",
+    "failure": "required_source_unavailable"
   },
   {
     "id": "C001",
@@ -365,12 +515,19 @@
       "برهان",
       "ادعاء"
     ],
-    "status": "processed",
     "source": "autonomous_completeness_audit",
-    "last_attempt": "2026-08-25T12:19:18.176725+00:00",
-    "last_artifact": "book/research/runs/20260825T121918Z-C001.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T12:19:18.176725+00:00",
+      "last_artifact": "book/research/runs/20260825T121918Z-C001.md"
+    },
+    "required_evidence_source": "verified_project_artifacts",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "blocked",
+    "synthesis_status": "blocked",
+    "failure": "required_source_unavailable"
   },
   {
     "id": "X001",
@@ -382,12 +539,19 @@
       "اعتراض",
       "قراءة"
     ],
-    "status": "processed",
     "source": "autonomous_completeness_audit",
-    "last_attempt": "2026-08-25T12:19:27.607676+00:00",
-    "last_artifact": "book/research/runs/20260825T121927Z-X001.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T12:19:27.607676+00:00",
+      "last_artifact": "book/research/runs/20260825T121927Z-X001.md"
+    },
+    "required_evidence_source": "verified_project_artifacts",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "blocked",
+    "synthesis_status": "blocked",
+    "failure": "required_source_unavailable"
   },
   {
     "id": "M001",
@@ -399,12 +563,19 @@
       "عمل",
       "مسؤولية"
     ],
-    "status": "processed",
     "source": "autonomous_completeness_audit",
-    "last_attempt": "2026-08-25T13:25:14.141770+00:00",
-    "last_artifact": "book/research/runs/20260825T132514Z-M001.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T13:25:14.141770+00:00",
+      "last_artifact": "book/research/runs/20260825T132514Z-M001.md"
+    },
+    "required_evidence_source": "verified_project_artifacts",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "blocked",
+    "synthesis_status": "blocked",
+    "failure": "required_source_unavailable"
   },
   {
     "id": "B001",
@@ -416,12 +587,19 @@
       "عمل",
       "تزكية"
     ],
-    "status": "processed",
     "source": "autonomous_completeness_audit",
-    "last_attempt": "2026-08-25T13:25:53.760492+00:00",
-    "last_artifact": "book/research/runs/20260825T132553Z-B001.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T13:25:53.760492+00:00",
+      "last_artifact": "book/research/runs/20260825T132553Z-B001.md"
+    },
+    "required_evidence_source": "verified_project_artifacts",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "blocked",
+    "synthesis_status": "blocked",
+    "failure": "required_source_unavailable"
   },
   {
     "id": "QF001",
@@ -433,12 +611,19 @@
       "مصدر",
       "مرجع"
     ],
-    "status": "processed",
     "source": "autonomous_completeness_audit",
-    "last_attempt": "2026-08-25T13:26:04.988526+00:00",
-    "last_artifact": "book/research/runs/20260825T132604Z-QF001.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T13:26:04.988526+00:00",
+      "last_artifact": "book/research/runs/20260825T132604Z-QF001.md"
+    },
+    "required_evidence_source": "verified_project_artifacts",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "blocked",
+    "synthesis_status": "blocked",
+    "failure": "required_source_unavailable"
   },
   {
     "id": "RF001",
@@ -450,11 +635,18 @@
       "مبالغة",
       "فجوة"
     ],
-    "status": "processed",
     "source": "autonomous_completeness_audit",
-    "last_attempt": "2026-08-25T13:26:17.369904+00:00",
-    "last_artifact": "book/research/runs/20260825T132617Z-RF001.md",
+    "legacy_checkpoint": {
+      "status": "processed",
+      "evidence_count": 0,
+      "synthesis_status": "complete",
+      "last_attempt": "2026-08-25T13:26:17.369904+00:00",
+      "last_artifact": "book/research/runs/20260825T132617Z-RF001.md"
+    },
+    "required_evidence_source": "verified_project_artifacts",
     "evidence_count": 0,
-    "synthesis_status": "complete"
+    "status": "blocked",
+    "synthesis_status": "blocked",
+    "failure": "required_source_unavailable"
   }
 ]

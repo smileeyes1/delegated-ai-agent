@@ -62,6 +62,26 @@ class ResearchIntakeTest(unittest.TestCase):
         original = json.loads(corpus.read_bytes())['data']['surahs'][1]['ayahs'][128]['text']
         self.assertEqual(hits[0]['text'], original)
 
+    def test_reviewed_context_survives_lexical_caps_and_retains_source_text(self):
+        root = research.ROOT
+        queue = json.loads((root / 'FREE_QUEUE.json').read_bytes())
+        task = next(item for item in queue if item['id'] == 'Q003')
+        pinned = task['context_references']
+        hits, checksum = research.acquire_candidates(root / research.QURAN_PATH, task['keywords'], pinned)
+        references = [f"{item['surah']}:{item['ayah']}" for item in hits]
+        self.assertEqual(references[:len(pinned)], pinned)
+        self.assertEqual(len(set(references)), len(references))
+        self.assertIn('57:28', references[:60])
+        incident = json.loads((root / 'research/audits/q003-20261126.json').read_bytes())
+        original = next(item['source_text'] for item in incident['references'] if item['ref'] == '57:28')
+        self.assertEqual(hits[references.index('57:28')]['text'], original)
+        self.assertEqual(checksum, incident['source']['sha256'])
+
+    def test_missing_or_duplicate_context_is_rejected(self):
+        for pins in (('2:2', '2:2'), ('2:251',)):
+            with self.subTest(pins=pins), self.assertRaises(ValueError):
+                research.acquire_candidates(self.corpus, ['هدى'], pins)
+
     def test_zero_candidates_stop_before_synthesis_and_preserve_last_evidence(self):
         research.write_json(self.queue, [self.task(keywords=['مسبار١'])])
         cached = self.corpus.parent / 'Q001.json'

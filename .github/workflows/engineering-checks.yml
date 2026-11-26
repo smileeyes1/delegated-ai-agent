@@ -42,6 +42,10 @@ jobs:
           python3 -m compileall -q app book factories interop tests
           bash -n book/push_checkpoint.sh
           python3 book/VERIFY.py
+          python3 book/MASTER_TERMINAL_GATE.py
+          python3 book/SELF_AUDIT.py
+          python3 book/validate_research.py
+          python3 book/QUALITY_GATE.py
           python3 book/free_autonomous_research.py --audit
           python3 book/e2e_runner.py --output "$RUNNER_TEMP/book-e2e-proof.json"
           git diff --exit-code

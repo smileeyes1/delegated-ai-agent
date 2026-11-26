@@ -69,7 +69,7 @@ def discovery_text(text):
     return ' '.join(''.join(letters).split())
 
 
-def acquire_candidates(path, keywords):
+def acquire_candidates(path, keywords, context_references=()):
     if not isinstance(keywords, list):
         raise ValueError('research keywords must be a list')
     terms = [discovery_text(keyword) for keyword in keywords]
@@ -82,6 +82,12 @@ def acquire_candidates(path, keywords):
     surahs = json.loads(raw)['data']['surahs']
     if not isinstance(surahs, list) or not surahs:
         raise ValueError('Quran corpus contains no surahs')
+    context_references = tuple(context_references)
+    if len(context_references) > 60 or any(
+        not isinstance(ref, str) or not VERSE_REFERENCE.fullmatch(ref) for ref in context_references
+    ) or len(context_references) != len(set(context_references)):
+        raise ValueError('invalid or duplicate research context references')
+    context = dict.fromkeys(context_references)
     hits = []
     seen = set()
     for surah in surahs:
@@ -91,16 +97,23 @@ def acquire_candidates(path, keywords):
                 raise ValueError('invalid or duplicate Quran verse reference')
             seen.add(ref)
             source_text = ayah['text']
-            if pattern.search(discovery_text(source_text)) and len(hits) < 160:
-                hits.append({
+            reference = f'{ref[0]}:{ref[1]}'
+            if reference in context or (len(hits) < 160 and pattern.search(discovery_text(source_text))):
+                candidate = {
                     'surah': surah['number'],
                     'name': surah['name'],
                     'ayah': ayah['numberInSurah'],
                     'text': source_text,
-                })
+                }
+                if reference in context:
+                    context[reference] = candidate
+                else:
+                    hits.append(candidate)
     if not seen:
         raise ValueError('Quran corpus contains no verses')
-    return hits, hashlib.sha256(raw).hexdigest()
+    if any(candidate is None for candidate in context.values()):
+        raise ValueError('research context reference is missing from the corpus')
+    return [*context.values(), *hits][:160], hashlib.sha256(raw).hexdigest()
 
 
 def evidence_refs_and_memo(artifact):
@@ -182,7 +195,9 @@ def run_cycle(root, evidence_only=False, audit_only=False):
         failure = 'required_source_unavailable'
     else:
         try:
-            hits, corpus_hash = acquire_candidates(root / QURAN_PATH, task['keywords'])
+            hits, corpus_hash = acquire_candidates(
+                root / QURAN_PATH, task['keywords'], task.get('context_references', ()),
+            )
         except OSError:
             failure = 'tracked_corpus_unavailable'
         except (KeyError, TypeError, ValueError):
@@ -224,6 +239,8 @@ def run_cycle(root, evidence_only=False, audit_only=False):
             f'- Tracked corpus: `book/{QURAN_PATH.as_posix()}`. SHA-256: `{corpus_hash}`.',
             '- Normalized forms were used only for matching. Evidence preserves the original text.',
         ])
+        if task.get('context_references'):
+            body.append('- The opening passages are the explicitly selected context references for this question.')
     body.extend([
         '- No hadith, tafsir, or historical claim was added as verified evidence.',
         '- Candidate evidence and machine synthesis require downstream scholarly verification.',
