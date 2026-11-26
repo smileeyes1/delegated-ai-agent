@@ -7,11 +7,15 @@ import json
 import os
 from pathlib import Path
 import sqlite3
+import stat
 import tempfile
 
 
 OPERATIONS = ("verify-json", "sha256")
 MAX_FILE_BYTES = 16 * 1024 * 1024
+HAS_CONFINED_FILE_READS = os.open in os.supports_dir_fd and all(
+    hasattr(os, flag) for flag in ("O_DIRECTORY", "O_NOFOLLOW", "O_NONBLOCK")
+)
 JSON_TYPES = {
     dict: "object",
     list: "array",
@@ -31,15 +35,43 @@ def _reject_non_json_constant(value: str) -> None:
     raise ValueError(f"{value} is outside the JSON grammar")
 
 
-def _execute(workspace: Path, operation: str, relative_path: str) -> dict:
+def _relative_input_path(relative_path: str) -> Path:
+    path = Path(relative_path)
+    if path.anchor or not path.parts or ".." in path.parts or "\x00" in str(path):
+        raise ValueError("task file must be specified relative to the workspace")
+    return path
+
+
+def _read_workspace_file(workspace: Path, relative_path: str) -> bytes:
+    if not HAS_CONFINED_FILE_READS:
+        raise TaskExecutionError("secure workspace file reads are unavailable on this platform")
+    directory_mode = getattr(os, "O_PATH", getattr(os, "O_SEARCH", os.O_RDONLY))
+    directory_flags = directory_mode | os.O_DIRECTORY | os.O_NOFOLLOW
+    input_flags = os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK | getattr(os, "O_NOCTTY", 0)
     try:
-        path = (workspace / relative_path).resolve(strict=True)
-        if not path.is_relative_to(workspace) or not path.is_file():
-            raise TaskExecutionError("input must resolve to a regular file inside the workspace")
-        with path.open("rb") as source:
-            content = source.read(MAX_FILE_BYTES + 1)
-    except (OSError, RuntimeError) as error:
-        raise TaskExecutionError("could not read the workspace input file") from error
+        path = _relative_input_path(relative_path)
+        directory = os.open(workspace.anchor, directory_flags)
+        try:
+            for component in (*workspace.parts[1:], *path.parts[:-1]):
+                parent = directory
+                directory = os.open(component, directory_flags, dir_fd=parent)
+                os.close(parent)
+            descriptor = os.open(path.name, input_flags, dir_fd=directory)
+        finally:
+            os.close(directory)
+        try:
+            if not stat.S_ISREG(os.fstat(descriptor).st_mode):
+                raise TaskExecutionError("workspace input must be a regular file")
+            with os.fdopen(descriptor, "rb", closefd=False) as source:
+                return source.read(MAX_FILE_BYTES + 1)
+        finally:
+            os.close(descriptor)
+    except (OSError, ValueError) as error:
+        raise TaskExecutionError("could not safely read the workspace input file") from error
+
+
+def _execute(workspace: Path, operation: str, relative_path: str) -> dict:
+    content = _read_workspace_file(workspace, relative_path)
     if len(content) > MAX_FILE_BYTES:
         raise TaskExecutionError(f"input exceeds {MAX_FILE_BYTES} bytes")
 
@@ -138,9 +170,7 @@ class TaskStore:
             raise ValueError("task ID must contain 1–128 characters without surrounding whitespace")
         if operation not in OPERATIONS:
             raise ValueError(f"unknown local operation {operation!r}")
-        path = Path(relative_path)
-        if path.is_absolute() or not path.parts or ".." in path.parts or "\x00" in str(path):
-            raise ValueError("task file must be specified relative to the workspace")
+        path = _relative_input_path(relative_path)
         if not 1 <= priority <= 4 or not 1 <= max_attempts <= 10:
             raise ValueError("priority must be 1–4 and max attempts must be 1–10")
         with self._connect(write=True) as connection:

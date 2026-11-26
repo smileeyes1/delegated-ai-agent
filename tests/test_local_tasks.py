@@ -1,11 +1,13 @@
 import json
 from hashlib import sha256
+import os
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 
 from app.intent import extract_intent
 from app.local_tasks import MAX_FILE_BYTES, TaskStore
@@ -196,6 +198,51 @@ TaskStore(Path(sys.argv[1]), Path(sys.argv[2])).run_next()
                 with self.subTest(task=task_id):
                     self.store.enqueue(task_id, operation, filename, max_attempts=1)
                     self.assertEqual(self.store.run_next()["state"], "failed")
+
+    def test_regular_nested_input_works_and_links_are_rejected(self):
+        nested = self.workspace / "nested"
+        nested.mkdir()
+        (nested / "evidence.json").write_text("{}", encoding="utf-8")
+        (self.workspace / "nested-link").symlink_to(nested, target_is_directory=True)
+        (nested / "file-link.json").symlink_to(nested / "evidence.json")
+        for filename, expected in (
+            ("nested/evidence.json", "completed"),
+            ("nested-link/evidence.json", "failed"),
+            ("nested/file-link.json", "failed"),
+            ("nested", "failed"),
+        ):
+            with self.subTest(filename=filename):
+                self.store.enqueue(filename, "verify-json", filename, max_attempts=1)
+                self.assertEqual(self.store.run_next()["state"], expected)
+
+    @unittest.skipUnless(hasattr(os, "mkfifo"), "named pipes are unavailable")
+    def test_non_regular_input_returns_without_waiting_for_a_writer(self):
+        os.mkfifo(self.workspace / "pipe")
+        self.store.enqueue("pipe-check", "sha256", "pipe", max_attempts=1)
+        run = subprocess.run(
+            self.cli("run-next"), cwd=REPO, capture_output=True, text=True, timeout=5,
+        )
+        self.assertEqual(run.returncode, 1)
+        self.assertEqual(json.loads(run.stdout)["result"]["error"], "workspace input must be a regular file")
+
+    @unittest.skipUnless(hasattr(os, "O_PATH") or hasattr(os, "O_SEARCH"), "search-only directory opens are unavailable")
+    def test_file_in_traversable_unlistable_directory_is_readable(self):
+        nested = self.workspace / "search-only"
+        nested.mkdir()
+        (nested / "evidence.json").write_text("{}", encoding="utf-8")
+        try:
+            nested.chmod(0o100)
+            self.store.enqueue("search-only", "verify-json", "search-only/evidence.json")
+            self.assertEqual(self.store.run_next()["state"], "completed")
+        finally:
+            nested.chmod(0o700)
+
+    def test_secure_file_operations_fail_closed_without_descriptor_support(self):
+        self.store.enqueue("platform-check", "sha256", "evidence.json", max_attempts=1)
+        with patch("app.local_tasks.HAS_CONFINED_FILE_READS", False):
+            result = self.store.run_next()
+        self.assertEqual(result["state"], "failed")
+        self.assertEqual(result["result"]["error"], "secure workspace file reads are unavailable on this platform")
 
     def test_intent_preserves_the_planners_approval_boundary(self):
         intent = extract_intent("راجع المستودع على غيت هاب")
