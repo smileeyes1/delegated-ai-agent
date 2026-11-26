@@ -1,78 +1,94 @@
-"""Deterministic pre-publication critic for Chapter 01.
+"""Challenge Chapter 01's source comparison and bounded research claims."""
 
-Primary-text verification is now live and separate from interpretation.
-Orthographic comparison is Unicode-aware and conservative.
-"""
-from pathlib import Path
+import argparse
+import hashlib
 import json
-import re
-import unicodedata
+from pathlib import Path
+
+if __package__:
+    from .chapter_sources import COMPARISON_METHOD, verify_verse
+else:
+    from chapter_sources import COMPARISON_METHOD, verify_verse
+
 
 ROOT = Path(__file__).resolve().parent
-p = ROOT / 'research_data/chapter_01_autonomous_research.json'
-live_p = ROOT / 'research_data/chapter_01_live_verification.json'
-if not p.exists():
-    raise SystemExit('research artifact missing')
-if not live_p.exists():
-    raise SystemExit('live primary verification artifact missing')
-d = json.loads(p.read_text(encoding='utf-8'))
-live = json.loads(live_p.read_text(encoding='utf-8'))
-issues = []
-records = d.get('records', [])
-if not records:
-    issues.append('NO_EVIDENCE_RECORDS')
+DATA = ROOT / 'research_data'
 
 
-def comparison_form(text: str) -> str:
-    s = unicodedata.normalize('NFKC', text or '')
-    s = ''.join(ch for ch in s if unicodedata.category(ch) not in {'Mn', 'Me', 'Cf'})
-    s = s.replace('\u0640', '')
-    s = s.replace('ٱ', 'ا').replace('أ', 'ا').replace('إ', 'ا').replace('آ', 'ا')
-    s = s.replace('ى', 'ي').replace('ؤ', 'و').replace('ئ', 'ي')
-    s = re.sub(r'\s+', ' ', s).strip()
-    return s
+def review(research, live):
+    issues = []
+    records = research.get('records', [])
+    if (
+        not records
+        or [r.get('reference') for r in records] != research.get('refs')
+        or research.get('verified_text_count') != len(records)
+    ):
+        issues.append('INCOMPLETE_EVIDENCE_RECORDS')
 
-crosscheck_failures = []
-for r in records:
-    a = comparison_form(r.get('primary_text', ''))
-    b = comparison_form(r.get('quranpedia_text', ''))
-    if a != b:
-        crosscheck_failures.append(r.get('reference', r.get('id', 'UNKNOWN')))
+    basmalah = research.get('crosscheck_basmalah', '')
+    crosscheck_failures = []
+    for record in records:
+        ref = record.get('reference', 'UNKNOWN')
+        primary = record.get('primary_text', '')
+        secondary = record.get('quranpedia_text', '')
+        if (
+            record.get('crosscheck_method') != COMPARISON_METHOD
+            or record.get('status') != 'verified_text'
+            or record.get('text_crosscheck') != 'MATCH'
+            or not isinstance(primary, str)
+            or not isinstance(secondary, str)
+            or not isinstance(basmalah, str)
+            or not verify_verse(ref, primary, secondary, basmalah)
+        ):
+            crosscheck_failures.append(ref)
+    if crosscheck_failures:
+        issues.append('TEXT_CROSSCHECK_FAILURE:' + ','.join(crosscheck_failures))
 
-if crosscheck_failures:
-    issues.append('TEXT_CROSSCHECK_FAILURE:' + ','.join(crosscheck_failures))
+    verified = live.get('verified_count', 0)
+    required = live.get('required_count', 0)
+    if type(required) is not int or type(verified) is not int or required <= 0 or verified != required:
+        issues.append('INCOMPLETE_PRIMARY_VERIFICATION')
 
-if int(live.get('verified_count', 0)) != int(live.get('required_count', 0)):
-    issues.append('INCOMPLETE_PRIMARY_VERIFICATION')
+    if not research.get('counter_evidence_scan'):
+        issues.append('NO_COUNTER_EVIDENCE_SCAN')
+    if not research.get('argument_map'):
+        issues.append('NO_ARGUMENT_MAP')
 
-# Do not inherit old counter-evidence as if it were freshly verified.
-if not d.get('counter_evidence_scan'):
-    issues.append('NO_COUNTER_EVIDENCE_SCAN')
-if not d.get('argument_map'):
-    issues.append('NO_ARGUMENT_MAP')
+    draft = research.get('draft', '')
+    for forbidden in ['يثبت نهائيا', 'يحسم نهائيا', 'لا خلاف', 'أجمع العلماء']:
+        if forbidden in draft:
+            issues.append('OVERCLAIM:' + forbidden)
+    if 'لا تمثل حكمًا نهائيًا' not in draft:
+        issues.append('MISSING_DRAFT_BOUNDARY')
+    if 'ما لم يُحسم' not in draft:
+        issues.append('MISSING_UNCERTAINTY_SECTION')
 
-draft = d.get('draft', '')
-for forbidden in ['يثبت نهائيا', 'يحسم نهائيا', 'لا خلاف', 'أجمع العلماء']:
-    if forbidden in draft:
-        issues.append('OVERCLAIM:' + forbidden)
-if 'لا يمثل حكمًا نهائيًا' not in draft:
-    issues.append('MISSING_DRAFT_BOUNDARY')
-if 'ما لم يُحسم' not in draft:
-    issues.append('MISSING_UNCERTAINTY_SECTION')
+    return {
+        'status': 'PASS' if not issues else 'BLOCKED',
+        'issues': issues,
+        'evidence_records': len(records),
+        'live_verified_text_count': verified,
+        'required_text_count': required,
+        'counter_evidence_count': len(research.get('counter_evidence_scan', [])),
+        'comparison_method': COMPARISON_METHOD,
+        'original_source_text_preserved': True,
+    }
 
-result = {
-    'status': 'PASS' if not issues else 'BLOCKED',
-    'issues': issues,
-    'evidence_records': len(records),
-    'live_verified_text_count': int(live.get('verified_count', 0)),
-    'required_text_count': int(live.get('required_count', 0)),
-    'counter_evidence_count': len(d.get('counter_evidence_scan', [])),
-    'comparison_method': 'Unicode NFKC + conservative Arabic orthographic normalization',
-    'original_source_text_preserved': True,
-}
-(ROOT / 'research_data/chapter_01_critique.json').write_text(
-    json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8'
-)
-print(json.dumps(result, ensure_ascii=False))
-if issues:
-    raise SystemExit(2)
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output-dir', type=Path, default=DATA)
+    data_dir = parser.parse_args().output_dir
+    research = (data_dir / 'chapter_01_autonomous_research.json').read_bytes()
+    live = (data_dir / 'chapter_01_live_verification.json').read_bytes()
+    result = review(json.loads(research), json.loads(live))
+    result['research_sha256'] = hashlib.sha256(research).hexdigest()
+    result['live_verification_sha256'] = hashlib.sha256(live).hexdigest()
+    text = json.dumps(result, ensure_ascii=False, indent=2)
+    (data_dir / 'chapter_01_critique.json').write_text(text + '\n', encoding='utf-8')
+    print(text)
+    raise SystemExit(0 if result['status'] == 'PASS' else 2)
+
+
+if __name__ == '__main__':
+    main()

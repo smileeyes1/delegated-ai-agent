@@ -2,16 +2,9 @@ name: Book Canonical Factory
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '*/15 * * * *'
-  push:
-    paths:
-      - '.github/workflows/book-canonical-factory.yml'
-      - 'book/CHAPTER_01_AUTONOMOUS_PIPELINE.py'
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: book-canonical-factory
@@ -19,6 +12,7 @@ concurrency:
 
 jobs:
   factory:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -37,7 +31,7 @@ jobs:
         run: python3 book/CHAPTER_01_VERIFY.py
 
       - name: End-to-end proof
-        run: python3 book/e2e_runner.py
+        run: python3 book/e2e_runner.py --output "$RUNNER_TEMP/book-e2e-proof.json"
 
       - name: Meta control
         run: python3 book/META_CONTROLLER.py
@@ -54,10 +48,7 @@ jobs:
       - name: Advance only if gates permit
         run: python3 book/ADVANCE_CHAPTER_STATE.py
 
-      - name: Release gate
-        run: python3 book/RELEASE_CHECK.py
-
-      - name: Persist real progress
+      - name: Persist verified research checkpoint
         shell: bash
         run: |
           set -euo pipefail
@@ -69,4 +60,7 @@ jobs:
             exit 0
           fi
           git commit -m 'Advance canonical autonomous book factory'
-          git push
+          bash book/push_checkpoint.sh "$GITHUB_REF_NAME" 1
+
+      - name: Release gate
+        run: python3 book/RELEASE_CHECK.py

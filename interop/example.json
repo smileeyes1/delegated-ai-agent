@@ -1,0 +1,14 @@
+{
+  "schema": "hakim.continuation/v1",
+  "producer": "hakim",
+  "recipient": "dot",
+  "goal_id": "book-factory-e2e",
+  "revision": 1,
+  "updated_at": "2026-11-25T19:54:03.555282Z",
+  "status": "active",
+  "goal_label": "التحقق الدوري من مصنع الكتاب",
+  "stage": "متابعة سجل التشغيل",
+  "last_verified": "سجّل الرأس 8e9a89d نجاح اختبار المسار الكامل لمصنع الكتاب.",
+  "next_step": "افحص ما إذا كان تشغيل أحدث قد أضاف دليلًا.",
+  "blocker": ""
+}

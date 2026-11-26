@@ -2,8 +2,9 @@
 """Deterministic quality gate for autonomous book research.
 Never upgrades exploratory machine output into a scholarly claim.
 """
-import json, re, sys
+import json, sys
 from pathlib import Path
+from free_autonomous_research import TASK_STATUSES, VERSE_REFERENCE, evidence_refs_and_memo
 
 ROOT = Path(__file__).resolve().parent
 STATE = json.loads((ROOT / 'STATE.json').read_text(encoding='utf-8'))
@@ -13,9 +14,8 @@ required_state={'project','status','next_task'}
 missing=required_state-set(STATE)
 if missing: errors.append(f'missing STATE fields: {sorted(missing)}')
 if not isinstance(QUEUE,list) or not QUEUE: errors.append('queue empty or invalid')
-allowed={'pending','processed'}
 for item in QUEUE:
-    if item.get('status') not in allowed: errors.append(f"invalid queue status: {item.get('id')}")
+    if item.get('status') not in TASK_STATUSES: errors.append(f"invalid queue status: {item.get('id')}")
     for k in ('id','title','question','keywords'):
         if k not in item: errors.append(f"missing {k}: {item.get('id')}")
 
@@ -23,6 +23,8 @@ runs=ROOT/'research'/'runs'
 corpus=ROOT/'corpus'
 for item in QUEUE:
     if item.get('status')!='processed': continue
+    if type(item.get('evidence_count')) is not int or item['evidence_count'] <= 0:
+        errors.append(f"processed task without positive evidence count: {item['id']}")
     matches=sorted(runs.glob(f"*-{item['id']}.md"))
     if not matches:
         errors.append(f"processed task without artifact: {item['id']}"); continue
@@ -30,11 +32,10 @@ for item in QUEUE:
     if '## Evidence' not in text: errors.append(f"missing evidence section: {item['id']}")
     if '## Machine synthesis' not in text: errors.append(f"missing synthesis section: {item['id']}")
     if 'Primary text source:' not in text: errors.append(f"missing provenance: {item['id']}")
-    evidence_cites=set(re.findall(r'\*\*(\d{1,3}:\d{1,3})\*\*', text.split('## Machine synthesis',1)[0]))
+    evidence_cites, synthesis = evidence_refs_and_memo(text)
     if not evidence_cites: errors.append(f"no explicit verse citation: {item['id']}")
-    synthesis=text.split('## Machine synthesis',1)[1] if '## Machine synthesis' in text else ''
     # Any citation emitted by the local model must already exist in the retrieved evidence.
-    cited=set(re.findall(r'(?<!\d)(\d{1,3}:\d{1,3})(?!\d)', synthesis))
+    cited=set(VERSE_REFERENCE.findall(synthesis))
     unknown=sorted(cited-evidence_cites)
     if unknown: errors.append(f"model cited verses not in evidence for {item['id']}: {unknown[:10]}")
     # The free exploratory runner must not smuggle hadith/tafsir as verified evidence.

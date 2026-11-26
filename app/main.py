@@ -1,102 +1,72 @@
-"""
-main.py
-=======
-Main entry point for the planning system.
+"""Command-line entry point for the offline task runtime."""
 
-Responsibilities:
-- Initialize Planner
-- Provide simple CLI-style interaction
-- Demonstrate execution flow
-"""
+import argparse
+import json
+from pathlib import Path
+import sqlite3
 
-from datetime import datetime, timedelta
-from planner import Planner, Task, Priority, Status
+if __package__:
+    from .local_tasks import OPERATIONS, TaskStore
+else:
+    from local_tasks import OPERATIONS, TaskStore
 
 
-def seed_sample_tasks(planner: Planner) -> None:
-    """
-    Adds initial tasks for testing or first-run usage.
-    """
-    planner.add_task(
-        Task(
-            title="Setup planning system",
-            description="Initialize planner and verify workflow",
-            priority=Priority.CRITICAL,
-            due_at=datetime.utcnow() + timedelta(hours=2),
-        )
-    )
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--workspace", type=Path, default=Path.cwd(), help="root for task inputs")
+    parser.add_argument("--db", type=Path, help="SQLite queue path, default: data/task-runtime.sqlite3 in the workspace")
+    commands = parser.add_subparsers(dest="command")
 
-    planner.add_task(
-        Task(
-            title="Review planner logic",
-            description="Check prioritization and task flow",
-            priority=Priority.HIGH,
-            due_at=datetime.utcnow() + timedelta(days=1),
-        )
-    )
+    enqueue = commands.add_parser("enqueue", help="register a task using a stable ID")
+    enqueue.add_argument("id")
+    enqueue.add_argument("operation", choices=OPERATIONS)
+    enqueue.add_argument("file", help="regular file relative to the workspace")
+    enqueue.add_argument("--priority", type=int, choices=range(1, 5), default=2)
+    enqueue.add_argument("--max-attempts", type=int, choices=range(1, 11), default=3)
+    commands.add_parser("run-next", help="execute one queued attempt")
+    drain = commands.add_parser("drain", help="execute a bounded number of queued attempts")
+    drain.add_argument("--limit", type=int, default=20, help="attempt limit from 1 to 100, default: 20")
+    status = commands.add_parser("status", help="display one task or the active queue")
+    status.add_argument("id", nargs="?")
+    history = commands.add_parser("history", help="display a task's persisted events")
+    history.add_argument("id")
+    retry = commands.add_parser("retry", help="requeue a failed task for one attempt")
+    retry.add_argument("id")
+    backup = commands.add_parser("backup", help="write a queue snapshot to a new file")
+    backup.add_argument("destination", type=Path)
 
-    planner.add_task(
-        Task(
-            title="Refactor if needed",
-            priority=Priority.MEDIUM,
-        )
-    )
+    args = parser.parse_args(argv)
+    if args.command is None:
+        parser.print_help()
+        return 0
 
+    try:
+        database = args.db if args.db is not None else args.workspace / "data/task-runtime.sqlite3"
+        store = TaskStore(database, args.workspace)
+        if args.command == "enqueue":
+            result = store.enqueue(args.id, args.operation, args.file, args.priority, args.max_attempts)
+        elif args.command == "run-next":
+            result = store.run_next()
+        elif args.command == "drain":
+            result = store.drain(args.limit)
+        elif args.command == "status":
+            result = store.status(args.id)
+        elif args.command == "history":
+            result = store.history(args.id)
+        elif args.command == "retry":
+            result = store.retry(args.id)
+        else:
+            result = {"backup": str(store.backup(args.destination))}
+    except (KeyError, ValueError, OSError, sqlite3.Error) as error:
+        parser.exit(2, f"error: {error}\n")
 
-def print_task(task: Task) -> None:
-    """
-    Pretty print a single task.
-    """
-    print(
-        f"- {task.title}\n"
-        f"  Priority : {task.priority.name}\n"
-        f"  Status   : {task.status.value}\n"
-        f"  Due      : {task.due_at if task.due_at else 'N/A'}\n"
-    )
-
-
-def print_all_tasks(planner: Planner) -> None:
-    """
-    Print all tasks in the planner.
-    """
-    print("\n📋 All Tasks:\n")
-    for task in planner.list_tasks():
-        print_task(task)
-
-
-def run(planner: Planner) -> None:
-    """
-    Core execution flow.
-    """
-    print("🚀 Planner started\n")
-
-    print_all_tasks(planner)
-
-    next_task = planner.next_task()
-    if not next_task:
-        print("✅ No pending tasks.")
-        return
-
-    print("➡️ Next task to execute:\n")
-    print_task(next_task)
-
-    print("▶️ Starting task...\n")
-    planner.start_task(next_task.title)
-
-    print("✅ Completing task...\n")
-    planner.complete_task(next_task.title)
-
-    print_all_tasks(planner)
-
-
-def main() -> None:
-    """
-    Application entry point.
-    """
-    planner = Planner()
-    seed_sample_tasks(planner)
-    run(planner)
+    print(json.dumps(result, ensure_ascii=False, allow_nan=False))
+    if args.command == "run-next" and result is not None and result["state"] != "completed":
+        return 1
+    if args.command == "drain" and any(attempt["state"] != "completed" for attempt in result):
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

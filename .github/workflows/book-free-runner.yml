@@ -2,6 +2,7 @@ name: Book Autonomous Factory — Canonical
 
 on:
   push:
+    branches: [main]
     paths:
       - 'book/**'
       - '.github/workflows/book-free-runner.yml'
@@ -11,7 +12,6 @@ on:
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: book-canonical-factory
@@ -22,6 +22,7 @@ env:
 
 jobs:
   run:
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -46,22 +47,29 @@ jobs:
           q=json.loads(Path('book/FREE_QUEUE.json').read_text(encoding='utf-8'))
           assert state.get('project') == 'كتاب'
           assert isinstance(q,list) and q
-          runnable = any(x.get('status') in {'pending','evidence_collected'} for x in q)
-          print('run=' + ('true' if runnable else 'false'))
+          statuses = {x.get('status') for x in q}
+          mode = 'acquire' if 'pending' in statuses else 'synthesize' if 'evidence_collected' in statuses else 'idle'
+          print('mode=' + mode)
           PY
       - name: Deterministic self-audit
         run: python3 book/SELF_AUDIT.py
       - name: Choose next task
-        if: steps.pending.outputs.run == 'true'
+        if: steps.pending.outputs.mode == 'acquire'
         run: python3 book/RESEARCH_ORCHESTRATOR.py
+      - name: Acquire evidence without a model
+        if: steps.pending.outputs.mode == 'acquire'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 book/free_autonomous_research.py --evidence-only | tee /tmp/book-run.log
       - name: Cache local models
-        if: steps.pending.outputs.run == 'true'
+        if: steps.pending.outputs.mode == 'synthesize'
         uses: actions/cache@v4
         with:
           path: ~/.ollama
           key: ollama-book-models-v3
       - name: Install Ollama and prepare fallback model ladder
-        if: steps.pending.outputs.run == 'true'
+        if: steps.pending.outputs.mode == 'synthesize'
         shell: bash
         run: |
           set -euo pipefail
@@ -80,21 +88,22 @@ jobs:
             echo 'OLLAMA_UNAVAILABLE_RETRYABLE'
           fi
       - name: Process bounded research units
-        if: steps.pending.outputs.run == 'true'
+        if: steps.pending.outputs.mode == 'synthesize'
         shell: bash
         run: |
           set -euo pipefail
           for n in 1 2 3 4; do
             echo "=== autonomous unit $n/4 ==="
             python3 book/free_autonomous_research.py | tee /tmp/book-run.log
-            if grep -Eq 'RETRY_REQUIRED|EVIDENCE_COLLECTED_RETRYABLE|No pending or evidence-collected tasks' /tmp/book-run.log; then break; fi
+            if grep -Eq '^(RESEARCH_BLOCKED|EVIDENCE_COLLECTED_RETRYABLE|No pending or evidence-collected tasks)(:|$)' /tmp/book-run.log; then break; fi
           done
-      - name: Persist evidence checkpoint when synthesis is blocked
+      - name: Persist candidate evidence or an explicit intake block
         id: evidence_checkpoint
         shell: bash
         run: |
           set -euo pipefail
-          if grep -q 'EVIDENCE_COLLECTED_RETRYABLE' /tmp/book-run.log; then
+          if [ -f /tmp/book-run.log ] && grep -Eq '^(EVIDENCE_COLLECTED_RETRYABLE|RESEARCH_BLOCKED)(:|$)' /tmp/book-run.log; then
+            python3 book/SELF_AUDIT.py
             git config user.name 'book-autonomous-agent'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git add book/
@@ -102,32 +111,24 @@ jobs:
               echo 'evidence_checkpoint=false' >> "$GITHUB_OUTPUT"
             else
               git diff --cached --check
-              git commit -m 'book: persist verified evidence acquisition checkpoint [skip ci]'
-              for attempt in $(seq 1 "$GIT_PUSH_RETRIES"); do
-                git fetch origin main
-                git rebase origin/main || { git rebase --abort || true; git reset --soft origin/main; git commit -m 'book: persist verified evidence acquisition checkpoint [skip ci]'; }
-                if git push origin HEAD:main; then
-                  echo 'evidence_checkpoint=true' >> "$GITHUB_OUTPUT"
-                  break
-                fi
-                if [ "$attempt" -eq "$GIT_PUSH_RETRIES" ]; then exit 1; fi
-                sleep $((attempt * 3))
-              done
+              git commit -m 'book: persist evidence acquisition checkpoint [skip ci]'
+              bash book/push_checkpoint.sh "$GITHUB_REF_NAME" "$GIT_PUSH_RETRIES"
+              echo 'evidence_checkpoint=true' >> "$GITHUB_OUTPUT"
             fi
           else echo 'evidence_checkpoint=false' >> "$GITHUB_OUTPUT"; fi
       - name: Verify research and durable state
-        if: steps.pending.outputs.run == 'true' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
+        if: steps.pending.outputs.mode == 'synthesize' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
         run: |
           python3 book/VERIFY.py
           python3 book/CHAPTER_01_VERIFY.py
-          python3 book/e2e_runner.py
+          python3 book/e2e_runner.py --output "$RUNNER_TEMP/book-e2e-proof.json"
       - name: Meta-control and task dispatch
-        if: steps.pending.outputs.run == 'true' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
+        if: steps.pending.outputs.mode == 'synthesize' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
         run: |
           python3 book/META_CONTROLLER.py
           python3 book/AUTONOMOUS_DISPATCH.py
       - name: Continuous execution governor
-        if: steps.pending.outputs.run == 'true' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
+        if: steps.pending.outputs.mode == 'synthesize' && steps.evidence_checkpoint.outputs.evidence_checkpoint != 'true'
         run: python3 book/CONTINUOUS_EXECUTION_GOVERNOR.py
       - name: Final self-audit
         run: python3 book/SELF_AUDIT.py
@@ -142,13 +143,7 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git diff --cached --check
           git commit -m 'book: canonical autonomous factory checkpoint [skip ci]'
-          for attempt in $(seq 1 "$GIT_PUSH_RETRIES"); do
-            git fetch origin main
-            git rebase origin/main || { git rebase --abort || true; git reset --soft origin/main; git commit -m 'book: canonical autonomous factory checkpoint [skip ci]'; }
-            if git push origin HEAD:main; then exit 0; fi
-            if [ "$attempt" -eq "$GIT_PUSH_RETRIES" ]; then exit 1; fi
-            sleep $((attempt * 3))
-          done
+          bash book/push_checkpoint.sh "$GITHUB_REF_NAME" "$GIT_PUSH_RETRIES"
       - name: Failure is explicit
         if: failure()
         run: echo 'CANONICAL_FACTORY_CYCLE_FAILED — durable state explains the block; next scheduled cycle resumes from the last valid checkpoint.'

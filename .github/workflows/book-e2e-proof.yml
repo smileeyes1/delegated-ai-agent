@@ -10,7 +10,7 @@ on:
     - cron: '17 * * * *'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: book-e2e-proof
@@ -22,24 +22,27 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - name: Run deterministic factory proof
-        run: python3 book/e2e_runner.py
+        run: python3 book/e2e_runner.py --output "$RUNNER_TEMP/book-e2e-proof.json"
       - name: Verify artifact
         run: |
-          test -s book/runs/latest_e2e_smoke.json
+          test -s "$RUNNER_TEMP/book-e2e-proof.json"
           python3 - <<'PY'
-          import json
-          p='book/runs/latest_e2e_smoke.json'
+          import json, os
+          from pathlib import Path
+          p=Path(os.environ['RUNNER_TEMP']) / 'book-e2e-proof.json'
           d=json.load(open(p, encoding='utf-8'))
           assert d['passed'] is True
           assert d['draft']['status'] == 'fixture_draft'
           assert d['next_task'] == 'replace_fixture_with_verified_research_adapter'
           print('E2E proof: PASS')
           PY
-      - name: Checkpoint proof artifact
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add book/runs/latest_e2e_smoke.json
-          git diff --cached --quiet || git commit -m 'Record book factory E2E proof'
-          git push
+      - name: Upload proof artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: book-e2e-proof
+          path: ${{ runner.temp }}/book-e2e-proof.json
+          if-no-files-found: error
+          retention-days: 14
