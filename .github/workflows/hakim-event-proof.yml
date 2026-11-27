@@ -1,0 +1,20 @@
+name: Hakim isolated event proof
+on:
+  push:
+    branches: ['hakim/event-engine-test']
+    paths: ['hakim_event/**', '.github/workflows/hakim-event-proof.yml']
+permissions:
+  contents: read
+concurrency:
+  group: hakim-event-proof
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Run acceptance tests
+        run: python3 -m unittest discover -s hakim_event -v
