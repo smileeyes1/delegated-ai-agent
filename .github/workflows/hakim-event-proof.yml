@@ -25,18 +25,7 @@ jobs:
       - name: Produce verified worksheet
         id: product
         run: |
-          PYTHONPATH=hakim_event python3 - <<'PY'
-          from test_math_product import questions, render
-          from pathlib import Path
-          import hashlib
-          q=questions()
-          assert len(q)==6 and all(x['n']==10*x['tens']+x['ones'] for x in q)
-          p=Path('delivery/math.html')
-          p.parent.mkdir(exist_ok=True)
-          p.write_text(render(q),encoding='utf-8')
-          assert p.read_text(encoding='utf-8')==render(q)
-          p.with_suffix('.sha256').write_text(hashlib.sha256(p.read_bytes()).hexdigest()+'  math.html\n')
-          PY
+          python3 hakim_event/produce.py
       - uses: actions/upload-artifact@v4
         id: delivery
         with:
