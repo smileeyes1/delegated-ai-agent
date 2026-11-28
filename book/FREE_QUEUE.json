@@ -383,9 +383,12 @@
       "last_artifact": "book/research/runs/20260825T100056Z-Q015.md"
     },
     "required_evidence_source": "quran_uthmani",
-    "evidence_count": 0,
-    "status": "pending",
-    "synthesis_status": "pending"
+    "evidence_count": 24,
+    "status": "evidence_collected",
+    "synthesis_status": "pending",
+    "last_attempt": "2026-11-28T09:26:28.675354+00:00",
+    "last_artifact": "book/research/runs/20261128T092628675354Z-Q015.md",
+    "source_sha256": "0df03e1d6da4fc8138208fec1688f2b416f0dd4ebbd514179f3e5e0fbaf4195f"
   },
   {
     "id": "Q016",
